@@ -211,7 +211,6 @@ unsafe { foo(p) }
 
 # 动态字符串插值：生成 Rustdoc HTML 文档
 
-对于如下两个属性定义：
 
 ```toml
 [tag.Allocated]
