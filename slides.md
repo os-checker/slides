@@ -167,7 +167,7 @@ args = [ "p1", "p2" ]
 desc = "{p1} must not have other alias"
 ```
 
-<div class="h-8"></div>
+<div class="h-6"></div>
 
 ```rust
 #[safety { Alias }] // defsite
@@ -177,7 +177,7 @@ unsafe fn foo(p: *const ()) {}
 unsafe { foo(p) }
 ```
 
-<div class="h-8"></div>
+<div class="h-4"></div>
 
 ```rust
 error: `Alias` is not discharged
@@ -197,7 +197,7 @@ args = [ "p1", "p2" ]
 desc = "{p1} must not have other alias"
 ```
 
-<div class="h-8"></div>
+<div class="h-4"></div>
 
 ```rust
 #[safety { Alias(p) }]
@@ -226,7 +226,7 @@ desc = "pointer {p} must remain at the same memory address for the duration of l
 types = [ "hazard" ]
 ```
 
-<div class="h-8"></div>
+<div class="h-4"></div>
 
 和安全属性标记：
 
@@ -235,7 +235,7 @@ types = [ "hazard" ]
 unsafe fn __pinned_init(self, slot: *mut T) -> Result<(), E> { ... }
 ```
 
-<div class="h-8"></div>
+<div class="h-4"></div>
 
 宏展开如下：
 
