@@ -2,7 +2,7 @@
 # You can also start simply with 'default'
 theme: seriph
 # 'auto'，'light' or 'dark'
-colorSchema: light
+colorSchema: auto
 # some information about your slides (markdown enabled)
 title: "Pre-RFC: Safety Property System"
 info: |
