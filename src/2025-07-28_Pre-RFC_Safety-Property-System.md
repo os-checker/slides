@@ -155,7 +155,7 @@ url = "https://github.com/Artisan-Lab/tag-std/blob/main/primitive-sp.md#342-alia
 
 环境变量：
 * `SP_FILE=/path/to/single/toml` （优先）
-* `SP_DIR=/path/to/toml/foler`
+* `SP_DIR=/path/to/toml/folder`
 
 ---
 
