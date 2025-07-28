@@ -74,3 +74,95 @@ unsafe { ptr::read(elem) }
 //  - NotOwned: because we incremented...
 //  - Alias: ...
 ```
+
+---
+
+# safety-parse：实现新语法 `#[safety { }]`
+
+实现新语法：
+* 轻量形式：`#[safety { SP1, SP2 }]`
+* 带注释：`#[safety { SP1, SP2: "reason" }]`
+* 带参数：`#[safety { SP(arg1, arg2) }]`
+
+<p class="text-xs">删除旧语法 <code>#[safety::precond::Prop]</code> 和
+  <code>#[safety::discharges]</code>。</p>
+
+--- 
+
+# 轻量级标记：`#[safety { }]`
+
+```rust
+// lightweight tags
+#[safety { SP }]
+#[safety { SP1, SP2 }]
+#[safety { SP1; SP2 }]
+
+// tags with reason
+#[safety { SP1: "reason" }]
+#[safety { SP1: "reason"; SP2: "reason" }]
+
+// grouped tags and shared reason
+#[safety { SP1, SP2: "reason" }]
+#[safety { SP1, SP2: "reason"; SP3 }]
+#[safety { SP3; SP1, SP2: "reason" }]
+#[safety { SP3, SP4; SP1, SP2: "reason" }]
+#[safety { SP3; SP1, SP2: "reason"; SP4 }]
+
+// optional trailing punctuation
+#[safety { SP1, SP2: "reason"; SP3; }]
+#[safety { SP1, SP2: "reason"; SP3, }]
+```
+
+--- 
+
+# 带参数标记：用于属性验证
+
+```rust
+#[safety { SP1(a) }]
+#[safety { SP1(a, b) }]
+
+#[safety { SP1(a), SP2: "reason"; SP3 }]
+#[safety { SP(a, b): "reason"; SP1, SP2: "reason"; SP3, SP4 }]
+
+// `type.SP` to disambiguate SP type 
+#[safety { hazard.Alias(p, q) }]
+// arbitrary argument in Rust expression
+#[safety { hazard.Alias(A {a: self.a}, a::b(c![])): ""; SP }]
+```
+
+RAPx Safety Property Verification:
+
+<https://artisan-lab.github.io/RAPx-Book/6.4-unsafe.html>
+
+---
+
+# safety-parse：Toml 配置文件 - 动态定义属性
+
+
+
+````md magic-move {lines: true}
+```toml {1|1,2|2,3|4|5,6|*}
+[tag.Alias]
+args = [ "p1", "p2" ]
+desc = "{p1} must not have other alias"
+types = [ "hazard" ]
+expr = "p1 = p2"
+url = "https://github.com/Artisan-Lab/tag-std/blob/main/primitive-sp.md#342-alias"
+```
+````
+
+```rust
+#[safety { Alias }]
+unsafe fn foo(p1: *const (), p2: *const ()) {}
+```
+
+```rust
+#[safety { Alias(p1, p2) }]
+unsafe fn foo(p1: *const (), p2: *const ()) {}
+```
+
+---
+
+# 文档生成
+
+![](https://github.com/user-attachments/assets/48ec3740-5a49-4afd-b17d-64bfc8b7e8e3)
