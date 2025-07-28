@@ -25,13 +25,9 @@ seoMeta:
 monaco: fal
 ---
 
-# Pre-RFC: Safety Property System
+<h1 style="font-size: 3.5rem">Pre-RFC: Safety Property System</h1>
 
 2025-07-28
-
-<style>
-h1 { font-size: 3.5rem; }
-</style>
 
 ---
 
@@ -39,8 +35,7 @@ h1 { font-size: 3.5rem; }
 
 <https://internals.rust-lang.org/t/pre-rfc-safety-property-system/23252>
 
-![](https://github.com/user-attachments/assets/b1f9b5d4-9716-4a5e-bdc7-5b6277b045a6)
-
+![](https://github.com/user-attachments/assets/9edba322-23c8-499e-8589-8138ccce3441)
 
 ---
 
@@ -48,7 +43,7 @@ h1 { font-size: 3.5rem; }
 
 <https://rust-lang.zulipchat.com/#narrow/channel/136281-t-opsem/topic/Safety.20Property.20System/with/530679491>
 
-![](https://github.com/user-attachments/assets/9edba322-23c8-499e-8589-8138ccce3441)
+![](https://github.com/user-attachments/assets/b1f9b5d4-9716-4a5e-bdc7-5b6277b045a6)
 
 ---
 
@@ -70,6 +65,8 @@ h1 { font-size: 3.5rem; }
 }]
 unsafe { ptr::read(elem) }
 ```
+
+<div class="m-4"></div>
 
 ```rust
 //  SAFETY
