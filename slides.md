@@ -226,16 +226,12 @@ desc = "pointer {p} must remain at the same memory address for the duration of l
 types = [ "hazard" ]
 ```
 
-<div class="h-2"></div>
-
 和安全属性标记：
 
 ```rust
 #[safety { Allocated(slot, T, 1, _), Pinned(slot, _) }]
 unsafe fn __pinned_init(self, slot: *mut T) -> Result<(), E> { ... }
 ```
-
-<div class="h-2"></div>
 
 宏展开如下：
 
