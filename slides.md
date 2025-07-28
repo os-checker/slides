@@ -26,5 +26,19 @@ seoMeta:
 
 2025-07-28
 
+---
+
 # Discussions in Rust Community
+
+1. Zulipchat Opsem 频道：<https://internals.rust-lang.org/t/pre-rfc-safety-property-system/23252>
+
+![](https://github.com/user-attachments/assets/b1f9b5d4-9716-4a5e-bdc7-5b6277b045a6)
+
+2. IRLO 论坛：<https://rust-lang.zulipchat.com/#narrow/channel/136281-t-opsem/topic/Safety.20Property.20System/with/530679491>
+
+![](https://github.com/user-attachments/assets/9edba322-23c8-499e-8589-8138ccce3441)
+
+3. Reddit：<https://www.reddit.com/r/rust/comments/1m5k58y/prerfc_safety_property_system/>
+
+![](https://github.com/user-attachments/assets/52951f09-979f-418b-af38-8562476bae87)
 
