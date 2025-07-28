@@ -155,9 +155,9 @@ url = "https://github.com/Artisan-Lab/tag-std/blob/main/primitive-sp.md#342-alia
 
 ---
 
-# 动态定义属性：严格检查属性名称，但不严格检查属参数
+# 严格检查属性名称，但不严格检查属参数
 
-<div class="m-12">
+<div class="space-y-8">
 
 ```toml
 [tag.Alias]
@@ -194,6 +194,24 @@ unsafe { foo(p) }
 
 ---
 
-# 动态定义属性：生成 rustdoc HTML 文档
+# 动态定义属性：生成 Rustdoc HTML 文档
+
+```toml
+[tag.Allocated]
+args = [ "p", "T", "len", "A" ]
+desc = "the memory range `[{p}, {p} + sizeof({T})*{len})` must be allocated by allocator {A}"
+
+[tag.Pinned]
+args = [ "p", "l" ]
+desc = "pointer {p} must remain at the same memory address for the duration of lifetime {l}"
+types = [ "hazard" ]
+```
+
+```rust
+#[safety { Allocated(slot, T, 1, _), Pinned(slot, _) }]
+unsafe fn __pinned_init(self, slot: *mut T) -> Result<(), E> { ... }
+```
+
+--- 
 
 <img height="600" src="https://github.com/user-attachments/assets/48ec3740-5a49-4afd-b17d-64bfc8b7e8e3" />
