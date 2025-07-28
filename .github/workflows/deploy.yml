@@ -25,14 +25,8 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
-
-      - name: Install dependencies
-        run: nci
-
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+        run: BASE=/${{github.event.repository.name}}/ ./gen.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
