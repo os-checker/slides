@@ -66,7 +66,7 @@ monaco: fal
 unsafe { ptr::read(elem) }
 ```
 
-<div class="m-4"></div>
+<div class="h-8"></div>
 
 ```rust
 //  SAFETY
@@ -74,6 +74,10 @@ unsafe { ptr::read(elem) }
 //  - NotOwned: because we incremented...
 //  - Alias: ...
 ```
+
+<p class="max-w-xs mx-auto text-center text-xl">
+structured safety comments
+</p>
 
 ---
 
@@ -155,15 +159,15 @@ url = "https://github.com/Artisan-Lab/tag-std/blob/main/primitive-sp.md#342-alia
 
 ---
 
-# 严格检查属性名称，但不严格检查属参数
-
-<div class="space-y-8">
+# 动态定义属性：严格检查属性名称
 
 ```toml
 [tag.Alias]
 args = [ "p1", "p2" ]
 desc = "{p1} must not have other alias"
 ```
+
+<div class="h-8"></div>
 
 ```rust
 #[safety { Alias }] // defsite
@@ -173,6 +177,8 @@ unsafe fn foo(p: *const ()) {}
 unsafe { foo(p) }
 ```
 
+<div class="h-8"></div>
+
 ```rust
 error: `Alias` is not discharged
   --> ./src/xxx.rs:LL:cc
@@ -181,6 +187,17 @@ LL |  unsafe { foo(p) }
    |           ^^^^^^ For this unsafe call.
    |
 ```
+--- 
+
+# 动态定义属性：但不严格检查属参数
+
+```toml
+[tag.Alias]
+args = [ "p1", "p2" ]
+desc = "{p1} must not have other alias"
+```
+
+<div class="h-8"></div>
 
 ```rust
 #[safety { Alias(p) }]
@@ -190,25 +207,42 @@ unsafe fn foo(p: *const ()) {}
 unsafe { foo(p) }
 ```
 
-</div>
-
 ---
 
-# 动态定义属性：生成 Rustdoc HTML 文档
+# 动态字符串插值：生成 Rustdoc HTML 文档
+
+对于如下两个属性定义：
 
 ```toml
 [tag.Allocated]
 args = [ "p", "T", "len", "A" ]
 desc = "the memory range `[{p}, {p} + sizeof({T})*{len})` must be allocated by allocator {A}"
+```
 
+```toml
 [tag.Pinned]
 args = [ "p", "l" ]
 desc = "pointer {p} must remain at the same memory address for the duration of lifetime {l}"
 types = [ "hazard" ]
 ```
 
+<div class="h-8"></div>
+
+和安全属性标记：
+
 ```rust
 #[safety { Allocated(slot, T, 1, _), Pinned(slot, _) }]
+unsafe fn __pinned_init(self, slot: *mut T) -> Result<(), E> { ... }
+```
+
+<div class="h-8"></div>
+
+宏展开如下：
+
+```rust
+#[doc = "- Allocated: the memory range `[{slot}, {slot} + sizeof({T})*1)` must be allocated by allocator _"]
+#[doc = "- Pinned: pointer slot must remain at the same memory address for the duration of lifetime _"]
+#[rapx::inner { Allocated(slot, T, 1, _), Pinned(slot, _) }]
 unsafe fn __pinned_init(self, slot: *mut T) -> Result<(), E> { ... }
 ```
 
