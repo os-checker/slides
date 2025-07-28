@@ -177,7 +177,7 @@ unsafe fn foo(p: *const ()) {}
 unsafe { foo(p) }
 ```
 
-<div class="h-4"></div>
+<div class="h-2"></div>
 
 ```rust
 error: `Alias` is not discharged
@@ -226,7 +226,7 @@ desc = "pointer {p} must remain at the same memory address for the duration of l
 types = [ "hazard" ]
 ```
 
-<div class="h-4"></div>
+<div class="h-2"></div>
 
 和安全属性标记：
 
@@ -235,7 +235,7 @@ types = [ "hazard" ]
 unsafe fn __pinned_init(self, slot: *mut T) -> Result<(), E> { ... }
 ```
 
-<div class="h-4"></div>
+<div class="h-2"></div>
 
 宏展开如下：
 
