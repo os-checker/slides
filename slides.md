@@ -30,26 +30,50 @@ monaco: fal
 2025-07-28
 
 <style>
-h1 { @apply text-3xl; }
+h1 { font-size: 3.5rem; }
 </style>
 
 ---
 
-# Discussions in Rust Community (1): Zulipchat Opsem 频道
+# 社区讨论 (1): Zulipchat Opsem 频道
 
 <https://internals.rust-lang.org/t/pre-rfc-safety-property-system/23252>
 
 ![](https://github.com/user-attachments/assets/b1f9b5d4-9716-4a5e-bdc7-5b6277b045a6)
 
-# Discussions in Rust Community (2): IRLO 论坛
+
+---
+
+# 社区讨论 (2): IRLO 论坛
 
 <https://rust-lang.zulipchat.com/#narrow/channel/136281-t-opsem/topic/Safety.20Property.20System/with/530679491>
 
 ![](https://github.com/user-attachments/assets/9edba322-23c8-499e-8589-8138ccce3441)
 
-# Discussions in Rust Community (3): Reddit
+---
+
+# 社区讨论 (3): Reddit
 
 <https://www.reddit.com/r/rust/comments/1m5k58y/prerfc_safety_property_system/>
 
 ![](https://github.com/user-attachments/assets/52951f09-979f-418b-af38-8562476bae87)
 
+---
+
+# 社区反馈结果：轻量级标注语法
+
+```rust
+#[safety {
+  ValidPtr, Align, Init: "`self.head_tail()` returns two slices to live elements";
+  NotOwned: "because we incremented...";
+  Alias(elem, head.iter());
+}]
+unsafe { ptr::read(elem) }
+```
+
+```rust
+//  SAFETY
+//  - ValidPtr, Aligned, Init: `head` is a slice of initialized elements.
+//  - NotOwned: because we incremented...
+//  - Alias: ...
+```
