@@ -138,8 +138,6 @@ RAPx Safety Property Verification:
 
 # safety-parse：Toml 配置文件 - 动态定义属性
 
-
-
 ````md magic-move {lines: true}
 ```toml {1|1,2|2,3|4|5,6|*}
 [tag.Alias]
@@ -151,18 +149,51 @@ url = "https://github.com/Artisan-Lab/tag-std/blob/main/primitive-sp.md#342-alia
 ```
 ````
 
-```rust
-#[safety { Alias }]
-unsafe fn foo(p1: *const (), p2: *const ()) {}
-```
-
-```rust
-#[safety { Alias(p1, p2) }]
-unsafe fn foo(p1: *const (), p2: *const ()) {}
-```
+环境变量：
+* `SP_FILE=/path/to/single/toml` （优先）
+* `SP_DIR=/path/to/toml/foler`
 
 ---
 
-# 文档生成
+# 动态定义属性：严格检查属性名称，但不严格检查属参数
 
-![](https://github.com/user-attachments/assets/48ec3740-5a49-4afd-b17d-64bfc8b7e8e3)
+<div class="m-12">
+
+```toml
+[tag.Alias]
+args = [ "p1", "p2" ]
+desc = "{p1} must not have other alias"
+```
+
+```rust
+#[safety { Alias }] // defsite
+unsafe fn foo(p: *const ()) {}
+
+#[safety { Alias }] // callsite
+unsafe { foo(p) }
+```
+
+```rust
+error: `Alias` is not discharged
+  --> ./src/xxx.rs:LL:cc
+   |
+LL |  unsafe { foo(p) }
+   |           ^^^^^^ For this unsafe call.
+   |
+```
+
+```rust
+#[safety { Alias(p) }]
+unsafe fn foo(p: *const ()) {}
+
+#[safety { Alias(p) }]
+unsafe { foo(p) }
+```
+
+</div>
+
+---
+
+# 动态定义属性：生成 rustdoc HTML 文档
+
+<img height="600" src="https://github.com/user-attachments/assets/48ec3740-5a49-4afd-b17d-64bfc8b7e8e3" />
