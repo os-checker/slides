@@ -18,7 +18,7 @@ site=(
 # build static pages
 for i in "${!md[@]}"; do
   mkdir dist/${site[$i]}
-  npm run build -- ${md[$i]} --out dist/${site[$i]} --base ${BASE}${site[$i]}/
+  npm run build -- ${md[$i]} --out dist/${site[$i]} --base /slides/${site[$i]}/
 done
 
 # generate index.html

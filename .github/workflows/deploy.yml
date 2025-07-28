@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: |
           npm install
-          BASE=/${{github.event.repository.name}}/ ./gen.sh
+          ./gen.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
