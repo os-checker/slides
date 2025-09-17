@@ -33,7 +33,7 @@ monaco: fal
 
 # 社区讨论 (1): Zulipchat Opsem 频道
 
-<https://internals.rust-lang.org/t/pre-rfc-safety-property-system/23252>
+<https://rust-lang.zulipchat.com/#narrow/channel/136281-t-opsem/topic/Safety.20Property.20System/with/530679491>
 
 ![](https://github.com/user-attachments/assets/9edba322-23c8-499e-8589-8138ccce3441)
 
@@ -41,7 +41,7 @@ monaco: fal
 
 # 社区讨论 (2): IRLO 论坛
 
-<https://rust-lang.zulipchat.com/#narrow/channel/136281-t-opsem/topic/Safety.20Property.20System/with/530679491>
+<https://internals.rust-lang.org/t/pre-rfc-safety-property-system/23252>
 
 ![](https://github.com/user-attachments/assets/b1f9b5d4-9716-4a5e-bdc7-5b6277b045a6)
 
