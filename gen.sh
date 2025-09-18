@@ -26,7 +26,9 @@ slides=$(
     ele=${md[$i]#./src/} # remove ./src/
     ele=${ele/_/ }       # replace the first _ by space
     ele=${ele%.md}       # remove .md
-    printf '  <li>  <a href="./%s"> %s </li>\\\n' "${site[$i]}" "${ele}"
+    printf '  <li>  <a href="./%s"> %s </li>\n' "${site[$i]}" "${ele}"
   done
 )
-sed -e '/^SLIDES$/c\'"${slides}" .github/index.html >dist/index.html
+echo "${slides}" >tmp.html
+sed -e '/^SLIDES$/r tmp.html' -e '/^SLIDES$/d' .github/index.html >dist/index.html
+rm tmp.html
