@@ -20,8 +20,8 @@ transition: slide-left
 seoMeta:
   # By default, Slidev will use ./og-image.png if it exists,
   # or generate one from the first slide if not found.
-  ogImage: auto
-  # ogImage: https://cover.sli.dev
+  # ogImage: auto
+  ogImage: https://cover.sli.dev
 monaco: fal
 ---
 

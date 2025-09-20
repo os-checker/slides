@@ -7,11 +7,13 @@ mkdir dist
 
 md=(
   ./src/2025-07-28_Pre-RFC_Safety-Property-System.md
+  ./src/2025-09-20_Safety-Tags.md
   # slides_init.md
 )
 
 site=(
   Safety-Property-System
+  Safety-Tags
   # demo
 )
 
