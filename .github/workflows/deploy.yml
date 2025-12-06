@@ -34,6 +34,9 @@ jobs:
       - name: Prepare deploy folder
         run: rm -rf dist && mkdir dist
 
+      - name: Install playwright for generating PDFs
+        run: pnpm exec playwright install
+
       - name: Build all slides and preview app as index
         run: pnpm build
 
