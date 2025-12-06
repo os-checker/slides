@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "preview": "slidev-workspace preview",
+    "build": "slidev-workspace build"
+  },
+  "dependencies": {
+    "slidev-workspace": "^0.7.0"
+  }
+}
