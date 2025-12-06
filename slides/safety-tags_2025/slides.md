@@ -10,9 +10,24 @@ routerMode: hash
 download: true
 ---
 
-# title
+# Rust Safety Tags
 
-aaa
+<div class="text-xl font-bold text-orange-500">
+
+Github Repo: [Artisan-Lab/tag-std]
+
+[Artisan-Lab/tag-std]: https://github.com/Artisan-Lab/tag-std
+
+</div>
+
+Presenter: 周积萍
+
+<style scoped>
+.slidev-layout.cover {
+  background: var(--slidev-theme-background) !important;
+  color: var(--slidev-theme-foreground) !important;
+}
+</style>
 
 ---
 
