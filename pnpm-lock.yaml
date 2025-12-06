@@ -16,7 +16,7 @@ importers:
         specifier: ^1.57.0
         version: 1.57.0
 
-  slides/safety-tags_2025:
+  slides/safety-tags:
     dependencies:
       '@slidev/cli':
         specifier: ^52.10.1
