@@ -21,6 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Noto Color Emoji Font
+        run: |
+          sudo apt update
+          sudo apt install -y fonts-noto-color-emoji
+          fc-list | grep -i "noto"
+
       - name: Install Source Han Sans SC
         run: |
           mkdir -p ~/.local/share/fonts
