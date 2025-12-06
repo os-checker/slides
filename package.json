@@ -5,5 +5,8 @@
   },
   "dependencies": {
     "slidev-workspace": "^0.7.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.57.0"
   }
 }

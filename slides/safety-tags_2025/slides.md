@@ -6,6 +6,7 @@ date: 2024-01-01
 theme: seriph
 background: https://picsum.photos/800/600
 transition: slide-left
+download: true
 ---
 
 # title
