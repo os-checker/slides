@@ -1,11 +1,12 @@
 ---
-title: My Presentation
-info: This is a Vue.js tutorial
-author: John Doe
-date: 2024-01-01
+title: Rust Safety Tags
+info: Idea and work to tag unsafe code with properties.
+author: zjp (苦瓜小仔)
+date: 2025-12-14
 theme: seriph
-background: https://picsum.photos/800/600
+# background: https://picsum.photos/800/600
 transition: slide-left
+routerMode: hash
 download: true
 ---
 
