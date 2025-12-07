@@ -10,6 +10,7 @@ transition: slide-left
 routerMode: hash
 download: true
 monaco: false
+hideInToc: true
 ---
 
 <h1 class="font-bold !text-orange-500">Rust Safety Tags</h1>
@@ -26,6 +27,8 @@ Presenter: 周积萍
 </style>
 
 ---
+hideInToc: true
+---
 
 # Self-Intro
 
@@ -37,3 +40,13 @@ Presenter: 周积萍
 * [distributed-verification](https://github.com/os-checker/distributed-verification) 作者
   * Kani 资源节约验证；verify-rust-std & Google 开源之夏
 * Rust 中文社区 ([rustcc](https://rustcc.cn/)) 新闻日报编辑：苦瓜小仔
+
+---
+hideInToc: true
+routeAlias: toc
+---
+
+# Table of Contents
+
+<Toc maxDepth="1" />
+
