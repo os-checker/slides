@@ -57,3 +57,7 @@ routeAlias: toc
 ---
 src: ./pages/1-current-lints.md
 ---
+
+---
+src: ./pages/2-community-approaches.md
+---
