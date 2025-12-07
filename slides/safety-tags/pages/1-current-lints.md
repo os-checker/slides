@@ -101,6 +101,8 @@ help: wrap the attribute in `unsafe(...)`
 </TwoColumns>
 </CodeblockSmallSized>
 
+<div v-click=1>
+
 2. [`extern` blocks](https://doc.rust-lang.org/edition-guide/rust-2024/unsafe-extern.html)
   must now be marked as `unsafe`.
 
@@ -134,11 +136,13 @@ error: extern blocks must be unsafe
 </TwoColumns>
 </CodeblockSmallSized>
 
+</div>
+
 ---
 
 ## Edition 2024 Enforces Granular Isolation of Unsafety
 
-3. Rustc lint [`unsafe_op_in_unsafe_fn`](https://doc.rust-lang.org/rustc/lints/listing/allowed-by-default.html#unsafe-op-in-unsafe-fn)
+3. Rustc lint [`unsafe_op_in_unsafe_fn`](https://doc.rust-lang.org/edition-guide/rust-2024/unsafe-op-in-unsafe-fn.html)
 now warns by default.
 
 <CodeblockSmallSized>
@@ -167,6 +171,94 @@ note: an unsafe function restricts its caller, but its body is safe by default
 1 | unsafe fn get_unchecked<T>(x: &[T], i: usize) -> &T {
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   = note: `#[warn(unsafe_op_in_unsafe_fn)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+```
+
+</CodeblockSmallSized>
+
+---
+
+## Clippy Lints
+
+1. [`missing_safety_doc`](https://rust-lang.github.io/rust-clippy/master/index.html?search=missing_safety_doc)
+  checks for the doc comments of publicly visible unsafe functions and warns if there is no `# Safety` section.
+
+<CodeblockSmallSized>
+<TwoColumns>
+
+<template #left>
+
+```diff
++/// # Safety
++///
++/// Shouldn't call this before the horsemen are ready.
+pub unsafe fn start_apocalypse(u: &mut Universe) { }
+```
+
+</template>
+
+<template #right>
+
+```rust
+warning: unsafe function's docs are missing a `# Safety` section
+ --> src/lib.rs:1:1
+1 | pub unsafe fn start_apocalypse(u: &mut Universe) { }
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+</template>
+
+</TwoColumns>
+</CodeblockSmallSized>
+
+<div v-click=1>
+
+2. [`multiple_unsafe_ops_per_block`](https://rust-lang.github.io/rust-clippy/master/index.html?search=multiple_unsafe_ops_per_block)
+  checks for unsafe blocks that contain more than one unsafe operation.
+
+<CodeblockSmallSized>
+
+```rust
+fn read_char(ptr: *const u8) -> char {
+    // SAFETY: The caller has guaranteed that the value pointed to by `bytes` is a valid `char`.
+    unsafe { char::from_u32_unchecked(*ptr.cast::<u32>()) }
+}
+```
+
+</CodeblockSmallSized>
+
+</div>
+
+---
+
+<CodeblockSmallSized>
+
+```rust
+error: this `unsafe` block contains 2 unsafe operations, expected only one
+ --> src/lib.rs:5:5
+5 |     unsafe { core::char::from_u32_unchecked(*ptr.cast::<u32>()) }
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+note: unsafe function call occurs here
+ --> src/lib.rs:5:14
+5 |     unsafe { core::char::from_u32_unchecked(*ptr.cast::<u32>()) }
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+note: raw pointer dereference occurs here
+ --> src/lib.rs:5:45
+5 |     unsafe { core::char::from_u32_unchecked(*ptr.cast::<u32>()) }
+  |                                             ^^^^^^^^^^^^^^^^^^
+```
+
+```diff
+#![deny(clippy::multiple_unsafe_ops_per_block)] // 👈
+fn read_char(ptr: *const u8) -> char {
+-  // SAFETY: The caller has guaranteed that the value pointed to by `bytes` is a valid `char`.
+-  unsafe { char::from_u32_unchecked(*ptr.cast::<u32>()) }
+
++  // SAFETY: `ptr` is 4-byte aligned, points to four consecutive initialized bytes, and valid for reads of 4 bytes.
++  let int_value = unsafe { *ptr.cast::<u32>() };
+
++  // SAFETY: The caller has guaranteed that the four bytes pointed to by `bytes` represent a valid `char`.
++  unsafe { char::from_u32_unchecked(int_value) }
+}
 ```
 
 </CodeblockSmallSized>
