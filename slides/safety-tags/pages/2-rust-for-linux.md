@@ -1,8 +1,4 @@
 
-# Community Approaches
-
----
-
 ## Rust for Linux - Safety Standard Proposal (2024.09)
 
 * Kangrejos Conference [Slides](https://kangrejos.com/2024/Rust%20Safety%20Standard.pdf):

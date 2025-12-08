@@ -34,7 +34,7 @@ hideInToc: true
 
 * [os-checker](https://github.com/os-checker/os-checker) 作者
   * 来自唐图 ([rCoreOS](https://github.com/rcore-os/)) 开源社区；检查 ArceOS、Starry、axVisor 代码库
-  * 收录于旋武社区项目 [#26](https://xuanwu.openatom.cn/articles/project/26-os-checker/)
+  * 泉城实验室资助；收录于旋武开源社区项目 [#26](https://xuanwu.openatom.cn/articles/project/26-os-checker/)
 * [safety-tool](https://github.com/Artisan-Lab/tag-std) 作者
   * 安全属性标注；[RFC#3842](https://github.com/rust-lang/rfcs/pull/3842)
 * [distributed-verification](https://github.com/os-checker/distributed-verification) 作者
@@ -59,5 +59,10 @@ src: ./pages/1-current-lints.md
 ---
 
 ---
-src: ./pages/2-community-approaches.md
+
+# Community Approaches
+
 ---
+src: ./pages/2-rust-for-linux.md
+---
+
