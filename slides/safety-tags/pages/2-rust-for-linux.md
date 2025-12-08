@@ -23,8 +23,10 @@
 </Info>
 
 ---
+hideInToc: true
+---
 
-## Rust for Linux: Safety Standard
+## Rust for Linux: Safety Standard vs Using Tags
 
 Provide a correct justification for _every_ safety requirements of _every_ operation:
 
@@ -64,7 +66,7 @@ let arc = unsafe { Arc::from_raw(ptr) };
 </CodeblockSmallSized>
 
 <div class="font-bold text-orange-500 pt-4">
-Rephrase the safety comments in safety-tool syntax:
+They can be rephrased in safety tag syntax:
 </div>
 
 <CodeblockSmallSized>

@@ -1,6 +1,8 @@
 
 # Current Lints on Unsafe Code
 
+<SubTOC />
+
 ---
 
 ## Rustc Lint: `unsafe_code`
@@ -138,6 +140,8 @@ error: extern blocks must be unsafe
 
 </div>
 
+---
+hideInToc: true
 ---
 
 ## Edition 2024 Enforces Granular Isolation of Unsafety

@@ -66,7 +66,9 @@ src: ./pages/1-current-lints.md
 
 ---
 
-# Community Approaches
+# Community Approaches & Our Spin
+
+<SubTOC />
 
 ---
 src: ./pages/2-rust-for-linux.md
