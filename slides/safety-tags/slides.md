@@ -51,6 +51,12 @@ routeAlias: toc
 <Toc maxDepth="1" />
 
 ---
+routeAlias: team
+---
+
+<img src="./pages/Artisan-Lab.png" class="w-[95%] object-contain">
+
+---
 
 # What is a Rust Safety-Tag?
 
