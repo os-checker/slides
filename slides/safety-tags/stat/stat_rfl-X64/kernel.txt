@@ -1,0 +1,2881 @@
+<&pci::Device<Ctx> as core::convert::TryFrom<&device::Device<Ctx>>>::try_from
+├── bindings::dev_is_pci
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+<&platform::Device<Ctx> as core::convert::TryFrom<&device::Device<Ctx>>>::try_from
+├── bindings::dev_is_platform
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+<T as InPlaceModule>::init
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── pin_init::pin_init_from_closure
+
+<[i16; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[i32; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[i64; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[i8; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[u16; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[u32; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[u64; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<[u8; N] as device::property::Property>::read_from_fwnode_property
+└── core::mem::MaybeUninit::<T>::assume_init
+
+<alloc::allocator::KVmalloc as alloc::Allocator>::realloc
+└── alloc::allocator::ReallocFunc::call [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mLayout[39m[0m [38;5;246m}[0m
+
+<alloc::allocator::Kmalloc as alloc::Allocator>::realloc
+└── alloc::allocator::ReallocFunc::call [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mLayout[39m[0m [38;5;246m}[0m
+
+<alloc::allocator::Vmalloc as alloc::Allocator>::realloc
+└── alloc::allocator::ReallocFunc::call [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mLayout[39m[0m [38;5;246m}[0m
+
+<alloc::allocator::iter::VmallocPageIter<'a> as core::iter::Iterator>::next
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+<alloc::kbox::Box<T, A> as core::ops::Deref>::deref
+└── core::ptr::NonNull::<T>::as_ref
+
+<alloc::kbox::Box<T, A> as core::ops::DerefMut>::deref_mut
+└── core::ptr::NonNull::<T>::as_mut
+
+<alloc::kbox::Box<T, A> as core::ops::Drop>::drop
+└── core::ptr::drop_in_place
+
+<alloc::kbox::Box<core::mem::MaybeUninit<T>, A> as pin_init::InPlaceWrite<T>>::write_init
+└── pin_init::Init::__init
+
+<alloc::kbox::Box<core::mem::MaybeUninit<T>, A> as pin_init::InPlaceWrite<T>>::write_pin_init
+└── pin_init::PinInit::__pinned_init
+
+<alloc::kvec::DrainAll<'vec, T> as core::iter::Iterator>::next
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<alloc::kvec::DrainAll<'vec, T> as core::ops::Drop>::drop
+└── core::ptr::drop_in_place
+
+<alloc::kvec::IntoIter<T, A> as core::iter::Iterator>::next
+├── core::ptr::mut_ptr::<impl *mut T>::add
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<alloc::kvec::IntoIter<T, A> as core::ops::Drop>::drop
+└── core::ptr::drop_in_place
+
+<alloc::kvec::Vec<T, A> as core::ops::Deref>::deref
+└── core::slice::from_raw_parts
+
+<alloc::kvec::Vec<T, A> as core::ops::DerefMut>::deref_mut
+└── core::slice::from_raw_parts_mut
+
+<alloc::kvec::Vec<T, A> as core::ops::Drop>::drop
+└── core::ptr::drop_in_place
+
+<auxiliary::Adapter<T> as driver::RegistrationOps>::register
+└── bindings::__auxiliary_driver_register
+
+<auxiliary::Adapter<T> as driver::RegistrationOps>::unregister
+└── bindings::auxiliary_driver_unregister
+
+<auxiliary::Device as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::put_device
+
+<auxiliary::Device as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_device
+
+<auxiliary::Registration as core::ops::Drop>::drop
+├── bindings::auxiliary_device_delete
+└── bindings::auxiliary_device_uninit
+
+<bitmap::BitmapVec as core::ops::Drop>::drop
+└── bindings::bitmap_free
+
+<block::mq::gen_disk::GenDisk<T> as core::ops::Drop>::drop
+└── bindings::del_gendisk
+
+<block::mq::tag_set::TagSet<T> as pin_init::PinnedDrop>::drop
+└── bindings::blk_mq_free_tag_set
+
+<core::pin::Pin<alloc::kbox::Box<T, alloc::allocator::Kmalloc>> as workqueue::RawWorkItem<ID>>::__enqueue
+└── core::hint::unreachable_unchecked
+
+<cpufreq::PolicyCpu<'a> as core::ops::Drop>::drop
+└── bindings::cpufreq_cpu_put
+
+<cpufreq::Registration<T> as core::ops::Drop>::drop
+└── bindings::cpufreq_unregister_driver
+
+<cpufreq::Relation as core::cmp::PartialEq>::eq
+└── core::intrinsics::unreachable
+
+<cred::Credential as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::put_cred
+
+<cred::Credential as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_cred
+
+<debugfs::callback_adapters::FormatAdapter<D, F> as debugfs::traits::Writer>::write
+└── debugfs::callback_adapters::materialize_zst
+    └── core::ptr::NonNull::<T>::as_ref
+
+<debugfs::callback_adapters::WritableAdapter<D, W> as debugfs::traits::Reader>::read_from_slice
+└── debugfs::callback_adapters::materialize_zst
+
+<debugfs::entry::Entry<'_> as core::ops::Drop>::drop
+└── bindings::debugfs_remove
+
+<device::Device as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::put_device
+
+<device::Device as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_device
+
+<device::property::FwNode as fmt::Display>::fmt
+├── bindings::fwnode_count_parents
+├── bindings::fwnode_get_nth_parent
+└── bindings::fwnode_get_name_prefix
+
+<device::property::FwNode as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::fwnode_handle_put
+
+<device::property::FwNode as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::fwnode_handle_get
+
+<device::property::FwNode::display_name::FwNodeDisplayName<'_> as fmt::Display>::fmt
+└── bindings::fwnode_get_name
+
+<devres::Devres<T> as pin_init::PinnedDrop>::drop
+├── revocable::Revocable::<T>::revoke_nosync [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
+│   └── revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
+│       ├── bindings::synchronize_rcu
+│       └── core::ptr::drop_in_place
+└── core::ptr::drop_in_place
+
+<dma::CoherentAllocation<T> as core::ops::Drop>::drop
+└── bindings::dma_free_attrs
+
+<drm::device::Device<T> as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::drm_dev_put
+
+<drm::device::Device<T> as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::drm_dev_get
+
+<drm::driver::Registration<T> as core::ops::Drop>::drop
+└── bindings::drm_dev_unregister
+
+<drm::gem::Object<T> as drm::gem::IntoGEMObject>::from_raw
+└── core::ptr::const_ptr::<impl *const T>::byte_sub
+
+<error::Error as core::fmt::Debug>::fmt
+└── core::str::from_utf8_unchecked
+
+<faux::Registration as core::ops::Drop>::drop
+└── bindings::faux_device_destroy
+
+<ffi::CStr as str::CStrExt>::from_bytes_with_nul_unchecked_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+<ffi::CStr as str::CStrExt>::from_char_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m, [1m[38;2;255;165;000mNonMutate[39m[0m [38;5;246m}[0m
+
+<ffi::CStr as str::CStrExt>::make_ascii_lowercase
+└── str::to_bytes_mut
+
+<ffi::CStr as str::CStrExt>::make_ascii_uppercase
+└── str::to_bytes_mut
+
+<fs::file::File as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::fput
+
+<fs::file::File as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_file
+
+<fs::file::FileDescriptorReservation as core::ops::Drop>::drop
+└── bindings::put_unused_fd
+
+<fs::file::LocalFile as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::fput
+
+<fs::file::LocalFile as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_file
+
+<i16 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u16_array
+└── core::intrinsics::transmute
+
+<i16 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u16_array
+
+<i32 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u32_array
+└── core::intrinsics::transmute
+
+<i32 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u32_array
+
+<i32 as sync::atomic::internal::AtomicArithmeticOps>::atomic_add
+└── bindings::atomic_add
+
+<i32 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add
+└── bindings::atomic_fetch_add
+
+<i32 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add_acquire
+└── bindings::atomic_fetch_add_acquire
+
+<i32 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add_relaxed
+└── bindings::atomic_fetch_add_relaxed
+
+<i32 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add_release
+└── bindings::atomic_fetch_add_release
+
+<i32 as sync::atomic::internal::AtomicBasicOps>::atomic_read
+└── bindings::atomic_read
+
+<i32 as sync::atomic::internal::AtomicBasicOps>::atomic_read_acquire
+└── bindings::atomic_read_acquire
+
+<i32 as sync::atomic::internal::AtomicBasicOps>::atomic_set
+└── bindings::atomic_set
+
+<i32 as sync::atomic::internal::AtomicBasicOps>::atomic_set_release
+└── bindings::atomic_set_release
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg
+└── bindings::atomic_try_cmpxchg
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg_acquire
+└── bindings::atomic_try_cmpxchg_acquire
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg_relaxed
+└── bindings::atomic_try_cmpxchg_relaxed
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg_release
+└── bindings::atomic_try_cmpxchg_release
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg
+└── bindings::atomic_xchg
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg_acquire
+└── bindings::atomic_xchg_acquire
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg_relaxed
+└── bindings::atomic_xchg_relaxed
+
+<i32 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg_release
+└── bindings::atomic_xchg_release
+
+<i64 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u64_array
+└── core::intrinsics::transmute
+
+<i64 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u64_array
+
+<i64 as sync::atomic::internal::AtomicArithmeticOps>::atomic_add
+└── bindings::atomic64_add
+
+<i64 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add
+└── bindings::atomic64_fetch_add
+
+<i64 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add_acquire
+└── bindings::atomic64_fetch_add_acquire
+
+<i64 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add_relaxed
+└── bindings::atomic64_fetch_add_relaxed
+
+<i64 as sync::atomic::internal::AtomicArithmeticOps>::atomic_fetch_add_release
+└── bindings::atomic64_fetch_add_release
+
+<i64 as sync::atomic::internal::AtomicBasicOps>::atomic_read
+└── bindings::atomic64_read
+
+<i64 as sync::atomic::internal::AtomicBasicOps>::atomic_read_acquire
+└── bindings::atomic64_read_acquire
+
+<i64 as sync::atomic::internal::AtomicBasicOps>::atomic_set
+└── bindings::atomic64_set
+
+<i64 as sync::atomic::internal::AtomicBasicOps>::atomic_set_release
+└── bindings::atomic64_set_release
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg
+└── bindings::atomic64_try_cmpxchg
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg_acquire
+└── bindings::atomic64_try_cmpxchg_acquire
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg_relaxed
+└── bindings::atomic64_try_cmpxchg_relaxed
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_try_cmpxchg_release
+└── bindings::atomic64_try_cmpxchg_release
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg
+└── bindings::atomic64_xchg
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg_acquire
+└── bindings::atomic64_xchg_acquire
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg_relaxed
+└── bindings::atomic64_xchg_relaxed
+
+<i64 as sync::atomic::internal::AtomicExchangeOps>::atomic_xchg_release
+└── bindings::atomic64_xchg_release
+
+<i8 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u8_array
+└── core::intrinsics::transmute
+
+<i8 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u8_array
+
+<io::mem::IoMem<SIZE> as core::ops::Drop>::drop
+└── bindings::iounmap
+
+<io::resource::Region as core::ops::Drop>::drop
+├── bindings::release_mem_region
+└── bindings::release_region
+
+<irq::request::RegistrationInner as pin_init::PinnedDrop>::drop
+└── bindings::free_irq
+
+<maple_tree::MapleGuard<'tree, T> as core::ops::Drop>::drop
+└── bindings::spin_unlock
+
+<maple_tree::MapleTree<T> as pin_init::PinnedDrop>::drop
+├── maple_tree::MapleTree::<T>::free_all_entries
+└── bindings::mtree_destroy
+
+<miscdevice::MiscDeviceRegistration<T> as pin_init::PinnedDrop>::drop
+└── bindings::misc_deregister
+
+<mm::Mm as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::mmdrop
+
+<mm::Mm as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::mmgrab
+
+<mm::MmWithUser as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::mmput
+
+<mm::MmWithUser as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::mmget
+
+<mm::MmapReadGuard<'_> as core::ops::Drop>::drop
+└── bindings::mmap_read_unlock
+
+<mm::VmaReadGuard<'_> as core::ops::Drop>::drop
+└── bindings::vma_end_read
+
+<mm::mmput_async::MmWithUserAsync as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::mmput_async
+
+<mm::mmput_async::MmWithUserAsync as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::mmget
+
+<net::phy::Registration as core::ops::Drop>::drop
+└── bindings::phy_drivers_unregister
+
+<net::phy::reg::C22 as net::phy::reg::Register>::read
+└── bindings::mdiobus_read
+
+<net::phy::reg::C22 as net::phy::reg::Register>::read_status
+└── bindings::genphy_read_status
+
+<net::phy::reg::C22 as net::phy::reg::Register>::write
+└── bindings::mdiobus_write
+
+<net::phy::reg::C45 as net::phy::reg::Register>::read
+└── bindings::phy_read_mmd
+
+<net::phy::reg::C45 as net::phy::reg::Register>::read_status
+└── bindings::genphy_c45_read_status
+
+<net::phy::reg::C45 as net::phy::reg::Register>::write
+└── bindings::phy_write_mmd
+
+<num::bounded::Bounded<T, N> as core::ops::Deref>::deref
+└── core::hint::unreachable_unchecked
+
+<page::Page as core::ops::Drop>::drop
+└── bindings::__free_pages
+
+<pci::Adapter<T> as driver::RegistrationOps>::register
+└── bindings::__pci_register_driver
+
+<pci::Adapter<T> as driver::RegistrationOps>::unregister
+└── bindings::pci_unregister_driver
+
+<pci::Device as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::pci_dev_put
+
+<pci::Device as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::pci_dev_get
+
+<pid_namespace::PidNamespace as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::put_pid_ns
+
+<pid_namespace::PidNamespace as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_pid_ns
+
+<platform::Adapter<T> as driver::RegistrationOps>::register
+└── bindings::__platform_driver_register
+
+<platform::Adapter<T> as driver::RegistrationOps>::unregister
+└── bindings::platform_driver_unregister
+
+<platform::Device as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::platform_device_put
+
+<platform::Device as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_device
+
+<rbtree::IterRaw<K, V> as core::iter::Iterator>::next
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+└── bindings::rb_next
+
+<rbtree::RBTree<K, V> as core::ops::Drop>::drop
+├── bindings::rb_first_postorder
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+└── bindings::rb_next_postorder
+
+<regulator::Regulator<T> as core::ops::Drop>::drop
+├── bindings::regulator_disable
+└── bindings::regulator_put
+
+<revocable::Revocable<T> as pin_init::PinnedDrop>::drop
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::ptr::drop_in_place
+
+<scatterlist::DmaMappedSgt as core::ops::Drop>::drop
+└── bindings::dma_unmap_sgtable
+
+<scatterlist::RawSGTable as core::ops::Drop>::drop
+└── bindings::sg_free_table
+
+<scatterlist::SGTableIter<'a> as core::iter::Iterator>::next
+└── bindings::sg_next
+
+<security::SecurityCtx as core::ops::Drop>::drop
+└── bindings::security_release_secctx
+
+<str::CString as device::property::Property>::read_from_fwnode_property
+└── bindings::fwnode_property_read_string
+
+<str::RawFormatter as core::fmt::Write>::write_str
+└── core::ptr::copy_nonoverlapping
+
+<sync::LockClassKey as pin_init::PinnedDrop>::drop
+└── bindings::lockdep_unregister_key
+
+<sync::arc::Arc<T> as core::clone::Clone>::clone
+└── core::ptr::NonNull::<T>::as_ref
+
+<sync::arc::Arc<T> as core::ops::Deref>::deref
+└── core::ptr::NonNull::<T>::as_ref
+
+<sync::arc::Arc<T> as core::ops::Drop>::drop
+└── core::ptr::NonNull::<T>::as_ref
+
+<sync::arc::ArcBorrow<'_, T> as core::ops::Deref>::deref
+└── core::ptr::NonNull::<T>::as_ref
+
+<sync::arc::UniqueArc<T> as core::ops::DerefMut>::deref_mut
+└── core::ptr::NonNull::<T>::as_mut
+
+<sync::arc::UniqueArc<core::mem::MaybeUninit<T>> as pin_init::InPlaceWrite<T>>::write_init
+├── pin_init::Init::__init
+└── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+<sync::arc::UniqueArc<core::mem::MaybeUninit<T>> as pin_init::InPlaceWrite<T>>::write_pin_init
+├── pin_init::PinInit::__pinned_init
+└── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+<sync::aref::ARef<T> as core::ops::Deref>::deref
+└── core::ptr::NonNull::<T>::as_ref
+
+<sync::lock::mutex::MutexBackend as sync::lock::Backend>::assert_is_held
+└── bindings::mutex_assert_is_held
+
+<sync::lock::mutex::MutexBackend as sync::lock::Backend>::init
+└── bindings::__mutex_init
+
+<sync::lock::mutex::MutexBackend as sync::lock::Backend>::lock
+└── bindings::mutex_lock
+
+<sync::lock::mutex::MutexBackend as sync::lock::Backend>::try_lock
+└── bindings::mutex_trylock
+
+<sync::lock::mutex::MutexBackend as sync::lock::Backend>::unlock
+└── bindings::mutex_unlock
+
+<sync::lock::spinlock::SpinLockBackend as sync::lock::Backend>::assert_is_held
+└── bindings::spin_assert_is_held
+
+<sync::lock::spinlock::SpinLockBackend as sync::lock::Backend>::init
+└── bindings::__spin_lock_init
+
+<sync::lock::spinlock::SpinLockBackend as sync::lock::Backend>::lock
+└── bindings::spin_lock
+
+<sync::lock::spinlock::SpinLockBackend as sync::lock::Backend>::try_lock
+└── bindings::spin_trylock
+
+<sync::lock::spinlock::SpinLockBackend as sync::lock::Backend>::unlock
+└── bindings::spin_unlock
+
+<sync::poll::PollCondVar as pin_init::PinnedDrop>::drop
+├── bindings::__wake_up_pollfree
+└── bindings::synchronize_rcu
+
+<sync::rcu::Guard as core::ops::Drop>::drop
+└── bindings::rcu_read_unlock
+
+<task::Kuid as core::cmp::PartialEq>::eq
+└── bindings::uid_eq
+
+<task::Task as sync::aref::AlwaysRefCounted>::dec_ref
+└── bindings::put_task_struct
+
+<task::Task as sync::aref::AlwaysRefCounted>::inc_ref
+└── bindings::get_task_struct
+
+<time::BootTime as time::ClockSource>::ktime_get
+└── bindings::ktime_get_boottime
+
+<time::Monotonic as time::ClockSource>::ktime_get
+└── bindings::ktime_get
+
+<time::RealTime as time::ClockSource>::ktime_get
+└── bindings::ktime_get_real
+
+<time::Tai as time::ClockSource>::ktime_get
+└── bindings::ktime_get_clocktai
+
+<u16 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u16_array
+└── core::intrinsics::transmute
+
+<u16 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u16_array
+
+<u32 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u32_array
+└── core::intrinsics::transmute
+
+<u32 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u32_array
+
+<u64 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u64_array
+└── core::intrinsics::transmute
+
+<u64 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u64_array
+
+<u8 as device::property::PropertyInt>::read_array_from_fwnode_property
+├── bindings::fwnode_property_read_u8_array
+└── core::intrinsics::transmute
+
+<u8 as device::property::PropertyInt>::read_array_len_from_fwnode_property
+└── bindings::fwnode_property_read_u8_array
+
+<workqueue::ClosureWork<T> as workqueue::HasWork<workqueue::ClosureWork<T>>>::work_container_of
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+<xarray::Guard<'_, T> as core::ops::Drop>::drop
+└── bindings::xa_unlock
+
+<xarray::XArray<T> as pin_init::PinnedDrop>::drop
+└── bindings::xa_destroy
+
+acpi::DeviceId::new
+└── core::mem::zeroed
+
+alloc::allocator::ReallocFunc::call [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mLayout[39m[0m [38;5;246m}[0m
+
+alloc::allocator::Vmalloc::to_page
+└── bindings::vmalloc_to_page
+
+alloc::allocator::tests::kunit_rust_wrapper_test_alignment
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+alloc::allocator::tests::test_alignment
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+alloc::allocator::tests::test_alignment::TestAlign::<T, A>::is_aligned_to
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+alloc::kbox::Box::<T, A>::drop_contents
+└── core::ptr::drop_in_place
+
+alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
+alloc::kbox::Box::<T, A>::into_inner
+└── core::ptr::read
+
+alloc::kbox::Box::<T, A>::pin_slice
+├── pin_init::PinInit::__pinned_init
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::write
+└── alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+alloc::kvec::IntoIter::<T, A>::collect
+└── core::ptr::copy
+
+alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── core::slice::from_raw_parts_mut
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+alloc::kvec::Vec::<T, A>::drain_all
+└── alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::extend_from_slice
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::extend_with
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::from_raw_parts [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::insert_within_capacity
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::copy
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::write
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::pop
+├── alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── core::slice::<impl [T]>::get_unchecked_mut
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+alloc::kvec::Vec::<T, A>::push
+└── alloc::kvec::Vec::<T, A>::push_within_capacity_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+    ├── core::slice::<impl [T]>::get_unchecked_mut
+    └── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::push_within_capacity
+└── alloc::kvec::Vec::<T, A>::push_within_capacity_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::push_within_capacity_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── core::slice::<impl [T]>::get_unchecked_mut
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::remove
+├── core::ptr::read
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::copy
+├── core::ptr::mut_ptr::<impl *mut T>::add
+└── alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+alloc::kvec::Vec::<T, A>::spare_capacity_mut
+├── core::ptr::mut_ptr::<impl *mut T>::add
+└── core::slice::from_raw_parts_mut
+
+alloc::kvec::Vec::<T, A>::truncate
+├── alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── core::ptr::drop_in_place
+
+alloc::kvec::tests::kunit_rust_wrapper_test_kvec_retain
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+alloc::kvec::tests::test_kvec_retain::verify
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+alloc::layout::<impl core::convert::From<alloc::layout::ArrayLayout<T>> for core::alloc::Layout>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+alloc::layout::ArrayLayout::<T>::new_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+auxiliary::Adapter::<T>::remove_callback
+└── device::Device::<device::CoreInternal>::drvdata_obtain
+    └── bindings::dev_get_drvdata
+
+auxiliary::Device::release
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+auxiliary::DeviceId::new
+└── core::mem::zeroed
+
+auxiliary::Registration::new
+├── bindings::auxiliary_device_init
+├── bindings::__auxiliary_device_add
+└── bindings::auxiliary_device_uninit
+
+bitmap::Bitmap::clear_bit
+├── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+│   └── bindings::_printk
+└── bindings::__clear_bit
+
+bitmap::Bitmap::clear_bit_atomic
+├── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+└── bindings::clear_bit
+
+bitmap::Bitmap::copy_and_extend
+└── bindings::bitmap_copy_and_extend
+
+bitmap::Bitmap::last_bit
+└── bindings::_find_last_bit
+
+bitmap::Bitmap::next_bit
+└── bindings::_find_next_bit
+
+bitmap::Bitmap::next_zero_bit
+└── bindings::_find_next_zero_bit
+
+bitmap::Bitmap::set_bit
+├── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+└── bindings::__set_bit
+
+bitmap::Bitmap::set_bit_atomic
+├── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+└── bindings::set_bit
+
+bitmap::BitmapVec::new
+└── bindings::bitmap_zalloc
+
+bitmap::tests::bitmap_borrow
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::bitmap_copy
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::bitmap_copy_and_extend
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::bitmap_set_clear_find
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::bitmap_vec_new
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::kunit_rust_wrapper_bitmap_borrow
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::kunit_rust_wrapper_bitmap_copy
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::kunit_rust_wrapper_bitmap_copy_and_extend
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::kunit_rust_wrapper_bitmap_set_clear_find
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::kunit_rust_wrapper_bitmap_vec_new
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::kunit_rust_wrapper_owned_bitmap_out_of_bounds
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+bitmap::tests::owned_bitmap_out_of_bounds
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+block::mq::gen_disk::GenDiskBuilder::build
+├── core::mem::zeroed
+├── bindings::__blk_mq_alloc_disk
+├── bindings::set_capacity
+└── bindings::device_add_disk
+
+block::mq::operations::OperationsVTable::<T>::commit_rqs_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+
+block::mq::operations::OperationsVTable::<T>::complete_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
+block::mq::operations::OperationsVTable::<T>::exit_hctx_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+
+block::mq::operations::OperationsVTable::<T>::exit_request_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+├── bindings::blk_mq_rq_to_pdu
+└── core::ptr::drop_in_place
+
+block::mq::operations::OperationsVTable::<T>::init_hctx_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+block::mq::operations::OperationsVTable::<T>::init_request_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+block::mq::operations::OperationsVTable::<T>::poll_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+
+block::mq::operations::OperationsVTable::<T>::queue_rq_callback [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mOwning[39m[0m [38;5;246m}[0m
+
+block::mq::request::Request::<T>::aref_from_raw [38;5;246m{[0m [1m[38;2;255;165;000mRefTransfer[39m[0m, [1m[38;2;255;165;000mInvariant[39m[0m [38;5;246m}[0m
+
+block::mq::request::Request::<T>::complete
+└── bindings::blk_mq_complete_request_remote
+
+block::mq::request::Request::<T>::end_ok
+└── bindings::blk_mq_end_request
+
+block::mq::request::Request::<T>::start_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── bindings::blk_mq_start_request
+
+block::mq::request::Request::<T>::wrapper_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── bindings::blk_mq_rq_to_pdu
+
+block::mq::request::Request::<T>::wrapper_ref
+└── core::ptr::NonNull::<T>::as_ref
+
+block::mq::request::RequestDataWrapper::refcount_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+block::mq::tag_set::TagSet::<T>::new
+├── core::mem::zeroed
+├── bindings::blk_mq_alloc_tag_set
+├── block::mq::tag_set::_::__ThePinData::<T>::inner
+├── block::mq::tag_set::_::__ThePinData::<T>::__project_inner
+├── core::ptr::write
+├── block::mq::tag_set::_::__ThePinData::<T>::__project__p
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+cpu::CpuId::current
+└── bindings::raw_smp_processor_id
+
+cpu::CpuId::from_i32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+cpu::CpuId::from_u32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+cpu::from_cpu [38;5;246m{[0m [1m[38;2;255;165;000mMayInvalid[39m[0m [38;5;246m}[0m
+└── bindings::get_cpu_device
+
+cpufreq::Policy::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpufreq::Policy::generic_get
+└── bindings::cpufreq_generic_get
+
+cpufreq::Policy::generic_suspend
+└── bindings::cpufreq_generic_suspend
+
+cpufreq::Policy::set_freq_table [38;5;246m{[0m [1m[38;2;255;165;000mNonDropped[39m[0m [38;5;246m}[0m
+
+cpufreq::PolicyCpu::<'a>::from_cpu
+└── bindings::cpufreq_cpu_get
+
+cpufreq::PolicyData::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpufreq::PolicyData::generic_verify
+└── bindings::cpufreq_generic_frequency_table_verify
+
+cpufreq::Registration::<T>::adjust_perf_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::bios_limit_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::exit_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::fast_switch_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::get_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::get_intermediate_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::init_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::new
+└── bindings::cpufreq_register_driver
+
+cpufreq::Registration::<T>::offline_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::online_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::ready_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::register_em_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::resume_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::set_boost_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::setpolicy_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::suspend_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::target_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::target_index_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::target_intermediate_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::update_limits_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Registration::<T>::verify_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cpufreq::Table::data
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+cpufreq::Table::flags
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+cpufreq::Table::freq
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+cpufreq::Table::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpufreq::TableIndex::new [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+cpumask::Cpumask::as_mut_ref [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpumask::Cpumask::as_ref [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpumask::Cpumask::clear
+└── bindings::__cpumask_clear_cpu
+
+cpumask::Cpumask::copy
+└── bindings::cpumask_copy
+
+cpumask::Cpumask::empty
+└── bindings::cpumask_empty
+
+cpumask::Cpumask::full
+└── bindings::cpumask_full
+
+cpumask::Cpumask::set
+└── bindings::__cpumask_set_cpu
+
+cpumask::Cpumask::setall
+└── bindings::cpumask_setall
+
+cpumask::Cpumask::test
+└── bindings::cpumask_test_cpu
+
+cpumask::Cpumask::weight
+└── bindings::cpumask_weight
+
+cpumask::CpumaskVar::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpumask::CpumaskVar::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpumask::CpumaskVar::new [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+cred::Credential::from_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+cred::Credential::get_secid
+└── bindings::security_cred_getsecid
+
+debugfs::Dir::create_file
+├── debugfs::_::__ThePinData::<T>::scope
+├── debugfs::_::__ThePinData::<T>::__project_scope
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+debugfs::Scope::<T>::new
+├── core::ptr::write
+├── debugfs::_::__ThePinData::<T>::__project__entry
+├── debugfs::_::__ThePinData::<T>::data
+├── debugfs::_::__ThePinData::<T>::__project_data
+├── core::ptr::write
+├── debugfs::_::__ThePinData::<T>::__project__pin
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+debugfs::callback_adapters::materialize_zst
+└── core::ptr::NonNull::<T>::as_ref
+
+debugfs::entry::Entry::<'a>::dir
+└── bindings::debugfs_create_dir
+
+debugfs::entry::Entry::<'a>::file
+└── bindings::debugfs_create_file_full
+
+debugfs::entry::Entry::<'static>::dynamic_dir
+└── bindings::debugfs_create_dir
+
+debugfs::entry::Entry::<'static>::dynamic_file
+└── bindings::debugfs_create_file_full
+
+debugfs::file_ops::FileOps::<T>::adapt
+└── core::intrinsics::transmute
+
+debugfs::file_ops::writer_open
+├── bindings::single_open
+└── debugfs::file_ops::writer_act
+
+device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::fwnode
+└── bindings::__dev_fwnode
+
+device::Device::<Ctx>::pr_alert
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+    └── bindings::_dev_printk
+
+device::Device::<Ctx>::pr_crit
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::pr_dbg
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::pr_emerg
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::pr_err
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::pr_info
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::pr_notice
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::pr_warn
+└── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+└── bindings::_dev_printk
+
+device::Device::<device::CoreInternal>::drvdata_borrow
+└── bindings::dev_get_drvdata
+
+device::Device::<device::CoreInternal>::drvdata_obtain
+└── bindings::dev_get_drvdata
+
+device::Device::<device::CoreInternal>::set_drvdata
+└── bindings::dev_set_drvdata
+
+device::Device::get_device [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mAnyThread[39m[0m [38;5;246m}[0m
+
+device::property::FwNode::children
+└── bindings::fwnode_get_next_child_node
+
+device::property::FwNode::get_child_by_name
+└── bindings::fwnode_get_named_child_node
+
+device::property::FwNode::is_of_node
+└── bindings::is_of_node
+
+device::property::FwNode::property_get_reference_args
+└── bindings::fwnode_property_get_reference_args
+
+device::property::FwNode::property_match_string
+└── bindings::fwnode_property_match_string
+
+device::property::FwNode::property_present
+└── bindings::fwnode_property_present
+
+device::property::FwNode::property_read_array_vec
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+device::property::FwNode::property_read_bool
+└── bindings::fwnode_property_read_bool
+
+device::property::FwNodeReferenceArgs::as_slice
+└── core::slice::from_raw_parts
+
+device_id::IdArray::<T, U, N>::build
+├── core::mem::transmute_copy
+├── core::ptr::mut_ptr::<impl *mut T>::write
+├── core::ptr::mut_ptr::<impl *mut T>::byte_add
+├── core::ptr::read
+├── core::mem::transmute_copy
+└── core::mem::transmute_copy
+
+devres::Devres::<T>::access
+└── revocable::Revocable::<T>::access
+
+devres::Devres::<T>::new
+├── core::ptr::write
+├── devres::_::__ThePinData::<T>::__project_dev
+├── core::ptr::write
+├── devres::_::__ThePinData::<T>::__project_callback
+├── devres::_::__ThePinData::<T>::devm
+├── devres::_::__ThePinData::<T>::__project_devm
+├── devres::_::__ThePinData::<T>::revoke
+├── devres::_::__ThePinData::<T>::__project_revoke
+├── devres::_::__ThePinData::<T>::data
+├── devres::_::__ThePinData::<T>::__project_data
+├── core::ptr::write
+├── pin_init::pin_init_from_closure
+├── devres::_::__ThePinData::<T>::inner
+├── devres::_::__ThePinData::<T>::__project_inner
+├── bindings::devm_add_action
+├── core::ptr::drop_in_place
+├── core::ptr::write
+├── devres::_::__ThePinData::<T>::__project__add_action
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+devres::Devres::<T>::remove_action
+└── bindings::devm_remove_action_nowarn
+
+devres::register_foreign
+├── bindings::devm_add_action_or_reset
+└── devres::register_foreign::callback
+
+dma::CoherentAllocation::<T>::alloc_attrs
+└── bindings::dma_alloc_attrs
+
+dma::CoherentAllocation::<T>::as_slice
+├── core::slice::from_raw_parts
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+dma::CoherentAllocation::<T>::as_slice_mut
+├── core::slice::from_raw_parts_mut
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+dma::CoherentAllocation::<T>::field_read [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+└── core::ptr::const_ptr::<impl *const T>::read_volatile
+
+dma::CoherentAllocation::<T>::field_write [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::write_volatile
+
+dma::CoherentAllocation::<T>::item_from_index
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+dma::CoherentAllocation::<T>::write
+├── core::ptr::copy_nonoverlapping
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+driver::Registration::<T>::new
+├── core::ptr::mut_ptr::<impl *mut T>::write
+├── driver::_::__ThePinData::<T>::reg
+├── driver::_::__ThePinData::<T>::__project_reg
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+drm::device::Device::<T>::from_drm_device [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
+└── core::ptr::const_ptr::<impl *const T>::byte_sub
+
+drm::device::Device::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
+
+drm::device::Device::<T>::new
+├── bindings::__drm_dev_alloc
+├── pin_init::PinInit::__pinned_init
+└── bindings::drm_dev_put
+
+drm::device::Device::<T>::release
+└── core::ptr::drop_in_place
+
+drm::driver::Registration::<T>::new
+└── bindings::drm_dev_register
+
+drm::file::File::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+drm::gem::<impl sync::aref::AlwaysRefCounted for T>::dec_ref
+├── core::ptr::NonNull::<T>::as_ref
+└── bindings::drm_gem_object_put
+
+drm::gem::<impl sync::aref::AlwaysRefCounted for T>::inc_ref
+└── bindings::drm_gem_object_get
+
+drm::gem::Object::<T>::dev
+└── core::ptr::NonNull::<T>::as_ref
+
+drm::gem::Object::<T>::free_callback
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+└── bindings::drm_gem_object_release
+
+drm::gem::Object::<T>::new
+├── core::ptr::write
+├── drm::gem::_::__ThePinData::<T>::__project_obj
+├── drm::gem::_::__ThePinData::<T>::data
+├── drm::gem::_::__ThePinData::<T>::__project_data
+├── core::ptr::write
+├── drm::gem::_::__ThePinData::<T>::__project_dev
+├── core::ptr::write
+├── pin_init::pin_init_from_closure
+└── bindings::drm_gem_object_init
+
+drm::gem::create_fops
+├── core::mem::zeroed
+├── bindings::drm_open
+├── bindings::drm_release
+├── bindings::drm_ioctl
+├── bindings::drm_compat_ioctl
+├── bindings::drm_poll
+├── bindings::drm_read
+├── bindings::noop_llseek
+└── bindings::drm_gem_mmap
+
+error::Error::from_errno
+└── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+
+error::Error::from_errno_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+error::Error::name
+└── bindings::errname
+
+error::Error::to_blk_status
+└── bindings::errno_to_blk_status
+
+error::Error::to_ptr
+└── bindings::ERR_PTR
+
+error::from_err_ptr
+├── bindings::IS_ERR
+└── bindings::PTR_ERR
+
+faux::Registration::new
+└── bindings::faux_device_create
+
+fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+fs::file::FileDescriptorReservation::fd_install
+└── bindings::fd_install
+
+fs::file::FileDescriptorReservation::get_unused_fd_flags
+└── bindings::get_unused_fd_flags
+
+fs::file::LocalFile::assume_no_fdget_pos [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+fs::file::LocalFile::fget
+└── bindings::fget
+
+fs::file::LocalFile::flags
+└── core::ptr::const_ptr::<impl *const T>::read_volatile
+
+fs::file::LocalFile::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
+
+io::Io::<SIZE>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+
+io::Io::<SIZE>::read16
+└── bindings::readw
+
+io::Io::<SIZE>::read16_relaxed
+└── bindings::readw_relaxed
+
+io::Io::<SIZE>::read32
+└── bindings::readl
+
+io::Io::<SIZE>::read32_relaxed
+└── bindings::readl_relaxed
+
+io::Io::<SIZE>::read64
+└── bindings::readq
+
+io::Io::<SIZE>::read64_relaxed
+└── bindings::readq_relaxed
+
+io::Io::<SIZE>::read8
+└── bindings::readb
+
+io::Io::<SIZE>::read8_relaxed
+└── bindings::readb_relaxed
+
+io::Io::<SIZE>::try_read16
+└── bindings::readw
+
+io::Io::<SIZE>::try_read16_relaxed
+└── bindings::readw_relaxed
+
+io::Io::<SIZE>::try_read32
+└── bindings::readl
+
+io::Io::<SIZE>::try_read32_relaxed
+└── bindings::readl_relaxed
+
+io::Io::<SIZE>::try_read64
+└── bindings::readq
+
+io::Io::<SIZE>::try_read64_relaxed
+└── bindings::readq_relaxed
+
+io::Io::<SIZE>::try_read8
+└── bindings::readb
+
+io::Io::<SIZE>::try_read8_relaxed
+└── bindings::readb_relaxed
+
+io::Io::<SIZE>::try_write16
+└── bindings::writew
+
+io::Io::<SIZE>::try_write16_relaxed
+└── bindings::writew_relaxed
+
+io::Io::<SIZE>::try_write32
+└── bindings::writel
+
+io::Io::<SIZE>::try_write32_relaxed
+└── bindings::writel_relaxed
+
+io::Io::<SIZE>::try_write64
+└── bindings::writeq
+
+io::Io::<SIZE>::try_write64_relaxed
+└── bindings::writeq_relaxed
+
+io::Io::<SIZE>::try_write8
+└── bindings::writeb
+
+io::Io::<SIZE>::try_write8_relaxed
+└── bindings::writeb_relaxed
+
+io::Io::<SIZE>::write16
+└── bindings::writew
+
+io::Io::<SIZE>::write16_relaxed
+└── bindings::writew_relaxed
+
+io::Io::<SIZE>::write32
+└── bindings::writel
+
+io::Io::<SIZE>::write32_relaxed
+└── bindings::writel_relaxed
+
+io::Io::<SIZE>::write64
+└── bindings::writeq
+
+io::Io::<SIZE>::write64_relaxed
+└── bindings::writeq_relaxed
+
+io::Io::<SIZE>::write8
+└── bindings::writeb
+
+io::Io::<SIZE>::write8_relaxed
+└── bindings::writeb_relaxed
+
+io::mem::IoMem::<SIZE>::ioremap
+├── bindings::ioremap_np
+└── bindings::ioremap
+
+io::resource::Resource::request_region
+└── bindings::__request_region
+
+io::resource::Resource::size
+└── bindings::resource_size
+
+iov::IovIterDest::<'data>::advance
+└── bindings::iov_iter_advance
+
+iov::IovIterDest::<'data>::copy_to_iter
+└── bindings::_copy_to_iter
+
+iov::IovIterDest::<'data>::len
+└── bindings::__BindgenUnionField::<T>::as_ref
+
+iov::IovIterDest::<'data>::revert
+└── bindings::iov_iter_revert
+
+iov::IovIterSource::<'data>::advance
+└── bindings::iov_iter_advance
+
+iov::IovIterSource::<'data>::copy_from_iter_raw
+├── bindings::_copy_from_iter
+└── core::slice::from_raw_parts_mut
+
+iov::IovIterSource::<'data>::copy_from_iter_vec
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+iov::IovIterSource::<'data>::len
+└── bindings::__BindgenUnionField::<T>::as_ref
+
+iov::IovIterSource::<'data>::revert
+└── bindings::iov_iter_revert
+
+irq::request::Registration::<T>::new
+├── irq::request::_::__ThePinData::<T>::handler
+├── irq::request::_::__ThePinData::<T>::__project_handler
+├── core::ptr::write
+├── irq::request::_::__ThePinData::__project_cookie
+├── bindings::request_irq
+├── irq::request::handle_irq_callback
+│   └── device::Device::as_bound
+├── core::ptr::write
+├── irq::request::_::__ThePinData::__project_irq
+├── core::ptr::write
+├── pin_init::pin_init_from_closure
+├── irq::request::_::__ThePinData::<T>::inner
+├── irq::request::_::__ThePinData::<T>::__project_inner
+├── core::ptr::write
+├── irq::request::_::__ThePinData::<T>::__project__pin
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+irq::request::RegistrationInner::synchronize
+└── bindings::synchronize_irq
+
+irq::request::ThreadedRegistration::<T>::new
+├── irq::request::_::__ThePinData::<T>::handler
+├── irq::request::_::__ThePinData::<T>::__project_handler
+├── core::ptr::write
+├── irq::request::_::__ThePinData::__project_cookie
+├── bindings::request_threaded_irq
+├── irq::request::handle_threaded_irq_callback
+│   └── device::Device::as_bound
+├── irq::request::thread_fn_callback
+│   └── device::Device::as_bound
+├── core::ptr::write
+├── irq::request::_::__ThePinData::__project_irq
+├── core::ptr::write
+├── pin_init::pin_init_from_closure
+├── irq::request::_::__ThePinData::<T>::inner
+├── irq::request::_::__ThePinData::<T>::__project_inner
+├── core::ptr::write
+├── irq::request::_::__ThePinData::<T>::__project__pin
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+irq::request::handle_irq_callback
+└── device::Device::as_bound
+
+irq::request::handle_threaded_irq_callback
+└── device::Device::as_bound
+
+irq::request::thread_fn_callback
+└── device::Device::as_bound
+
+kunit::err
+└── bindings::_printk
+
+kunit::in_kunit_test
+└── bindings::kunit_get_current_test
+
+kunit::info
+└── bindings::_printk
+
+kunit::tests::kunit_rust_wrapper_rust_test_kunit_example_test
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+kunit::tests::kunit_rust_wrapper_rust_test_kunit_in_kunit_test
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+kunit::tests::rust_test_kunit_example_test
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+kunit::tests::rust_test_kunit_in_kunit_test
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+list::Cursor::<'a, T, ID>::insert_inner
+└── list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
+
+list::CursorPeek::<'a, 'b, T, ISNEXT, ID>::remove
+└── list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
+    └── list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::pop_back
+└── list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::pop_front
+└── list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::push_back
+└── list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::push_front
+└── list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::remove [38;5;246m{[0m [1m[38;2;255;165;000mNonInList[39m[0m [38;5;246m}[0m
+└── list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
+└── list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
+
+list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
+
+list::ListLinks::<ID>::fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+list::arc::ListArc::<T, ID>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+
+list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+
+list::arc::ListArc::<T, ID>::transmute_to_arc
+└── core::intrinsics::transmute
+
+list::arc_field::ListArcField::<T, ID>::assert_mut [38;5;246m{[0m [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
+list::arc_field::ListArcField::<T, ID>::assert_ref [38;5;246m{[0m [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
+maple_tree::MaState::<'tree, T>::mas_find_raw
+└── bindings::mas_find
+
+maple_tree::MapleGuard::<'tree, T>::load
+└── bindings::mtree_load
+
+maple_tree::MapleTree::<T>::erase
+└── bindings::mtree_erase
+
+maple_tree::MapleTree::<T>::insert_range
+└── bindings::mtree_insert_range
+
+maple_tree::MapleTree::<T>::lock
+└── bindings::spin_lock
+
+maple_tree::MapleTree::<T>::new
+├── bindings::mt_init_flags
+├── maple_tree::_::__ThePinData::<T>::tree
+├── maple_tree::_::__ThePinData::<T>::__project_tree
+├── core::ptr::write
+├── maple_tree::_::__ThePinData::<T>::__project__p
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+maple_tree::MapleTreeAlloc::<T>::alloc_range
+└── bindings::mtree_alloc_range
+
+maple_tree::MapleTreeAlloc::<T>::new
+├── bindings::mt_init_flags
+├── maple_tree::_::__ThePinData::<T>::tree
+├── maple_tree::_::__ThePinData::<T>::__project_tree
+├── core::ptr::write
+├── maple_tree::_::__ThePinData::<T>::__project__p
+├── core::ptr::write
+├── pin_init::pin_init_from_closure
+├── maple_tree::_::__ThePinData::<T>::tree
+├── maple_tree::_::__ThePinData::<T>::__project_tree
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+miscdevice::MiscDeviceOptions::into_raw
+└── core::mem::MaybeUninit::<T>::assume_init
+
+miscdevice::MiscDeviceRegistration::<T>::register
+├── core::ptr::mut_ptr::<impl *mut T>::write
+├── bindings::misc_register
+├── miscdevice::_::__ThePinData::<T>::inner
+├── miscdevice::_::__ThePinData::<T>::__project_inner
+├── core::ptr::write
+├── miscdevice::_::__ThePinData::<T>::__project__t
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+miscdevice::MiscdeviceVTable::<T>::compat_ioctl [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscdeviceVTable::<T>::ioctl [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscdeviceVTable::<T>::mmap [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m, [1m[38;2;255;165;000mValidVma[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscdeviceVTable::<T>::open [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+└── bindings::generic_file_open
+
+miscdevice::MiscdeviceVTable::<T>::release [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscdeviceVTable::<T>::show_fdinfo [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m, [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
+mm::Mm::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+mm::Mm::mmget_not_zero
+└── bindings::mmget_not_zero
+
+mm::MmWithUser::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+mm::MmWithUser::lock_vma_under_rcu
+└── bindings::lock_vma_under_rcu
+
+mm::MmWithUser::mmap_read_lock
+└── bindings::mmap_read_lock
+
+mm::MmWithUser::mmap_read_trylock
+└── bindings::mmap_read_trylock
+
+mm::MmapReadGuard::<'a>::vma_lookup
+└── bindings::vma_lookup
+
+mm::virt::VmaMixedMap::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m, [1m[38;2;255;165;000mFlagSet[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaMixedMap::vm_insert_page
+└── bindings::vm_insert_page
+
+mm::virt::VmaNew::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::set_dontcopy
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::set_dontdump
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::set_dontexpand
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::set_io
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::set_mixedmap
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::try_clear_mayexec
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::try_clear_mayread
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::try_clear_maywrite
+└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaRef::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaRef::zap_page_range_single
+└── bindings::zap_page_range_single
+
+net::phy::Adapter::<T>::config_aneg_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::get_features_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::link_change_notify_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::match_phy_device_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::probe_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::read_mmd_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::read_status_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::resume_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::soft_reset_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::suspend_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Adapter::<T>::write_mmd_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+
+net::phy::Device::genphy_read_abilities
+└── bindings::genphy_read_abilities
+
+net::phy::Device::genphy_read_lpa
+└── bindings::genphy_read_lpa
+
+net::phy::Device::genphy_resume
+└── bindings::genphy_resume
+
+net::phy::Device::genphy_soft_reset
+└── bindings::genphy_soft_reset
+
+net::phy::Device::genphy_suspend
+└── bindings::genphy_suspend
+
+net::phy::Device::genphy_update_link
+└── bindings::genphy_update_link
+
+net::phy::Device::init_hw
+└── bindings::phy_init_hw
+
+net::phy::Device::read_paged
+└── bindings::phy_read_paged
+
+net::phy::Device::resolve_aneg_linkmode
+└── bindings::phy_resolve_aneg_linkmode
+
+net::phy::Device::start_aneg
+└── bindings::_phy_start_aneg
+
+net::phy::Registration::register
+└── bindings::phy_drivers_register
+
+net::phy::create_phy_driver
+└── core::mem::MaybeUninit::<T>::assume_init
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for i16>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for i32>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for i64>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for i8>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for isize>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for u16>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for u32>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for u64>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for u8>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for usize>::from
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+num::bounded::Bounded::<T, N>::cast
+└── core::result::Result::<T, E>::unwrap_unchecked
+
+of::DeviceId::new
+└── core::mem::zeroed
+
+page::Page::alloc_page
+└── bindings::alloc_pages
+
+page::Page::copy_from_user_slice_raw [38;5;246m{[0m [1m[38;2;255;165;000mNonData_race[39m[0m [38;5;246m}[0m
+└── core::slice::from_raw_parts_mut
+
+page::Page::fill_zero_raw [38;5;246m{[0m [1m[38;2;255;165;000mNonData_race[39m[0m [38;5;246m}[0m
+└── core::ptr::write_bytes
+
+page::Page::nid
+└── bindings::page_to_nid
+
+page::Page::read_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mNonData_race[39m[0m [38;5;246m}[0m
+└── core::ptr::copy_nonoverlapping
+
+page::Page::with_page_mapped
+├── bindings::kmap_local_page
+└── bindings::kunmap_local
+
+page::Page::with_pointer_into_page
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+page::Page::write_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mNonData_race[39m[0m [38;5;246m}[0m
+└── core::ptr::copy_nonoverlapping
+
+panic
+├── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+└── bindings::BUG
+
+pci::Adapter::<T>::remove_callback
+└── device::Device::<device::CoreInternal>::drvdata_obtain
+
+pci::Bar::<SIZE>::do_release [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+├── bindings::pci_iounmap
+└── bindings::pci_release_region
+
+pci::Bar::<SIZE>::new
+├── bindings::pci_request_region
+├── bindings::pci_iomap
+└── bindings::pci_release_region
+
+pci::Device::<device::Bound>::irq_vector
+└── bindings::pci_irq_vector
+
+pci::Device::<device::Core>::enable_device_mem
+└── bindings::pci_enable_device_mem
+
+pci::Device::<device::Core>::set_master
+└── bindings::pci_set_master
+
+pci::Device::dev_id
+└── bindings::pci_dev_id
+
+pci::Device::resource_len
+└── bindings::pci_resource_len
+
+pci::Device::resource_start
+└── bindings::pci_resource_start
+
+pid_namespace::PidNamespace::from_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+platform::Adapter::<T>::remove_callback
+└── device::Device::<device::CoreInternal>::drvdata_obtain
+
+platform::Device::<Ctx>::resource_by_index
+└── bindings::platform_get_resource
+
+platform::Device::<Ctx>::resource_by_name
+└── bindings::platform_get_resource_byname
+
+platform::Device::<device::Bound>::irq_by_index
+└── bindings::platform_get_irq
+
+platform::Device::<device::Bound>::irq_by_name
+└── bindings::platform_get_irq_byname
+
+platform::Device::<device::Bound>::optional_irq_by_index
+└── bindings::platform_get_irq_optional
+
+platform::Device::<device::Bound>::optional_irq_by_name
+└── bindings::platform_get_irq_byname_optional
+
+print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
+└── bindings::_printk
+
+print::call_printk_cont
+└── bindings::_printk
+
+processor::cpu_relax
+└── bindings::cpu_relax
+
+ptr::Alignment::as_nonzero
+└── core::hint::unreachable_unchecked
+
+rbtree::Cursor::<'a, K, V>::get_neighbor_raw
+├── bindings::rb_prev
+└── bindings::rb_next
+
+rbtree::Cursor::<'a, K, V>::to_key_value
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::CursorMut::<'a, K, V>::get_neighbor_raw
+├── bindings::rb_prev
+└── bindings::rb_next
+
+rbtree::CursorMut::<'a, K, V>::remove_current
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+└── bindings::rb_erase
+
+rbtree::CursorMut::<'a, K, V>::remove_neighbor
+├── bindings::rb_erase
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::CursorMut::<'a, K, V>::to_key_value [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
+rbtree::CursorMut::<'a, K, V>::to_key_value_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
+rbtree::CursorMut::<'a, K, V>::to_key_value_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::OccupiedEntry::<'a, K, V>::get
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::OccupiedEntry::<'a, K, V>::get_mut
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::OccupiedEntry::<'a, K, V>::into_mut
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::OccupiedEntry::<'a, K, V>::remove_node
+├── bindings::rb_erase
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::OccupiedEntry::<'a, K, V>::replace
+├── bindings::rb_replace_node
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::RBTree::<K, V>::cursor_back
+└── bindings::rb_last
+
+rbtree::RBTree::<K, V>::cursor_back_mut
+└── bindings::rb_last
+
+rbtree::RBTree::<K, V>::cursor_front
+└── bindings::rb_first
+
+rbtree::RBTree::<K, V>::cursor_front_mut
+└── bindings::rb_first
+
+rbtree::RBTree::<K, V>::find_best_match
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::RBTree::<K, V>::get
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::RBTree::<K, V>::iter
+└── bindings::rb_first
+
+rbtree::RBTree::<K, V>::iter_mut
+└── bindings::rb_first
+
+rbtree::RBTree::<K, V>::raw_entry
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::RawVacantEntry::<'a, K, V>::insert
+├── bindings::rb_link_node
+└── bindings::rb_insert_color
+
+regulator::Regulator::<T>::disable_internal
+└── bindings::regulator_disable
+
+regulator::Regulator::<T>::enable_internal
+└── bindings::regulator_enable
+
+regulator::Regulator::<T>::get_internal
+└── bindings::regulator_get
+
+regulator::Regulator::<T>::get_voltage
+└── bindings::regulator_get_voltage
+
+regulator::Regulator::<T>::is_enabled
+└── bindings::regulator_is_enabled
+
+regulator::Regulator::<T>::set_voltage
+└── bindings::regulator_set_voltage
+
+regulator::devm_enable
+└── bindings::devm_regulator_get_enable
+
+regulator::devm_enable_optional
+└── bindings::devm_regulator_get_enable_optional
+
+revocable::Revocable::<T>::new
+├── core::ptr::write
+├── revocable::_::__ThePinData::<T>::__project_is_available
+├── revocable::_::__ThePinData::<T>::data
+├── revocable::_::__ThePinData::<T>::__project_data
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+revocable::Revocable::<T>::revoke
+└── revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
+
+revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
+├── bindings::synchronize_rcu
+└── core::ptr::drop_in_place
+
+revocable::Revocable::<T>::revoke_nosync [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
+└── revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
+
+scatterlist::DmaMappedSgt::new
+└── bindings::dma_map_sgtable
+
+scatterlist::Owned::<P>::new
+├── bindings::dma_max_mapping_size
+├── core::ptr::write
+├── scatterlist::_::__ThePinData::<P>::__project_sgt
+├── scatterlist::_::__ThePinData::<P>::dma
+├── scatterlist::_::__ThePinData::<P>::__project_dma
+├── core::ptr::write
+├── scatterlist::_::__ThePinData::<P>::__project__pages
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+scatterlist::RawSGTable::new
+└── bindings::sg_alloc_table_from_pages_segment
+
+scatterlist::SGEntry::dma_address
+└── bindings::sg_dma_address
+
+scatterlist::SGEntry::dma_len
+└── bindings::sg_dma_len
+
+scatterlist::SGTable::<scatterlist::Owned<P>>::new
+├── scatterlist::_::__ThePinData::<T>::inner
+├── scatterlist::_::__ThePinData::<T>::__project_inner
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+security::SecurityCtx::as_bytes
+└── core::slice::from_raw_parts
+
+security::SecurityCtx::from_secid
+├── core::mem::zeroed
+└── bindings::security_secid_to_secctx
+
+security::binder_set_context_mgr
+└── bindings::security_binder_set_context_mgr
+
+security::binder_transaction
+└── bindings::security_binder_transaction
+
+security::binder_transfer_binder
+└── bindings::security_binder_transfer_binder
+
+security::binder_transfer_file
+└── bindings::security_binder_transfer_file
+
+seq_file::SeqFile::call_printf
+└── bindings::seq_printf
+
+seq_file::SeqFile::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
+
+str::CString::try_from_fmt
+├── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── bindings::memchr
+
+str::Formatter::<'_>::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
+str::RawFormatter::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
+str::RawFormatter::from_ptrs [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m, [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
+str::kstrtobool
+└── str::kstrtobool_raw
+    └── bindings::kstrtobool
+
+str::kstrtobool_bytes
+└── str::kstrtobool_raw
+
+str::kstrtobool_raw
+└── bindings::kstrtobool
+
+str::tests::kunit_rust_wrapper_test_bstr_debug
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::kunit_rust_wrapper_test_bstr_display
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::kunit_rust_wrapper_test_cstr_debug
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::kunit_rust_wrapper_test_cstr_display
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::kunit_rust_wrapper_test_cstr_display_all_bytes
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::kunit_rust_wrapper_test_cstr_to_str
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::kunit_rust_wrapper_test_cstr_to_str_invalid_utf8
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_bstr_debug
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_bstr_display
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_cstr_debug
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_cstr_display
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_cstr_display_all_bytes
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_cstr_to_str
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+str::tests::test_cstr_to_str_invalid_utf8
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::LockClassKey::new_dynamic
+├── bindings::lockdep_register_key
+├── sync::_::__ThePinData::inner
+├── sync::_::__ThePinData::__project_inner
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+sync::arc::Arc::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+sync::arc::Arc::<T>::into_unique_or_drop
+└── core::ptr::NonNull::<T>::as_ref
+
+sync::arc::ArcBorrow::<'_, T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mNonInstance[39m[0m [38;5;246m}[0m
+
+sync::arc::ArcBorrow::<'_, T>::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonMutRef[39m[0m [38;5;246m}[0m
+
+sync::arc::ArcInner::<T>::container_of [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+├── core::result::Result::<T, E>::unwrap_unchecked
+└── core::ptr::const_ptr::<impl *const T>::byte_sub
+
+sync::arc::UniqueArc::<T>::new_uninit
+├── core::ptr::write
+├── core::ptr::write
+└── pin_init::init_from_closure
+
+sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::init_with
+├── pin_init::Init::__init
+└── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::pin_init_with
+├── pin_init::PinInit::__pinned_init
+└── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::write
+└── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+sync::atomic::Atomic::<T>::fetch_add
+└── sync::atomic::from_repr
+    └── core::mem::transmute_copy
+
+sync::atomic::Atomic::<T>::load
+└── sync::atomic::from_repr
+
+sync::atomic::Atomic::<T>::try_cmpxchg
+└── sync::atomic::from_repr
+
+sync::atomic::Atomic::<T>::xchg
+└── sync::atomic::from_repr
+
+sync::atomic::from_repr
+└── core::mem::transmute_copy
+
+sync::atomic::into_repr
+└── core::mem::transmute_copy
+
+sync::atomic::predefine::tests::atomic_arithmetic_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::atomic_basic_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::atomic_cmpxchg_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::atomic_xchg_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+├── bindings::__kunit_abort
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::kunit_rust_wrapper_atomic_arithmetic_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::kunit_rust_wrapper_atomic_basic_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::kunit_rust_wrapper_atomic_cmpxchg_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::atomic::predefine::tests::kunit_rust_wrapper_atomic_xchg_tests
+├── bindings::kunit_get_current_test
+├── bindings::__kunit_do_failed_assertion
+├── bindings::kunit_unary_assert_format
+└── bindings::__kunit_abort
+
+sync::barrier::smp_mb
+└── bindings::smp_mb
+
+sync::barrier::smp_rmb
+└── bindings::smp_rmb
+
+sync::barrier::smp_wmb
+└── bindings::smp_wmb
+
+sync::completion::Completion::complete_all
+└── bindings::complete_all
+
+sync::completion::Completion::new
+├── bindings::init_completion
+├── sync::completion::_::__ThePinData::inner
+├── sync::completion::_::__ThePinData::__project_inner
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+sync::completion::Completion::wait_for_completion
+└── bindings::wait_for_completion
+
+sync::condvar::CondVar::new
+├── core::ptr::write
+├── sync::condvar::_::__ThePinData::__project__pin
+├── bindings::__init_waitqueue_head
+├── sync::condvar::_::__ThePinData::wait_queue_head
+├── sync::condvar::_::__ThePinData::__project_wait_queue_head
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+sync::condvar::CondVar::notify
+└── bindings::__wake_up
+
+sync::condvar::CondVar::notify_sync
+└── bindings::__wake_up_sync
+
+sync::condvar::CondVar::wait_internal
+├── bindings::init_wait
+├── bindings::prepare_to_wait_exclusive
+├── bindings::schedule_timeout
+└── bindings::finish_wait
+
+sync::lock::Guard::<'a, T, B>::new [38;5;246m{[0m [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+sync::lock::Lock::<(), B>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+sync::lock::Lock::<T, B>::new
+├── core::ptr::write
+├── sync::lock::_::__ThePinData::<T, B>::__project_data
+├── core::ptr::write
+├── sync::lock::_::__ThePinData::<T, B>::__project__pin
+├── sync::lock::_::__ThePinData::<T, B>::state
+├── sync::lock::_::__ThePinData::<T, B>::__project_state
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+sync::lock::global::GlobalLock::<B>::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+sync::lock::global::GlobalLock::<B>::new [38;5;246m{[0m [1m[38;2;255;165;000mNonUsed[39m[0m [38;5;246m}[0m
+
+sync::poll::PollCondVar::new
+├── sync::poll::_::__ThePinData::inner
+├── sync::poll::_::__ThePinData::__project_inner
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+sync::poll::PollTable::<'a>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mOwning[39m[0m [38;5;246m}[0m
+
+sync::poll::PollTable::<'a>::register_wait
+└── bindings::poll_wait
+
+sync::rcu::Guard::new
+└── bindings::rcu_read_lock
+
+sync::refcount::Refcount::dec
+└── bindings::refcount_dec
+
+sync::refcount::Refcount::dec_and_test
+└── bindings::refcount_dec_and_test
+
+sync::refcount::Refcount::inc
+└── bindings::refcount_inc
+
+sync::refcount::Refcount::new
+└── bindings::REFCOUNT_INIT
+
+sync::refcount::Refcount::set
+└── bindings::refcount_set
+
+task::CurrentTask::active_pid_ns
+└── bindings::task_active_pid_ns
+
+task::Kuid::current_euid
+└── bindings::current_euid
+
+task::Kuid::into_uid_in_current_ns
+├── bindings::from_kuid
+└── bindings::current_user_ns
+
+task::Task::current [38;5;246m{[0m [1m[38;2;255;165;000mActiveContext[39m[0m [38;5;246m}[0m
+
+task::Task::current_raw
+└── bindings::get_current
+
+task::Task::euid
+└── bindings::task_euid
+
+task::Task::get_pid_ns
+└── bindings::task_get_pid_ns
+
+task::Task::signal_pending
+└── bindings::signal_pending
+
+task::Task::tgid_nr_ns
+└── bindings::task_tgid_nr_ns
+
+task::Task::uid
+└── bindings::task_uid
+
+task::Task::wake_up
+└── bindings::wake_up_process
+
+task::might_sleep
+└── bindings::might_resched
+
+time::delay::fsleep
+└── bindings::fsleep
+
+time::hrtimer::HrTimer::<T>::expires
+└── core::ptr::read_volatile
+
+time::hrtimer::HrTimer::<T>::forward
+└── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+
+time::hrtimer::HrTimer::<T>::new
+├── bindings::hrtimer_setup
+├── time::hrtimer::_::__ThePinData::<T>::timer
+├── time::hrtimer::_::__ThePinData::<T>::__project_timer
+├── core::ptr::write
+├── time::hrtimer::_::__ThePinData::<T>::__project__t
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+time::hrtimer::HrTimer::<T>::raw_cancel [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+└── bindings::hrtimer_cancel
+
+time::hrtimer::HrTimer::<T>::raw_forward
+└── bindings::hrtimer_forward
+
+time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+
+time::hrtimer::pin_mut::<impl time::hrtimer::UnsafeHrTimerPointer for core::pin::Pin<&'a mut T>>::start
+└── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+
+time::msecs_to_jiffies
+└── bindings::__msecs_to_jiffies
+
+types::Opaque::<T>::ffi_init
+└── pin_init::pin_init_from_closure
+
+types::Opaque::<T>::try_ffi_init
+└── pin_init::pin_init_from_closure
+
+uaccess::UserSliceReader::read
+├── bindings::_copy_from_user
+└── core::mem::MaybeUninit::<T>::assume_init
+
+uaccess::UserSliceReader::read_all
+└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+uaccess::UserSliceReader::read_raw
+└── bindings::copy_from_user
+
+uaccess::UserSliceReader::strcpy_into_buf
+└── core::option::Option::<T>::unwrap_unchecked
+
+uaccess::UserSliceWriter::write
+└── bindings::_copy_to_user
+
+uaccess::UserSliceWriter::write_slice
+└── bindings::copy_to_user
+
+uaccess::raw_strncpy_from_user
+└── bindings::strncpy_from_user
+
+workqueue::DelayedWork::<T, ID>::new
+├── bindings::init_work_with_key
+├── bindings::timer_init_key
+├── bindings::delayed_work_timer_fn
+├── workqueue::_::__ThePinData::<T, ID>::dwork
+├── workqueue::_::__ThePinData::<T, ID>::__project_dwork
+├── core::ptr::write
+├── workqueue::_::__ThePinData::<T, ID>::__project__inner
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+workqueue::Queue::enqueue
+├── workqueue::RawWorkItem::__enqueue
+└── bindings::queue_work_on
+
+workqueue::Queue::enqueue_delayed
+├── workqueue::RawWorkItem::__enqueue
+├── bindings::queue_delayed_work_on
+└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::Queue::try_spawn
+├── workqueue::_::__ThePinData::<T>::work
+├── workqueue::_::__ThePinData::<T>::__project_work
+├── core::ptr::write
+├── workqueue::_::__ThePinData::<T>::__project_func
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+workqueue::Work::<T, ID>::new
+├── bindings::init_work_with_key
+├── workqueue::_::__ThePinData::<T, ID>::work
+├── workqueue::_::__ThePinData::<T, ID>::__project_work
+├── core::ptr::write
+├── workqueue::_::__ThePinData::<T, ID>::__project__inner
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+workqueue::Work::<T, ID>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
+xarray::Guard::<'a, T>::load
+└── bindings::xa_load
+
+xarray::Guard::<'a, T>::remove
+└── bindings::__xa_erase
+
+xarray::Guard::<'a, T>::store
+├── bindings::__xa_store
+└── bindings::xa_err
+
+xarray::XArray::<T>::iter
+├── bindings::xa_find
+└── bindings::xa_find_after
+
+xarray::XArray::<T>::lock
+└── bindings::xa_lock
+
+xarray::XArray::<T>::new
+├── bindings::xa_init_flags
+├── xarray::_::__ThePinData::<T>::xa
+├── xarray::_::__ThePinData::<T>::__project_xa
+├── core::ptr::write
+├── xarray::_::__ThePinData::<T>::__project__p
+├── core::ptr::write
+└── pin_init::pin_init_from_closure
+
+xarray::XArray::<T>::try_lock
+└── bindings::xa_trylock
+

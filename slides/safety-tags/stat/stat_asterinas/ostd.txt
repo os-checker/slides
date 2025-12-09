@@ -1,0 +1,1000 @@
+<T as cpu::local::single_instr::SingleInstructionAddAssign>::add_assign
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<T as cpu::local::single_instr::SingleInstructionBitAndAssign>::bitand_assign
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<T as cpu::local::single_instr::SingleInstructionBitOrAssign>::bitor_assign
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<T as cpu::local::single_instr::SingleInstructionBitXorAssign>::bitxor_assign
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<T as cpu::local::single_instr::SingleInstructionLoad>::load
+└── core::ptr::const_ptr::<impl *const T>::read
+
+<T as cpu::local::single_instr::SingleInstructionStore>::store
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+<T as cpu::local::single_instr::SingleInstructionSubAssign>::sub_assign
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+<arch::boot::multiboot::MemoryEntryIter as core::iter::Iterator>::next
+└── core::ptr::const_ptr::<impl *const T>::add
+
+<arch::cpu::context::UserContext as user::UserContextApiInternal>::execute
+└── x86::controlregs::cr2
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::Apic>::eoi
+└── x86::msr::wrmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::Apic>::id
+└── x86::msr::rdmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::Apic>::send_ipi
+├── x86::msr::wrmsr
+├── x86::msr::wrmsr
+├── x86::msr::rdmsr
+└── x86::msr::rdmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::Apic>::version
+└── x86::msr::rdmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::ApicTimer>::set_lvt_timer
+└── x86::msr::wrmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::ApicTimer>::set_timer_div_config
+└── x86::msr::wrmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::ApicTimer>::set_timer_init_count
+└── x86::msr::wrmsr
+
+<arch::kernel::apic::x2apic::X2Apic as arch::kernel::apic::ApicTimer>::timer_current_count
+└── x86::msr::rdmsr
+
+<cpu::local::static_cpu_local::StaticStorage<T> as cpu::local::AnyStorage<T>>::get_ptr_on_target
+├── spin::once::Once::<T, R>::get_unchecked
+└── core::slice::<impl [T]>::get_unchecked
+
+<io::io_port::IoPort<T, A> as core::ops::Drop>::drop
+└── io::io_port::allocator::IoPortAllocator::recycle [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+
+<mm::dma::dma_coherent::DmaCoherentInner as core::ops::Drop>::drop
+├── arch::tdx_guest::protect_gpa_range
+│   ├── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::add
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::read
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::add
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::write
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::write
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::add
+│   │   ├── core::ptr::mut_ptr::<impl *mut T>::read
+│   │   └── core::ptr::mut_ptr::<impl *mut T>::write
+│   ├── mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+│   │   └── mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+│   └── tdx_guest::tdcall::accept_page
+└── mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+<mm::dma::dma_stream::DmaStreamInner as core::ops::Drop>::drop
+└── arch::tdx_guest::protect_gpa_range
+
+<mm::frame::Frame<(dyn mm::frame::meta::AnyFrameMeta + 'static)> as core::convert::From<mm::frame::Frame<(dyn mm::frame::untyped::AnyUFrameMeta + 'static)>>>::from
+└── core::intrinsics::transmute
+
+<mm::frame::Frame<(dyn mm::frame::meta::AnyFrameMeta + 'static)> as core::convert::From<mm::frame::Frame<M>>>::from
+└── core::intrinsics::transmute
+
+<mm::frame::Frame<(dyn mm::frame::untyped::AnyUFrameMeta + 'static)> as core::convert::From<mm::frame::Frame<M>>>::from
+└── core::intrinsics::transmute
+
+<mm::frame::Frame<(dyn mm::frame::untyped::AnyUFrameMeta + 'static)> as core::convert::TryFrom<mm::frame::Frame<(dyn mm::frame::meta::AnyFrameMeta + 'static)>>>::try_from
+└── core::intrinsics::transmute
+
+<mm::frame::Frame<M> as core::clone::Clone>::clone
+└── mm::frame::meta::MetaSlot::inc_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mGe[39m[0m, [1m[38;2;255;165;000mNe[39m[0m [38;5;246m}[0m
+
+<mm::frame::Frame<M> as core::convert::TryFrom<mm::frame::Frame<(dyn mm::frame::meta::AnyFrameMeta + 'static)>>>::try_from
+└── core::intrinsics::transmute
+
+<mm::frame::Frame<M> as core::ops::Drop>::drop
+└── mm::frame::meta::MetaSlot::drop_last_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+    └── mm::frame::meta::MetaSlot::drop_meta_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+        ├── core::mem::MaybeUninit::<T>::assume_init_read
+        └── core::ptr::drop_in_place
+
+<mm::frame::segment::Segment<(dyn mm::frame::untyped::AnyUFrameMeta + 'static)> as core::convert::From<mm::frame::segment::Segment<M>>>::from
+└── core::intrinsics::transmute
+
+<mm::frame::segment::Segment<(dyn mm::frame::untyped::AnyUFrameMeta + 'static)> as core::convert::TryFrom<mm::frame::segment::Segment<(dyn mm::frame::meta::AnyFrameMeta + 'static)>>>::try_from
+└── core::intrinsics::transmute
+
+<mm::frame::segment::Segment<M> as core::clone::Clone>::clone
+└── mm::frame::inc_frame_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m, [1m[38;2;255;165;000mRefHeld[39m[0m [38;5;246m}[0m
+    └── mm::frame::meta::MetaSlot::inc_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mGe[39m[0m, [1m[38;2;255;165;000mNe[39m[0m [38;5;246m}[0m
+
+<mm::frame::segment::Segment<M> as core::convert::TryFrom<mm::frame::segment::Segment<(dyn mm::frame::meta::AnyFrameMeta + 'static)>>>::try_from
+└── core::intrinsics::transmute
+
+<mm::frame::unique::UniqueFrame<M> as core::convert::TryFrom<mm::frame::Frame<M>>>::try_from
+└── core::intrinsics::transmute
+
+<mm::frame::unique::UniqueFrame<M> as core::ops::Drop>::drop
+└── mm::frame::meta::MetaSlot::drop_last_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+<mm::heap::slot::SlotInfo as core::cmp::PartialEq>::eq
+└── core::intrinsics::unreachable
+
+<mm::io::VmReader<'a, mm::io::Infallible> as mm::io::FallibleVmRead<mm::io::Fallible>>::read_fallible
+└── mm::io::memcpy_fallible [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+    └── arch::mm::util::__memcpy_fallible
+
+<mm::io::VmReader<'a> as mm::io::FallibleVmRead<mm::io::Fallible>>::read_fallible
+└── mm::io::memcpy_fallible [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+<mm::io::VmReader<'a> as mm::io::FallibleVmRead<mm::io::Infallible>>::read_fallible
+└── mm::io::memcpy_fallible [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+<mm::kspace::MappedItem as core::cmp::PartialEq>::eq
+└── core::intrinsics::unreachable
+
+<mm::kspace::kvirt_area::KVirtArea as core::ops::Drop>::drop
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+<sync::rcu::non_null::BoxRef<'_, T> as core::ops::Deref>::deref
+└── core::intrinsics::transmute
+
+<task::CurrentTask as core::ops::Deref>::deref
+└── core::ptr::NonNull::<T>::as_ref
+
+<util::either::Either<L, R> as core::cmp::PartialEq>::eq
+└── core::intrinsics::unreachable
+
+arch::boot::linux_boot::parse_initramfs
+└── core::slice::from_raw_parts
+
+arch::boot::linux_boot::parse_kernel_commandline
+└── core::slice::from_raw_parts
+
+arch::boot::multiboot2::make_str_vaddr_static [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+└── core::slice::from_raw_parts
+
+arch::boot::multiboot2::parse_bootloader_name
+└── arch::boot::multiboot2::make_str_vaddr_static [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+arch::boot::multiboot2::parse_initramfs
+└── core::slice::from_raw_parts
+
+arch::boot::multiboot2::parse_kernel_commandline
+└── arch::boot::multiboot2::make_str_vaddr_static [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+arch::boot::multiboot::MemoryEntry::base_addr
+├── core::ptr::const_ptr::<impl *const T>::read_unaligned
+└── core::ptr::const_ptr::<impl *const T>::byte_add
+
+arch::boot::multiboot::MemoryEntry::length
+├── core::ptr::const_ptr::<impl *const T>::read_unaligned
+└── core::ptr::const_ptr::<impl *const T>::byte_add
+
+arch::boot::multiboot::MemoryEntry::memory_type
+├── core::ptr::const_ptr::<impl *const T>::read_unaligned
+└── core::ptr::const_ptr::<impl *const T>::add
+
+arch::boot::multiboot::MemoryEntry::size
+└── core::ptr::const_ptr::<impl *const T>::read_unaligned
+
+arch::boot::multiboot::MultibootLegacyInfo::get_memory_map
+└── core::ptr::const_ptr::<impl *const T>::add
+
+arch::boot::multiboot::parse_as_cstr [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+arch::boot::multiboot::parse_bootloader_name
+└── arch::boot::multiboot::parse_as_cstr [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+arch::boot::multiboot::parse_initramfs
+├── core::ptr::const_ptr::<impl *const T>::add
+└── core::slice::from_raw_parts
+
+arch::boot::multiboot::parse_kernel_commandline
+└── arch::boot::multiboot::parse_as_cstr [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+arch::boot::smp::ap_boot_code_size
+├── arch::boot::smp::__ap_boot_end
+└── arch::boot::smp::__ap_boot_start
+
+arch::boot::smp::bringup_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::copy_ap_boot_code [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+│   ├── arch::boot::smp::__ap_boot_start
+│   ├── arch::boot::smp::__ap_boot_end
+│   ├── arch::boot::smp::__ap_boot_start
+│   └── core::intrinsics::copy_nonoverlapping
+├── arch::boot::smp::fill_boot_info_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::fill_boot_pt_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::wake_up_aps_via_mailbox [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+│   ├── arch::boot::smp::wake_up_aps_via_mailbox::ap_boot_from_long_mode
+│   └── arch::boot::smp::wake_up_aps_via_mailbox::ap_boot_from_real_mode
+└── arch::boot::smp::send_boot_ipis [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+    ├── arch::boot::smp::send_init_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+    │   └── arch::kernel::apic::Apic::send_ipi
+    ├── arch::boot::smp::send_init_deassert [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+    │   └── arch::kernel::apic::Apic::send_ipi
+    ├── arch::boot::smp::send_startup_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+    │   └── arch::kernel::apic::Apic::send_ipi
+    └── arch::boot::smp::send_startup_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+arch::boot::smp::copy_ap_boot_code [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::__ap_boot_start
+├── arch::boot::smp::__ap_boot_end
+├── arch::boot::smp::__ap_boot_start
+└── core::intrinsics::copy_nonoverlapping
+
+arch::boot::smp::count_processors [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+arch::boot::smp::fill_boot_info_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+
+arch::boot::smp::fill_boot_pt_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+
+arch::boot::smp::send_boot_ipis [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::send_init_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::send_init_deassert [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::send_startup_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::boot::smp::send_startup_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+arch::boot::smp::send_init_deassert [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::kernel::apic::Apic::send_ipi
+
+arch::boot::smp::send_init_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::kernel::apic::Apic::send_ipi
+
+arch::boot::smp::send_startup_to_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::kernel::apic::Apic::send_ipi
+
+arch::boot::smp::wake_up_aps_via_mailbox [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+├── arch::boot::smp::wake_up_aps_via_mailbox::ap_boot_from_long_mode
+└── arch::boot::smp::wake_up_aps_via_mailbox::ap_boot_from_real_mode
+
+arch::cpu::context::FpuState::restore
+├── core::arch::x86_64::_xrstor64
+└── core::arch::x86_64::_fxrstor64
+
+arch::cpu::context::FpuState::save
+├── core::arch::x86_64::_xsave64
+└── core::arch::x86_64::_fxsave64
+
+arch::cpu::context::UserContext::activate_tls_pointer
+└── x86::bits64::segmentation::wrfsbase
+
+arch::cpu::context::XSaveArea::init
+├── core::intrinsics::write_bytes
+└── alloc::boxed::Box::<core::mem::MaybeUninit<T>, A>::assume_init
+
+arch::device::serial::SerialPort::new [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+
+arch::ex_table::ExTable::find_recovery_inst_addr
+├── arch::ex_table::__ex_table_end
+├── arch::ex_table::__ex_table
+├── core::slice::from_raw_parts
+└── arch::ex_table::__ex_table
+
+arch::has_avx
+├── core::arch::x86_64::__cpuid
+└── core::arch::x86_64::__cpuid_count
+
+arch::has_avx512
+├── core::arch::x86_64::__cpuid
+└── core::arch::x86_64::__cpuid_count
+
+arch::init_on_ap [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+arch::iommu::dma_remapping::context_table::ContextTable::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+    └── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+
+arch::iommu::dma_remapping::context_table::ContextTable::unmap
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+arch::iommu::dma_remapping::context_table::RootTable::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::iommu::dma_remapping::context_table::ContextTable::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+arch::iommu::dma_remapping::init
+└── mm::page_table::PageTable::<C>::shallow_copy [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m [38;5;246m}[0m
+
+arch::iommu::dma_remapping::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::iommu::dma_remapping::context_table::RootTable::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+arch::iommu::fault::FaultEventRegisters::new [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+└── core::ptr::NonNull::<T>::add
+
+arch::iommu::fault::init [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+
+arch::iommu::registers::IommuRegisters::new
+├── arch::iommu::fault::init [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+└── core::ptr::NonNull::<T>::add
+
+arch::iommu::registers::invalidation::InvalidationRegisters::new [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+└── core::ptr::NonNull::<T>::add
+
+arch::irq::send_ipi [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── arch::kernel::apic::Apic::send_ipi
+
+arch::kernel::acpi::dmar::Dmar::new
+└── core::slice::from_raw_parts
+
+arch::kernel::acpi::get_acpi_tables [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+arch::kernel::apic::get_or_init
+├── arch::kernel::apic::get_or_init::ForceSyncSend::<T>::get [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── arch::kernel::apic::get_or_init::ForceSyncSend::<T>::get [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+arch::kernel::apic::get_or_init::ForceSyncSend::<T>::get [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+arch::kernel::apic::x2apic::X2Apic::enable
+├── x86::msr::rdmsr
+├── x86::msr::wrmsr
+└── x86::msr::wrmsr
+
+arch::kernel::apic::x2apic::X2Apic::has_x2apic
+└── core::arch::x86_64::__cpuid
+
+arch::kernel::apic::xapic::XApic::has_xapic
+└── core::arch::x86_64::__cpuid
+
+arch::kernel::apic::xapic::XApic::read
+├── core::ptr::read_volatile
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+arch::kernel::apic::xapic::XApic::write
+├── core::ptr::write_volatile
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+arch::kernel::apic::xapic::get_xapic_base_address
+└── x86_64::registers::model_specific::x86_64::<impl x86_64::registers::model_specific::Msr>::read
+
+arch::kernel::apic::xapic::set_apic_base_address
+└── x86_64::registers::model_specific::x86_64::<impl x86_64::registers::model_specific::Msr>::write
+
+arch::kernel::irq::ioapic::IoApic::new [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m [38;5;246m}[0m
+
+arch::kernel::irq::ioapic::IoApicAccess::new [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m [38;5;246m}[0m
+└── arch::tdx_guest::unprotect_gpa_range
+    ├── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+    └── mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+arch::late_init_on_bsp [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+├── arch::trap::init [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+│   ├── arch::trap::gdt::init [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+│   │   ├── x86_64::instructions::tables::lgdt
+│   │   └── x86_64::instructions::tables::load_tss
+│   └── arch::trap::syscall::init [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+│       └── arch::trap::syscall::syscall_entry
+├── boot::smp::boot_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+│   └── arch::boot::smp::bringup_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+└── io::init [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+    ├── io::io_mem::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+    └── io::io_port::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mBounded[39m[0m [38;5;246m}[0m
+        ├── io::io_port::allocator::init::__sensitive_io_ports_start
+        ├── io::io_port::allocator::init::__sensitive_io_ports_end
+        └── io::io_port::allocator::init::__sensitive_io_ports_start
+
+arch::mm::activate_page_table [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+arch::qemu::exit_qemu
+└── x86_64::instructions::port::PortGeneric::<T, A>::write
+
+arch::read_random
+└── core::arch::x86_64::_rdrand64_step
+
+arch::read_tsc
+└── core::arch::x86_64::_rdtsc
+
+arch::tdx_guest::protect_gpa_range
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+└── tdx_guest::tdcall::accept_page
+
+arch::tdx_guest::unprotect_gpa_range
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+└── mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+arch::timer::apic::timer_callback
+└── x86::msr::wrmsr
+
+arch::timer::hpet::Hpet::new [38;5;246m{[0m [1m[38;2;255;165;000mValidBaseAddr[39m[0m [38;5;246m}[0m
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+├── core::ptr::NonNull::<T>::add
+└── core::ptr::NonNull::<T>::add
+
+arch::trap::gdt::init [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+├── x86_64::instructions::tables::lgdt
+└── x86_64::instructions::tables::load_tss
+
+arch::trap::handle_kernel_page_fault
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+arch::trap::idt::init
+├── x86_64::structures::idt::Entry::<F>::set_handler_addr
+└── x86_64::instructions::tables::lidt
+
+arch::trap::init [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+├── arch::trap::gdt::init [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── arch::trap::syscall::init [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+arch::trap::syscall::<impl arch::trap::RawUserContext>::run
+└── arch::trap::syscall::syscall_return
+
+arch::trap::syscall::init [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── arch::trap::syscall::syscall_entry
+
+boot::call_ostd_main
+├── init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+│   ├── mm::frame::allocator::init_early_allocator [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+│   ├── cpu::init_on_bsp [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mUnaccessed[39m[0m [38;5;246m}[0m
+│   │   ├── cpu::local::copy_bsp_for_ap [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mUnaccessed[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+│   │   │   ├── core::intrinsics::write_bytes
+│   │   │   ├── core::slice::from_raw_parts_mut
+│   │   │   ├── cpu::local::__cpu_local_start
+│   │   │   ├── cpu::local::__cpu_local_end
+│   │   │   └── core::intrinsics::copy_nonoverlapping
+│   │   ├── cpu::set_this_cpu_id [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+│   │   └── cpu::init_num_cpus [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+│   ├── mm::frame::meta::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+│   │   └── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+│   │       ├── core::ptr::mut_ptr::<impl *mut T>::add
+│   │       ├── core::ptr::mut_ptr::<impl *mut T>::read
+│   │       ├── core::ptr::mut_ptr::<impl *mut T>::write
+│   │       ├── core::ptr::mut_ptr::<impl *mut T>::add
+│   │       ├── core::ptr::mut_ptr::<impl *mut T>::read
+│   │       └── core::ptr::mut_ptr::<impl *mut T>::write
+│   ├── mm::frame::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+│   ├── arch::late_init_on_bsp [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+│   └── mm::kspace::activate_kernel_page_table [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+│       ├── mm::page_table::PageTable::<C>::first_activate_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+│       │   └── mm::page_table::node::<impl mm::frame::Frame<mm::page_table::node::PageTablePageMeta<C>>>::first_activate [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+│       │       └── arch::mm::activate_page_table [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+│       └── mm::page_table::boot_pt::dismiss [38;5;246m{[0m [1m[38;2;255;165;000mNotPriorToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── boot::call_ostd_main::__ostd_main
+
+boot::memory_region::MemoryRegion::kernel
+├── boot::memory_region::MemoryRegion::kernel::__kernel_start
+├── boot::memory_region::MemoryRegion::kernel::__kernel_end
+└── boot::memory_region::MemoryRegion::kernel::__kernel_start
+
+boot::smp::ap_early_entry
+├── cpu::init_on_ap [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+│   └── cpu::set_this_cpu_id [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+├── arch::trap::init [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+├── arch::init_on_ap [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── mm::kspace::activate_kernel_page_table [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+boot::smp::boot_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+└── arch::boot::smp::bringup_all_aps [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+
+cpu::init_num_cpus [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+cpu::init_on_ap [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── cpu::set_this_cpu_id [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+cpu::init_on_bsp [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mUnaccessed[39m[0m [38;5;246m}[0m
+├── cpu::local::copy_bsp_for_ap [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mUnaccessed[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+├── cpu::set_this_cpu_id [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── cpu::init_num_cpus [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+cpu::local::cell::CpuLocalCell::<T>::__new [38;5;246m{[0m [1m[38;2;255;165;000mSection[39m[0m [38;5;246m}[0m
+
+cpu::local::cell::CpuLocalCell::<T>::add_assign
+└── cpu::local::__cpu_local_start
+
+cpu::local::cell::CpuLocalCell::<T>::as_mut_ptr
+├── cpu::local::__cpu_local_start
+└── cpu::local::__cpu_local_end
+
+cpu::local::cell::CpuLocalCell::<T>::bitand_assign
+└── cpu::local::__cpu_local_start
+
+cpu::local::cell::CpuLocalCell::<T>::bitor_assign
+└── cpu::local::__cpu_local_start
+
+cpu::local::cell::CpuLocalCell::<T>::bitxor_assign
+└── cpu::local::__cpu_local_start
+
+cpu::local::cell::CpuLocalCell::<T>::load
+└── cpu::local::__cpu_local_start
+
+cpu::local::cell::CpuLocalCell::<T>::store
+└── cpu::local::__cpu_local_start
+
+cpu::local::cell::CpuLocalCell::<T>::sub_assign
+└── cpu::local::__cpu_local_start
+
+cpu::local::copy_bsp_for_ap [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mUnaccessed[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+├── core::intrinsics::write_bytes
+├── core::slice::from_raw_parts_mut
+├── cpu::local::__cpu_local_start
+├── cpu::local::__cpu_local_end
+└── core::intrinsics::copy_nonoverlapping
+
+cpu::local::dyn_cpu_local::<impl cpu::local::CpuLocal<T, cpu::local::dyn_cpu_local::DynamicStorage<T>>>::__new_dynamic [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── core::ptr::write
+
+cpu::local::dyn_cpu_local::DynCpuLocalChunk::<ITEM_SIZE>::try_dealloc
+└── core::ptr::drop_in_place
+
+cpu::local::static_cpu_local::<impl cpu::local::CpuLocal<T, cpu::local::static_cpu_local::StaticStorage<T>>>::__new_static [38;5;246m{[0m [1m[38;2;255;165;000mSection[39m[0m [38;5;246m}[0m
+
+cpu::local::static_cpu_local::StaticStorage::<T>::get_offset
+├── cpu::local::__cpu_local_start
+└── cpu::local::__cpu_local_end
+
+cpu::set_this_cpu_id [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+├── mm::frame::allocator::init_early_allocator [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+├── cpu::init_on_bsp [38;5;246m{[0m [1m[38;2;255;165;000mContext[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mUnaccessed[39m[0m [38;5;246m}[0m
+├── mm::frame::meta::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+├── mm::frame::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+├── arch::late_init_on_bsp [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+└── mm::kspace::activate_kernel_page_table [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+invoke_ffi_init_funcs
+├── invoke_ffi_init_funcs::__einit_array
+├── invoke_ffi_init_funcs::__sinit_array
+└── invoke_ffi_init_funcs::__sinit_array
+
+io::init [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+├── io::io_mem::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── io::io_port::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mBounded[39m[0m [38;5;246m}[0m
+
+io::io_mem::IoMem::new
+└── arch::tdx_guest::unprotect_gpa_range
+
+io::io_mem::allocator::IoMemAllocator::recycle [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+
+io::io_mem::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+io::io_port::IoPort::<T, A>::new [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+io::io_port::allocator::IoPortAllocator::recycle [38;5;246m{[0m [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mOwnedResource[39m[0m [38;5;246m}[0m
+
+io::io_port::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mBounded[39m[0m [38;5;246m}[0m
+├── io::io_port::allocator::init::__sensitive_io_ports_start
+├── io::io_port::allocator::init::__sensitive_io_ports_end
+└── io::io_port::allocator::init::__sensitive_io_ports_start
+
+mm::dma::dma_coherent::DmaCoherent::map
+├── mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── arch::tdx_guest::unprotect_gpa_range
+└── arch::iommu::dma_remapping::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::dma::dma_stream::DmaStream::map
+├── arch::tdx_guest::unprotect_gpa_range
+└── arch::iommu::dma_remapping::map [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::frame::Frame::<M>::dyn_meta
+└── mm::frame::meta::MetaSlot::dyn_meta_ptr [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+    └── core::mem::MaybeUninit::<T>::assume_init_ref
+
+mm::frame::Frame::<M>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::frame::allocator::FrameAllocOptions::alloc_frame_with
+└── core::intrinsics::write_bytes
+
+mm::frame::allocator::FrameAllocOptions::alloc_segment_with
+└── core::intrinsics::write_bytes
+
+mm::frame::allocator::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+mm::frame::allocator::init_early_allocator [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+mm::frame::inc_frame_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m, [1m[38;2;255;165;000mRefHeld[39m[0m [38;5;246m}[0m
+└── mm::frame::meta::MetaSlot::inc_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mGe[39m[0m, [1m[38;2;255;165;000mNe[39m[0m [38;5;246m}[0m
+
+mm::frame::linked_list::CursorMut::<'_, M>::insert_before
+├── core::ptr::NonNull::<T>::as_mut
+├── core::ptr::NonNull::<T>::as_mut
+├── core::ptr::NonNull::<T>::as_mut
+└── core::ptr::NonNull::<T>::as_mut
+
+mm::frame::linked_list::CursorMut::<'_, M>::move_next
+└── core::ptr::NonNull::<T>::as_ref
+
+mm::frame::linked_list::CursorMut::<'_, M>::move_prev
+└── core::ptr::NonNull::<T>::as_ref
+
+mm::frame::linked_list::CursorMut::<'_, M>::take_current
+├── core::ptr::NonNull::<T>::as_mut
+└── core::ptr::NonNull::<T>::as_mut
+
+mm::frame::meta::MetaSlot::drop_last_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── mm::frame::meta::MetaSlot::drop_meta_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+mm::frame::meta::MetaSlot::drop_meta_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── core::mem::MaybeUninit::<T>::assume_init_read
+└── core::ptr::drop_in_place
+
+mm::frame::meta::MetaSlot::dyn_meta_ptr [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── core::mem::MaybeUninit::<T>::assume_init_ref
+
+mm::frame::meta::MetaSlot::get_from_unused
+└── mm::frame::meta::MetaSlot::write_meta [38;5;246m{[0m [1m[38;2;255;165;000mMutAccess[39m[0m, [1m[38;2;255;165;000mMutAccess[39m[0m [38;5;246m}[0m
+    └── core::ptr::mut_ptr::<impl *mut T>::write
+
+mm::frame::meta::MetaSlot::inc_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mGe[39m[0m, [1m[38;2;255;165;000mNe[39m[0m [38;5;246m}[0m
+
+mm::frame::meta::MetaSlot::write_meta [38;5;246m{[0m [1m[38;2;255;165;000mMutAccess[39m[0m, [1m[38;2;255;165;000mMutAccess[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+mm::frame::meta::add_temp_linear_mapping
+└── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::frame::meta::alloc_meta_frames
+├── core::ptr::mut_ptr::<impl *mut T>::add
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+mm::frame::meta::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mContext[39m[0m [38;5;246m}[0m
+└── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::frame::segment::Segment::<M>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::frame::segment::Segment::<M>::slice
+└── mm::frame::inc_frame_ref_count [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m, [1m[38;2;255;165;000mRefHeld[39m[0m [38;5;246m}[0m
+
+mm::frame::unique::<impl core::convert::From<mm::frame::unique::UniqueFrame<M>> for mm::frame::Frame<M>>::from
+└── core::intrinsics::transmute
+
+mm::frame::unique::UniqueFrame::<M>::dyn_meta
+└── mm::frame::meta::MetaSlot::dyn_meta_ptr [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::frame::unique::UniqueFrame::<M>::dyn_meta_mut
+└── mm::frame::meta::MetaSlot::dyn_meta_ptr [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::frame::unique::UniqueFrame::<M>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::frame::unique::UniqueFrame::<M>::repurpose
+├── mm::frame::meta::MetaSlot::drop_meta_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── mm::frame::meta::MetaSlot::write_meta [38;5;246m{[0m [1m[38;2;255;165;000mMutAccess[39m[0m, [1m[38;2;255;165;000mMutAccess[39m[0m [38;5;246m}[0m
+└── core::intrinsics::transmute
+
+mm::frame::unique::UniqueFrame::<M>::reset_as_unused
+└── mm::frame::meta::MetaSlot::drop_last_in_place [38;5;246m{[0m [1m[38;2;255;165;000mEq[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+mm::heap::slot::HeapSlot::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+mm::heap::slot_list::SlabSlotList::<SLOT_SIZE>::pop
+└── core::ptr::mut_ptr::<impl *mut T>::read
+
+mm::heap::slot_list::SlabSlotList::<SLOT_SIZE>::push
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+mm::heap::slot_size_from_layout
+└── mm::heap::__GLOBAL_HEAP_SLOT_INFO_FROM_LAYOUT
+
+mm::io::VmReader::<'_>::collect
+└── core::ptr::const_ptr::<impl *const T>::sub
+
+mm::io::VmReader::<'_>::from_user_space [38;5;246m{[0m [1m[38;2;255;165;000mUserSpace[39m[0m [38;5;246m}[0m
+
+mm::io::VmReader::<'_>::read_val
+└── core::ptr::const_ptr::<impl *const T>::sub
+
+mm::io::VmReader::<'a, mm::io::Infallible>::from_kernel_space [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+
+mm::io::VmReader::<'a, mm::io::Infallible>::read
+└── mm::io::memcpy [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+    └── core::intrinsics::volatile_copy_memory
+
+mm::io::VmReader::<'a, mm::io::Infallible>::read_once
+└── core::ptr::const_ptr::<impl *const T>::read_volatile
+
+mm::io::VmWriter::<'_>::fill_zeros
+└── mm::io::memset_fallible [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+    └── arch::mm::util::__memset_fallible
+
+mm::io::VmWriter::<'_>::from_user_space [38;5;246m{[0m [1m[38;2;255;165;000mUserSpace[39m[0m [38;5;246m}[0m
+
+mm::io::VmWriter::<'_>::write_val
+└── core::ptr::mut_ptr::<impl *mut T>::sub
+
+mm::io::VmWriter::<'a, mm::io::Infallible>::fill
+└── core::ptr::mut_ptr::<impl *mut T>::write_volatile
+
+mm::io::VmWriter::<'a, mm::io::Infallible>::from_kernel_space [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+
+mm::io::VmWriter::<'a, mm::io::Infallible>::write_once
+└── core::ptr::mut_ptr::<impl *mut T>::write_volatile
+
+mm::io::memcpy [38;5;246m{[0m [1m[38;2;255;165;000mValidAccessAddr[39m[0m, [1m[38;2;255;165;000mValidAccessAddr[39m[0m [38;5;246m}[0m
+└── core::intrinsics::volatile_copy_memory
+
+mm::io::memcpy_fallible [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── arch::mm::util::__memcpy_fallible
+
+mm::io::memset_fallible [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── arch::mm::util::__memset_fallible
+
+mm::kspace::activate_kernel_page_table [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+├── mm::page_table::PageTable::<C>::first_activate_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── mm::page_table::boot_pt::dismiss [38;5;246m{[0m [1m[38;2;255;165;000mNotPriorToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+mm::kspace::init_kernel_page_table
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::kspace::kvirt_area::KVirtArea::map_frames
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::kspace::kvirt_area::KVirtArea::map_untracked_frames [38;5;246m{[0m [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::PageTable::<C>::first_activate_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── mm::page_table::node::<impl mm::frame::Frame<mm::page_table::node::PageTablePageMeta<C>>>::first_activate [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+mm::page_table::PageTable::<C>::page_walk
+└── mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+    ├── mm::page_table::load_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+    └── core::ptr::mut_ptr::<impl *mut T>::add
+
+mm::page_table::PageTable::<C>::shallow_copy [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m [38;5;246m}[0m
+
+mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::create_user_page_table
+└── mm::page_table::node::PageTableGuard::<'rcu, C>::write_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+    ├── mm::page_table::store_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+    └── core::ptr::mut_ptr::<impl *mut T>::add
+
+mm::page_table::PageTable::<mm::kspace::KernelPtConfig>::protect_flush_tlb [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::PageTable::<mm::vm_space::UserPtConfig>::activate
+└── mm::page_table::node::<impl mm::frame::Frame<mm::page_table::node::PageTablePageMeta<C>>>::activate [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+    └── arch::mm::activate_page_table [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+mm::page_table::boot_pt::BootPageTable::<E, C>::alloc_child
+└── core::intrinsics::write_bytes
+
+mm::page_table::boot_pt::BootPageTable::<E, C>::from_current_pt [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::mut_ptr::<impl *mut T>::read
+├── core::ptr::mut_ptr::<impl *mut T>::write
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::mut_ptr::<impl *mut T>::read
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::mut_ptr::<impl *mut T>::read
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::mut_ptr::<impl *mut T>::write
+├── core::ptr::mut_ptr::<impl *mut T>::write
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::mut_ptr::<impl *mut T>::read
+└── core::ptr::mut_ptr::<impl *mut T>::write
+
+mm::page_table::boot_pt::dfs_walk_on_leave
+└── core::slice::from_raw_parts_mut
+
+mm::page_table::boot_pt::dismiss [38;5;246m{[0m [1m[38;2;255;165;000mNotPriorToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::Cursor::<'rcu, C>::find_next_impl
+└── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::Cursor::<'rcu, C>::query
+└── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::CursorMut::<'rcu, C>::replace_cur_entry
+├── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::locking::dfs_mark_stray_and_unlock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+    ├── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+    └── mm::page_table::cursor::locking::dfs_mark_stray_and_unlock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::locking::dfs_mark_stray_and_unlock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+├── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::locking::dfs_mark_stray_and_unlock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::locking::dfs_release_lock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+├── mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::locking::dfs_release_lock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::page_table::cursor::locking::try_traverse_and_lock_subtree_root
+├── mm::page_table::load_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+mm::page_table::cursor::locking::unlock_range
+└── mm::page_table::cursor::locking::dfs_release_lock [38;5;246m{[0m [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mNotPostToFunc[39m[0m, [1m[38;2;255;165;000mForgotten[39m[0m [38;5;246m}[0m
+
+mm::page_table::load_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::<impl mm::frame::Frame<mm::page_table::node::PageTablePageMeta<C>>>::activate [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── arch::mm::activate_page_table [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::<impl mm::frame::Frame<mm::page_table::node::PageTablePageMeta<C>>>::first_activate [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── arch::mm::activate_page_table [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::<impl mm::frame::frame_ref::FrameRef<'a, mm::page_table::node::PageTablePageMeta<C>>>::make_guard_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mLockHeld[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::PageTableGuard::<'rcu, C>::read_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m [38;5;246m}[0m
+├── mm::page_table::load_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+mm::page_table::node::PageTableGuard::<'rcu, C>::write_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+├── mm::page_table::store_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+mm::page_table::node::child::Child::<C>::from_pte [38;5;246m{[0m [1m[38;2;255;165;000mRefUnheld[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::child::ChildRef::<'_, C>::from_pte [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::entry::Entry::<'a, 'rcu, C>::alloc_if_none
+└── mm::page_table::node::PageTableGuard::<'rcu, C>::write_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::entry::Entry::<'a, 'rcu, C>::new_at [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m [38;5;246m}[0m
+└── mm::page_table::node::PageTableGuard::<'rcu, C>::read_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::entry::Entry::<'a, 'rcu, C>::protect
+└── mm::page_table::node::PageTableGuard::<'rcu, C>::write_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::entry::Entry::<'a, 'rcu, C>::replace
+└── mm::page_table::node::PageTableGuard::<'rcu, C>::write_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+mm::page_table::node::entry::Entry::<'a, 'rcu, C>::split_if_mapped_huge
+└── mm::page_table::node::PageTableGuard::<'rcu, C>::write_pte [38;5;246m{[0m [1m[38;2;255;165;000mBounded[39m[0m, [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+├── mm::page_table::load_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+└── core::ptr::mut_ptr::<impl *mut T>::add
+
+mm::page_table::store_pte [38;5;246m{[0m [1m[38;2;255;165;000mReferTo[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::boot_pt::map_base_page
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+└── mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::boot_pt::map_base_page_already_mapped
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+└── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::boot_pt::map_protect
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::map_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+├── mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+├── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+└── mm::page_table::page_walk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstanceAddr[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::boot_pt::protect_base_page_unmapped
+└── mm::page_table::boot_pt::BootPageTable::<E, C>::protect_base_page [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::mapping::mixed_granularity_map_unmap
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::mapping::remap_yields_original
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::navigation::jump_from_end_and_query_huge_middle
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::navigation::setup_page_table_with_two_frames
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::overlapping_mappings::overlapping_mappings
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::overlapping_mappings::unaligned_map
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::page_properties::check_map_with_property
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::protection_and_query::test_protect_next_empty_entry
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::protection_and_query::test_protect_next_touches_empty_range
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::test_utils::create_user_pt_mapped_at
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::test_utils::map_untracked
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::test_utils::protect_range
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::unmap::take_large_takes_subtree
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::page_table::test::unmap::take_next_takes_something
+├── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::vm_space::CursorMut::<'a>::map
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::map [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m, [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+mm::vm_space::CursorMut::<'a>::protect_next
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::protect_next [38;5;246m{[0m [1m[38;2;255;165;000mNonModifying[39m[0m, [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+mm::vm_space::CursorMut::<'a>::unmap
+└── mm::page_table::cursor::CursorMut::<'rcu, C>::take_next [38;5;246m{[0m [1m[38;2;255;165;000mKernelMemorySafe[39m[0m [38;5;246m}[0m
+
+smp::inter_processor_call
+└── arch::irq::send_ipi [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m, [1m[38;2;255;165;000mMemo[39m[0m [38;5;246m}[0m
+
+sync::rcu::RcuInner::<P>::update
+└── sync::rcu::delay_drop
+
+sync::rcu::RcuReadGuardInner::<'_, P>::compare_exchange
+└── sync::rcu::delay_drop
+
+sync::rcu::finish_grace_period
+└── sync::rcu::monitor::RcuMonitor::finish_grace_period
+
+sync::rcu::non_null::either::<impl sync::rcu::non_null::NonNullPtr for util::either::Either<L, R>>::from_raw
+└── sync::rcu::non_null::either::remove_bits
+
+sync::rcu::non_null::either::<impl sync::rcu::non_null::NonNullPtr for util::either::Either<L, R>>::raw_as_ref
+└── sync::rcu::non_null::either::remove_bits
+
+task::CurrentTask::local_data
+└── task::utils::ForceSync::<T>::get [38;5;246m{[0m [1m[38;2;255;165;000mSync[39m[0m [38;5;246m}[0m
+
+task::CurrentTask::new [38;5;246m{[0m [1m[38;2;255;165;000mValid[39m[0m [38;5;246m}[0m
+
+task::TaskOptions::build::kernel_task_entry
+├── task::processor::after_switching_to [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── task::utils::ForceSync::<T>::get [38;5;246m{[0m [1m[38;2;255;165;000mSync[39m[0m [38;5;246m}[0m
+
+task::processor::after_switching_to [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+task::processor::switch_to_task
+├── sync::rcu::finish_grace_period
+├── arch::task::context_switch
+└── task::processor::after_switching_to [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+
+task::utils::ForceSync::<T>::get [38;5;246m{[0m [1m[38;2;255;165;000mSync[39m[0m [38;5;246m}[0m
+
