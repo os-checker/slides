@@ -54,7 +54,7 @@ routeAlias: toc
 routeAlias: team
 ---
 
-<img src="./pages/Artisan-Lab.png" class="w-[95%] object-contain">
+<img src="./pages/Artisan-Lab.png" class="w-[95%]">
 
 ---
 
@@ -71,6 +71,13 @@ src: ./pages/1-current-lints.md
 <SubTOC />
 
 ---
-src: ./pages/2-rust-for-linux.md
+src: ./pages/2.1-rust-for-linux.md
 ---
 
+---
+src: ./pages/3-RFC.md
+---
+
+---
+src: ./pages/4-work.md
+---
