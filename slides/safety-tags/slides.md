@@ -57,8 +57,8 @@ routeAlias: team
 <img src="./pages/Artisan-Lab.png" class="w-[95%]">
 
 ---
-
-# What is a Rust Safety-Tag?
+src: ./pages/0-what-is-a-tag.md
+---
 
 ---
 src: ./pages/1-current-lints.md
