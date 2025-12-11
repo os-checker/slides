@@ -10,6 +10,9 @@
 ├── core::ptr::mut_ptr::<impl *mut T>::write
 └── pin_init::pin_init_from_closure
 
+<T as time::hrtimer::ScopedHrTimerPointer>::start_scoped
+└── time::hrtimer::UnsafeHrTimerPointer::start
+
 <[i16; N] as device::property::Property>::read_from_fwnode_property
 └── core::mem::MaybeUninit::<T>::assume_init
 
@@ -44,7 +47,12 @@
 └── alloc::allocator::ReallocFunc::call [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mLayout[39m[0m [38;5;246m}[0m
 
 <alloc::allocator::iter::VmallocPageIter<'a> as core::iter::Iterator>::next
-└── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::mut_ptr::<impl *mut T>::add
+├── core::ptr::NonNull::<T>::new_unchecked
+└── alloc::allocator::Vmalloc::to_page
+    ├── bindings::vmalloc_to_page
+    ├── core::ptr::NonNull::<T>::new_unchecked
+    └── page::BorrowedPage::<'a>::from_raw
 
 <alloc::kbox::Box<T, A> as core::ops::Deref>::deref
 └── core::ptr::NonNull::<T>::as_ref
@@ -53,13 +61,24 @@
 └── core::ptr::NonNull::<T>::as_mut
 
 <alloc::kbox::Box<T, A> as core::ops::Drop>::drop
-└── core::ptr::drop_in_place
+├── core::ptr::drop_in_place
+└── alloc::Allocator::free
+
+<alloc::kbox::Box<T, A> as types::ForeignOwnable>::from_foreign
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+    └── core::ptr::NonNull::<T>::new_unchecked
+
+<alloc::kbox::Box<T, alloc::allocator::Vmalloc> as page::AsPageIter>::page_iter
+└── alloc::allocator::iter::VmallocPageIter::<'a>::new
 
 <alloc::kbox::Box<core::mem::MaybeUninit<T>, A> as pin_init::InPlaceWrite<T>>::write_init
-└── pin_init::Init::__init
+├── pin_init::Init::__init
+└── alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+    └── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 <alloc::kbox::Box<core::mem::MaybeUninit<T>, A> as pin_init::InPlaceWrite<T>>::write_pin_init
-└── pin_init::PinInit::__pinned_init
+├── pin_init::PinInit::__pinned_init
+└── alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
 
 <alloc::kvec::DrainAll<'vec, T> as core::iter::Iterator>::next
 └── core::ptr::mut_ptr::<impl *mut T>::read
@@ -72,7 +91,13 @@
 └── core::ptr::mut_ptr::<impl *mut T>::read
 
 <alloc::kvec::IntoIter<T, A> as core::ops::Drop>::drop
-└── core::ptr::drop_in_place
+├── core::ptr::drop_in_place
+└── alloc::Allocator::free
+
+<alloc::kvec::Vec<T, A> as core::convert::From<alloc::kbox::Box<[T; N], A>>>::from
+└── alloc::kvec::Vec::<T, A>::from_raw_parts [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+    ├── alloc::layout::ArrayLayout::<T>::new_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+    └── core::ptr::NonNull::<T>::new_unchecked
 
 <alloc::kvec::Vec<T, A> as core::ops::Deref>::deref
 └── core::slice::from_raw_parts
@@ -81,7 +106,11 @@
 └── core::slice::from_raw_parts_mut
 
 <alloc::kvec::Vec<T, A> as core::ops::Drop>::drop
-└── core::ptr::drop_in_place
+├── core::ptr::drop_in_place
+└── alloc::Allocator::free
+
+<alloc::kvec::Vec<T, alloc::allocator::Vmalloc> as page::AsPageIter>::page_iter
+└── alloc::allocator::iter::VmallocPageIter::<'a>::new
 
 <auxiliary::Adapter<T> as driver::RegistrationOps>::register
 └── bindings::__auxiliary_driver_register
@@ -95,21 +124,45 @@
 <auxiliary::Device as sync::aref::AlwaysRefCounted>::inc_ref
 └── bindings::get_device
 
+<auxiliary::Device<Ctx> as core::convert::AsRef<device::Device<Ctx>>>::as_ref
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
 <auxiliary::Registration as core::ops::Drop>::drop
 ├── bindings::auxiliary_device_delete
 └── bindings::auxiliary_device_uninit
+
+<bitmap::BitmapVec as core::ops::Deref>::deref
+└── bitmap::Bitmap::from_raw
+
+<bitmap::BitmapVec as core::ops::DerefMut>::deref_mut
+└── bitmap::Bitmap::from_raw_mut
 
 <bitmap::BitmapVec as core::ops::Drop>::drop
 └── bindings::bitmap_free
 
 <block::mq::gen_disk::GenDisk<T> as core::ops::Drop>::drop
-└── bindings::del_gendisk
+├── bindings::del_gendisk
+└── types::ForeignOwnable::from_foreign
+
+<block::mq::request::Request<T> as sync::aref::AlwaysRefCounted>::dec_ref
+├── block::mq::request::Request::<T>::wrapper_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+│   ├── bindings::blk_mq_rq_to_pdu
+│   └── core::ptr::NonNull::<T>::new_unchecked
+└── block::mq::request::RequestDataWrapper::refcount_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 <block::mq::tag_set::TagSet<T> as pin_init::PinnedDrop>::drop
 └── bindings::blk_mq_free_tag_set
 
 <core::pin::Pin<alloc::kbox::Box<T, alloc::allocator::Kmalloc>> as workqueue::RawWorkItem<ID>>::__enqueue
+├── core::pin::Pin::<Ptr>::into_inner_unchecked
+├── workqueue::HasWork::raw_get_work
+├── workqueue::Work::<T, ID>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 └── core::hint::unreachable_unchecked
+
+<core::pin::Pin<alloc::kbox::Box<T, alloc::allocator::Kmalloc>> as workqueue::WorkItemPointer<ID>>::run
+├── workqueue::HasWork::work_container_of
+├── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 <cpufreq::PolicyCpu<'a> as core::ops::Drop>::drop
 └── bindings::cpufreq_cpu_put
@@ -119,6 +172,9 @@
 
 <cpufreq::Relation as core::cmp::PartialEq>::eq
 └── core::intrinsics::unreachable
+
+<cpufreq::TableBox as core::ops::Deref>::deref
+└── cpufreq::Table::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 <cred::Credential as sync::aref::AlwaysRefCounted>::dec_ref
 └── bindings::put_cred
@@ -145,7 +201,11 @@
 <device::property::FwNode as fmt::Display>::fmt
 ├── bindings::fwnode_count_parents
 ├── bindings::fwnode_get_nth_parent
-└── bindings::fwnode_get_name_prefix
+├── device::property::FwNode::from_raw
+│   ├── sync::aref::ARef::<T>::from_raw
+│   └── core::ptr::NonNull::<T>::new_unchecked
+├── bindings::fwnode_get_name_prefix
+└── str::CStrExt::from_char_ptr
 
 <device::property::FwNode as sync::aref::AlwaysRefCounted>::dec_ref
 └── bindings::fwnode_handle_put
@@ -154,7 +214,11 @@
 └── bindings::fwnode_handle_get
 
 <device::property::FwNode::display_name::FwNodeDisplayName<'_> as fmt::Display>::fmt
-└── bindings::fwnode_get_name
+├── bindings::fwnode_get_name
+└── str::CStrExt::from_char_ptr
+
+<device::property::FwNodeReferenceArgs as core::ops::Drop>::drop
+└── device::property::FwNode::from_raw
 
 <devres::Devres<T> as pin_init::PinnedDrop>::drop
 ├── revocable::Revocable::<T>::revoke_nosync [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
@@ -166,7 +230,14 @@
 <dma::CoherentAllocation<T> as core::ops::Drop>::drop
 └── bindings::dma_free_attrs
 
+<driver::Registration<T> as pin_init::PinnedDrop>::drop
+└── driver::RegistrationOps::unregister
+
+<drm::device::Device<T> as core::convert::AsRef<device::Device>>::as_ref
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
 <drm::device::Device<T> as sync::aref::AlwaysRefCounted>::dec_ref
+├── drm::device::Device::<T>::into_drm_device
 └── bindings::drm_dev_put
 
 <drm::device::Device<T> as sync::aref::AlwaysRefCounted>::inc_ref
@@ -181,18 +252,25 @@
 <error::Error as core::fmt::Debug>::fmt
 └── core::str::from_utf8_unchecked
 
+<faux::Registration as core::convert::AsRef<device::Device>>::as_ref
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
 <faux::Registration as core::ops::Drop>::drop
 └── bindings::faux_device_destroy
 
 <ffi::CStr as str::CStrExt>::from_bytes_with_nul_unchecked_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
 
 <ffi::CStr as str::CStrExt>::from_char_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m, [1m[38;2;255;165;000mNonMutate[39m[0m [38;5;246m}[0m
+└── ffi::CStr::from_ptr
 
 <ffi::CStr as str::CStrExt>::make_ascii_lowercase
 └── str::to_bytes_mut
 
 <ffi::CStr as str::CStrExt>::make_ascii_uppercase
 └── str::to_bytes_mut
+
+<fs::file::File as core::ops::Deref>::deref
+└── fs::file::LocalFile::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
 
 <fs::file::File as sync::aref::AlwaysRefCounted>::dec_ref
 └── bindings::fput
@@ -339,8 +417,14 @@
 <i8 as device::property::PropertyInt>::read_array_len_from_fwnode_property
 └── bindings::fwnode_property_read_u8_array
 
+<io::mem::IoMem<SIZE> as core::ops::Deref>::deref
+└── io::Io::<SIZE>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+
 <io::mem::IoMem<SIZE> as core::ops::Drop>::drop
 └── bindings::iounmap
+
+<io::resource::Region as core::ops::Deref>::deref
+└── io::resource::Resource::from_raw
 
 <io::resource::Region as core::ops::Drop>::drop
 ├── bindings::release_mem_region
@@ -349,11 +433,34 @@
 <irq::request::RegistrationInner as pin_init::PinnedDrop>::drop
 └── bindings::free_irq
 
+<list::CursorPeek<'a, 'b, T, ISNEXT, ID> as core::ops::Deref>::deref
+├── list::ListItem::view_value
+└── list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+<list::Iter<'a, T, ID> as core::iter::Iterator>::next
+├── list::ListItem::view_value
+├── list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+└── sync::arc::ArcBorrow::<'_, T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mNonInstance[39m[0m [38;5;246m}[0m
+    ├── sync::arc::ArcInner::<T>::container_of [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+    │   ├── core::result::Result::<T, E>::unwrap_unchecked
+    │   ├── core::ptr::const_ptr::<impl *const T>::byte_sub
+    │   └── core::ptr::NonNull::<T>::new_unchecked
+    └── sync::arc::ArcBorrow::<'_, T>::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonMutRef[39m[0m [38;5;246m}[0m
+
+<list::arc::ListArc<T, ID> as core::convert::From<core::pin::Pin<sync::arc::UniqueArc<T>>>>::from
+├── list::arc::ListArcSafe::on_create_list_arc_from_unique
+└── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+
+<list::arc::ListArc<T, ID> as core::ops::Drop>::drop
+└── list::arc::ListArcSafe::on_drop_list_arc
+
 <maple_tree::MapleGuard<'tree, T> as core::ops::Drop>::drop
 └── bindings::spin_unlock
 
 <maple_tree::MapleTree<T> as pin_init::PinnedDrop>::drop
 ├── maple_tree::MapleTree::<T>::free_all_entries
+│   ├── maple_tree::MaState::<'tree, T>::new_raw
+│   └── types::ForeignOwnable::from_foreign
 └── bindings::mtree_destroy
 
 <miscdevice::MiscDeviceRegistration<T> as pin_init::PinnedDrop>::drop
@@ -382,6 +489,9 @@
 
 <mm::mmput_async::MmWithUserAsync as sync::aref::AlwaysRefCounted>::inc_ref
 └── bindings::mmget
+
+<net::phy::Device as core::convert::AsRef<device::Device>>::as_ref
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 <net::phy::Registration as core::ops::Drop>::drop
 └── bindings::phy_drivers_unregister
@@ -416,11 +526,23 @@
 <pci::Adapter<T> as driver::RegistrationOps>::unregister
 └── bindings::pci_unregister_driver
 
+<pci::Bar<SIZE> as core::ops::Deref>::deref
+└── io::Io::<SIZE>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+
 <pci::Device as sync::aref::AlwaysRefCounted>::dec_ref
 └── bindings::pci_dev_put
 
 <pci::Device as sync::aref::AlwaysRefCounted>::inc_ref
 └── bindings::pci_dev_get
+
+<pci::Device<Ctx> as core::convert::AsRef<device::Device<Ctx>>>::as_ref
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+<pci::id::Class as core::fmt::Debug>::fmt
+└── core::fmt::rt::<impl core::fmt::Arguments<'a>>::new_v1_formatted
+
+<pci::id::Vendor as core::fmt::Debug>::fmt
+└── core::fmt::rt::<impl core::fmt::Arguments<'a>>::new_v1_formatted
 
 <pid_namespace::PidNamespace as sync::aref::AlwaysRefCounted>::dec_ref
 └── bindings::put_pid_ns
@@ -440,6 +562,9 @@
 <platform::Device as sync::aref::AlwaysRefCounted>::inc_ref
 └── bindings::get_device
 
+<platform::Device<Ctx> as core::convert::AsRef<device::Device<Ctx>>>::as_ref
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
 <rbtree::IterRaw<K, V> as core::iter::Iterator>::next
 ├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
 └── bindings::rb_next
@@ -447,7 +572,8 @@
 <rbtree::RBTree<K, V> as core::ops::Drop>::drop
 ├── bindings::rb_first_postorder
 ├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
-└── bindings::rb_next_postorder
+├── bindings::rb_next_postorder
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 <regulator::Regulator<T> as core::ops::Drop>::drop
 ├── bindings::regulator_disable
@@ -463,14 +589,31 @@
 <scatterlist::RawSGTable as core::ops::Drop>::drop
 └── bindings::sg_free_table
 
+<scatterlist::SGTable<scatterlist::Owned<P>> as core::ops::Deref>::deref
+└── scatterlist::SGTable::from_raw
+
 <scatterlist::SGTableIter<'a> as core::iter::Iterator>::next
-└── bindings::sg_next
+├── bindings::sg_next
+└── scatterlist::SGEntry::from_raw
 
 <security::SecurityCtx as core::ops::Drop>::drop
 └── bindings::security_release_secctx
 
+<str::BStr as core::fmt::Debug>::fmt
+└── core::fmt::rt::<impl core::fmt::Arguments<'a>>::new_v1_formatted
+
+<str::BStr as fmt::Display>::fmt
+└── core::fmt::rt::<impl core::fmt::Arguments<'a>>::new_v1_formatted
+
+<str::CString as core::ops::Deref>::deref
+└── ffi::CStr::from_bytes_with_nul_unchecked
+
+<str::CString as core::ops::DerefMut>::deref_mut
+└── str::CStrExt::from_bytes_with_nul_unchecked_mut
+
 <str::CString as device::property::Property>::read_from_fwnode_property
-└── bindings::fwnode_property_read_string
+├── bindings::fwnode_property_read_string
+└── str::CStrExt::from_char_ptr
 
 <str::RawFormatter as core::fmt::Write>::write_str
 └── core::ptr::copy_nonoverlapping
@@ -479,13 +622,43 @@
 └── bindings::lockdep_unregister_key
 
 <sync::arc::Arc<T> as core::clone::Clone>::clone
-└── core::ptr::NonNull::<T>::as_ref
+├── core::ptr::NonNull::<T>::as_ref
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+<sync::arc::Arc<T> as core::convert::From<core::pin::Pin<sync::arc::UniqueArc<T>>>>::from
+└── core::pin::Pin::<Ptr>::into_inner_unchecked
+
+<sync::arc::Arc<T> as core::convert::From<sync::arc::ArcBorrow<'_, T>>>::from
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 <sync::arc::Arc<T> as core::ops::Deref>::deref
 └── core::ptr::NonNull::<T>::as_ref
 
 <sync::arc::Arc<T> as core::ops::Drop>::drop
-└── core::ptr::NonNull::<T>::as_ref
+├── core::ptr::NonNull::<T>::as_ref
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
+<sync::arc::Arc<T> as types::ForeignOwnable>::borrow
+├── core::ptr::NonNull::<T>::new_unchecked
+└── sync::arc::ArcBorrow::<'_, T>::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonMutRef[39m[0m [38;5;246m}[0m
+
+<sync::arc::Arc<T> as types::ForeignOwnable>::borrow_mut
+└── types::ForeignOwnable::borrow
+
+<sync::arc::Arc<T> as types::ForeignOwnable>::from_foreign
+├── core::ptr::NonNull::<T>::new_unchecked
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+<sync::arc::Arc<T> as workqueue::RawWorkItem<ID>>::__enqueue
+├── workqueue::HasWork::raw_get_work
+├── workqueue::Work::<T, ID>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+└── sync::arc::Arc::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+    ├── sync::arc::ArcInner::<T>::container_of [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+    └── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+<sync::arc::Arc<T> as workqueue::WorkItemPointer<ID>>::run
+├── workqueue::HasWork::work_container_of
+└── sync::arc::Arc::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
 
 <sync::arc::ArcBorrow<'_, T> as core::ops::Deref>::deref
 └── core::ptr::NonNull::<T>::as_ref
@@ -496,13 +669,26 @@
 <sync::arc::UniqueArc<core::mem::MaybeUninit<T>> as pin_init::InPlaceWrite<T>>::write_init
 ├── pin_init::Init::__init
 └── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+    └── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 <sync::arc::UniqueArc<core::mem::MaybeUninit<T>> as pin_init::InPlaceWrite<T>>::write_pin_init
 ├── pin_init::PinInit::__pinned_init
 └── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
 
+<sync::aref::ARef<T> as core::clone::Clone>::clone
+└── sync::aref::ARef::<T>::from_raw
+
+<sync::aref::ARef<T> as core::convert::From<&T>>::from
+└── sync::aref::ARef::<T>::from_raw
+
 <sync::aref::ARef<T> as core::ops::Deref>::deref
 └── core::ptr::NonNull::<T>::as_ref
+
+<sync::aref::ARef<T> as core::ops::Drop>::drop
+└── sync::aref::AlwaysRefCounted::dec_ref
+
+<sync::lock::Guard<'_, T, B> as core::ops::Drop>::drop
+└── sync::lock::Backend::unlock
 
 <sync::lock::mutex::MutexBackend as sync::lock::Backend>::assert_is_held
 └── bindings::mutex_assert_is_held
@@ -562,6 +748,30 @@
 <time::Tai as time::ClockSource>::ktime_get
 └── bindings::ktime_get_clocktai
 
+<time::hrtimer::arc::ArcHrTimerHandle<T> as time::hrtimer::HrTimerHandle>::cancel
+├── time::hrtimer::HasHrTimer::raw_get_timer
+└── time::hrtimer::HrTimer::<T>::raw_cancel [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+    ├── time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+    └── bindings::hrtimer_cancel
+
+<time::hrtimer::pin::PinHrTimerHandle<'a, T> as time::hrtimer::HrTimerHandle>::cancel
+├── time::hrtimer::HasHrTimer::raw_get_timer
+└── time::hrtimer::HrTimer::<T>::raw_cancel [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+<time::hrtimer::pin_mut::PinMutHrTimerHandle<'a, T> as time::hrtimer::HrTimerHandle>::cancel
+├── time::hrtimer::HasHrTimer::raw_get_timer
+└── time::hrtimer::HrTimer::<T>::raw_cancel [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+<time::hrtimer::tbox::BoxHrTimerHandle<T, A> as core::ops::Drop>::drop
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
+<time::hrtimer::tbox::BoxHrTimerHandle<T, A> as time::hrtimer::HrTimerHandle>::cancel
+├── time::hrtimer::HasHrTimer::raw_get_timer
+└── time::hrtimer::HrTimer::<T>::raw_cancel [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+<types::Opaque<T> as pin_init::Wrapper<T>>::pin_init
+└── pin_init::PinInit::__pinned_init
+
 <u16 as device::property::PropertyInt>::read_array_from_fwnode_property
 ├── bindings::fwnode_property_read_u16_array
 └── core::intrinsics::transmute
@@ -597,15 +807,15 @@
 └── bindings::xa_unlock
 
 <xarray::XArray<T> as pin_init::PinnedDrop>::drop
+├── types::ForeignOwnable::from_foreign
 └── bindings::xa_destroy
-
-acpi::DeviceId::new
-└── core::mem::zeroed
 
 alloc::allocator::ReallocFunc::call [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mLayout[39m[0m [38;5;246m}[0m
 
 alloc::allocator::Vmalloc::to_page
-└── bindings::vmalloc_to_page
+├── bindings::vmalloc_to_page
+├── core::ptr::NonNull::<T>::new_unchecked
+└── page::BorrowedPage::<'a>::from_raw
 
 alloc::allocator::tests::kunit_rust_wrapper_test_alignment
 ├── bindings::kunit_get_current_test
@@ -645,25 +855,53 @@ alloc::allocator::tests::test_alignment::TestAlign::<T, A>::is_aligned_to
 ├── bindings::kunit_unary_assert_format
 └── bindings::__kunit_abort
 
+alloc::dangling_from_layout
+└── core::ptr::NonNull::<T>::new_unchecked
+
+alloc::kbox::<impl core::convert::From<alloc::kbox::Box<T, A>> for core::pin::Pin<alloc::kbox::Box<T, A>>>::from
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+alloc::kbox::<impl types::ForeignOwnable for core::pin::Pin<alloc::kbox::Box<T, A>>>::borrow
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+alloc::kbox::<impl types::ForeignOwnable for core::pin::Pin<alloc::kbox::Box<T, A>>>::borrow_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+alloc::kbox::<impl types::ForeignOwnable for core::pin::Pin<alloc::kbox::Box<T, A>>>::from_foreign
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
+alloc::kbox::<impl types::ForeignOwnable for core::pin::Pin<alloc::kbox::Box<T, A>>>::into_foreign
+└── core::pin::Pin::<Ptr>::into_inner_unchecked
+
 alloc::kbox::Box::<T, A>::drop_contents
 └── core::ptr::drop_in_place
 
+alloc::kbox::Box::<T, A>::forget_contents
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
 alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+└── core::ptr::NonNull::<T>::new_unchecked
 
 alloc::kbox::Box::<T, A>::into_inner
 └── core::ptr::read
 
 alloc::kbox::Box::<T, A>::pin_slice
 ├── pin_init::PinInit::__pinned_init
-└── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::write
 └── alloc::kbox::Box::<core::mem::MaybeUninit<T>, A>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
 
 alloc::kvec::IntoIter::<T, A>::collect
-└── core::ptr::copy
+├── core::ptr::copy
+├── alloc::layout::ArrayLayout::<T>::new_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── alloc::Allocator::realloc
+└── alloc::kvec::Vec::<T, A>::from_raw_parts [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 ├── core::slice::from_raw_parts_mut
@@ -679,6 +917,8 @@ alloc::kvec::Vec::<T, A>::extend_with
 └── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 alloc::kvec::Vec::<T, A>::from_raw_parts [38;5;246m{[0m [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── alloc::layout::ArrayLayout::<T>::new_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── core::ptr::NonNull::<T>::new_unchecked
 
 alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
@@ -713,6 +953,9 @@ alloc::kvec::Vec::<T, A>::remove
 ├── core::ptr::mut_ptr::<impl *mut T>::add
 └── alloc::kvec::Vec::<T, A>::dec_len [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
+alloc::kvec::Vec::<T, A>::reserve
+└── alloc::Allocator::realloc
+
 alloc::kvec::Vec::<T, A>::spare_capacity_mut
 ├── core::ptr::mut_ptr::<impl *mut T>::add
 └── core::slice::from_raw_parts_mut
@@ -740,10 +983,12 @@ alloc::layout::ArrayLayout::<T>::new_unchecked [38;5;246m{[0m [1m[38;2;255;1
 
 auxiliary::Adapter::<T>::remove_callback
 └── device::Device::<device::CoreInternal>::drvdata_obtain
-    └── bindings::dev_get_drvdata
+    ├── bindings::dev_get_drvdata
+    └── types::ForeignOwnable::from_foreign
 
 auxiliary::Device::release
-└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 auxiliary::DeviceId::new
 └── core::mem::zeroed
@@ -751,7 +996,8 @@ auxiliary::DeviceId::new
 auxiliary::Registration::new
 ├── bindings::auxiliary_device_init
 ├── bindings::__auxiliary_device_add
-└── bindings::auxiliary_device_uninit
+├── bindings::auxiliary_device_uninit
+└── core::ptr::NonNull::<T>::new_unchecked
 
 bitmap::Bitmap::clear_bit
 ├── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
@@ -786,6 +1032,7 @@ bitmap::BitmapVec::new
 └── bindings::bitmap_zalloc
 
 bitmap::tests::bitmap_borrow
+├── bitmap::Bitmap::from_raw
 ├── bindings::kunit_get_current_test
 ├── bindings::__kunit_do_failed_assertion
 ├── bindings::kunit_unary_assert_format
@@ -796,6 +1043,7 @@ bitmap::tests::bitmap_borrow
 └── bindings::__kunit_abort
 
 bitmap::tests::bitmap_copy
+├── bitmap::Bitmap::from_raw
 ├── bindings::kunit_get_current_test
 ├── bindings::__kunit_do_failed_assertion
 ├── bindings::kunit_unary_assert_format
@@ -938,14 +1186,19 @@ bitmap::tests::owned_bitmap_out_of_bounds
 └── bindings::__kunit_abort
 
 block::mq::gen_disk::GenDiskBuilder::build
+├── types::ForeignOwnable::from_foreign
 ├── core::mem::zeroed
 ├── bindings::__blk_mq_alloc_disk
 ├── bindings::set_capacity
 └── bindings::device_add_disk
 
 block::mq::operations::OperationsVTable::<T>::commit_rqs_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+└── types::ForeignOwnable::borrow
 
 block::mq::operations::OperationsVTable::<T>::complete_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+└── block::mq::request::Request::<T>::aref_from_raw [38;5;246m{[0m [1m[38;2;255;165;000mRefTransfer[39m[0m, [1m[38;2;255;165;000mInvariant[39m[0m [38;5;246m}[0m
+    ├── sync::aref::ARef::<T>::from_raw
+    └── core::ptr::NonNull::<T>::new_unchecked
 
 block::mq::operations::OperationsVTable::<T>::exit_hctx_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
 
@@ -956,16 +1209,25 @@ block::mq::operations::OperationsVTable::<T>::exit_request_callback [38;5;246m{
 block::mq::operations::OperationsVTable::<T>::init_hctx_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
 
 block::mq::operations::OperationsVTable::<T>::init_request_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
-└── core::ptr::mut_ptr::<impl *mut T>::write
+├── block::mq::request::Request::<T>::wrapper_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+├── core::ptr::mut_ptr::<impl *mut T>::write
+└── block::mq::request::RequestDataWrapper::refcount_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 block::mq::operations::OperationsVTable::<T>::poll_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
 
 block::mq::operations::OperationsVTable::<T>::queue_rq_callback [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mOwning[39m[0m [38;5;246m}[0m
+├── block::mq::request::Request::<T>::aref_from_raw [38;5;246m{[0m [1m[38;2;255;165;000mRefTransfer[39m[0m, [1m[38;2;255;165;000mInvariant[39m[0m [38;5;246m}[0m
+├── types::ForeignOwnable::borrow
+└── block::mq::request::Request::<T>::start_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+    └── bindings::blk_mq_start_request
 
 block::mq::request::Request::<T>::aref_from_raw [38;5;246m{[0m [1m[38;2;255;165;000mRefTransfer[39m[0m, [1m[38;2;255;165;000mInvariant[39m[0m [38;5;246m}[0m
+├── sync::aref::ARef::<T>::from_raw
+└── core::ptr::NonNull::<T>::new_unchecked
 
 block::mq::request::Request::<T>::complete
-└── bindings::blk_mq_complete_request_remote
+├── bindings::blk_mq_complete_request_remote
+└── block::mq::request::Request::<T>::aref_from_raw [38;5;246m{[0m [1m[38;2;255;165;000mRefTransfer[39m[0m, [1m[38;2;255;165;000mInvariant[39m[0m [38;5;246m}[0m
 
 block::mq::request::Request::<T>::end_ok
 └── bindings::blk_mq_end_request
@@ -974,24 +1236,50 @@ block::mq::request::Request::<T>::start_unchecked [38;5;246m{[0m [1m[38;2;25
 └── bindings::blk_mq_start_request
 
 block::mq::request::Request::<T>::wrapper_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
-└── bindings::blk_mq_rq_to_pdu
+├── bindings::blk_mq_rq_to_pdu
+└── core::ptr::NonNull::<T>::new_unchecked
 
 block::mq::request::Request::<T>::wrapper_ref
-└── core::ptr::NonNull::<T>::as_ref
+├── core::ptr::NonNull::<T>::as_ref
+└── block::mq::request::Request::<T>::wrapper_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 block::mq::request::RequestDataWrapper::refcount_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 block::mq::tag_set::TagSet::<T>::new
 ├── core::mem::zeroed
+├── pin_init::__internal::HasPinData::__pin_data
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
 ├── bindings::blk_mq_alloc_tag_set
 ├── block::mq::tag_set::_::__ThePinData::<T>::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── block::mq::tag_set::_::__ThePinData::<T>::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── block::mq::tag_set::_::__ThePinData::<T>::__project__p
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
+block::mq::tag_set::TagSet::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+block::mq::tag_set::_::<impl core::ops::Drop for block::mq::tag_set::TagSet<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+block::mq::tag_set::_::__ThePinData::<T>::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+block::mq::tag_set::_::__ThePinData::<T>::_p
+└── pin_init::Init::__init
+
+block::mq::tag_set::_::__ThePinData::<T>::inner
+└── pin_init::PinInit::__pinned_init
+
 cpu::CpuId::current
+├── cpu::CpuId::from_u32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 └── bindings::raw_smp_processor_id
 
 cpu::CpuId::from_i32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
@@ -999,7 +1287,23 @@ cpu::CpuId::from_i32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum
 cpu::CpuId::from_u32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpu::from_cpu [38;5;246m{[0m [1m[38;2;255;165;000mMayInvalid[39m[0m [38;5;246m}[0m
-└── bindings::get_cpu_device
+├── bindings::get_cpu_device
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+cpufreq::Policy::clear_data
+└── types::ForeignOwnable::from_foreign
+
+cpufreq::Policy::cpu
+└── cpu::CpuId::from_u32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
+cpufreq::Policy::cpus
+└── cpumask::CpumaskVar::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+
+cpufreq::Policy::data
+└── types::ForeignOwnable::borrow
+
+cpufreq::Policy::freq_table
+└── cpufreq::Table::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Policy::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidRead[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
@@ -1014,7 +1318,8 @@ cpufreq::Policy::generic_suspend
 cpufreq::Policy::set_freq_table [38;5;246m{[0m [1m[38;2;255;165;000mNonDropped[39m[0m [38;5;246m}[0m
 
 cpufreq::PolicyCpu::<'a>::from_cpu
-└── bindings::cpufreq_cpu_get
+├── bindings::cpufreq_cpu_get
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::PolicyData::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
@@ -1022,47 +1327,70 @@ cpufreq::PolicyData::generic_verify
 └── bindings::cpufreq_generic_frequency_table_verify
 
 cpufreq::Registration::<T>::adjust_perf_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+└── cpu::CpuId::from_u32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::bios_limit_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpu::CpuId::from_i32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::exit_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::fast_switch_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::get_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m [38;5;246m}[0m
+└── cpu::CpuId::from_u32_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::get_intermediate_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+├── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+└── cpufreq::TableIndex::new [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::init_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::new
 └── bindings::cpufreq_register_driver
 
 cpufreq::Registration::<T>::offline_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::online_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::ready_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::register_em_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::resume_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::set_boost_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::setpolicy_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::suspend_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::target_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::target_index_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+├── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+└── cpufreq::TableIndex::new [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::target_intermediate_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+├── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
+└── cpufreq::TableIndex::new [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::update_limits_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::Policy::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Registration::<T>::verify_callback [38;5;246m{[0m [1m[38;2;255;165;000mCalledBy[39m[0m, [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+└── cpufreq::PolicyData::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 cpufreq::Table::data
 └── core::ptr::mut_ptr::<impl *mut T>::add
@@ -1111,26 +1439,75 @@ cpumask::CpumaskVar::from_raw_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidW
 
 cpumask::CpumaskVar::new [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
 
+cpumask::CpumaskVar::try_clone
+└── cpumask::CpumaskVar::new [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
 cred::Credential::from_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 cred::Credential::get_secid
 └── bindings::security_cred_getsecid
 
 debugfs::Dir::create_file
+├── debugfs::entry::Entry::<'static>::dynamic_file
+│   └── bindings::debugfs_create_file_full
+├── pin_init::__internal::HasPinData::__pin_data
 ├── debugfs::_::__ThePinData::<T>::scope
+│   └── pin_init::PinInit::__pinned_init
 ├── debugfs::_::__ThePinData::<T>::__project_scope
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
+debugfs::File::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+debugfs::Scope::<T>::entry_mut
+└── core::pin::Pin::<Ptr>::into_inner_unchecked
+
 debugfs::Scope::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::write
 ├── debugfs::_::__ThePinData::<T>::__project__entry
+├── pin_init::__internal::DropGuard::<T>::new
 ├── debugfs::_::__ThePinData::<T>::data
+│   └── pin_init::PinInit::__pinned_init
 ├── debugfs::_::__ThePinData::<T>::__project_data
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── debugfs::_::__ThePinData::<T>::__project__pin
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+debugfs::Scope::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+debugfs::_::__ThePinData::<T>::__project__pin
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+debugfs::_::__ThePinData::<T>::__project_data
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+debugfs::_::__ThePinData::<T>::__project_scope
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+debugfs::_::__ThePinData::<T>::_entry
+└── pin_init::Init::__init
+
+debugfs::_::__ThePinData::<T>::_pin
+└── pin_init::PinInit::__pinned_init
+
+debugfs::_::__ThePinData::<T>::data
+└── pin_init::PinInit::__pinned_init
+
+debugfs::_::__ThePinData::<T>::scope
+└── pin_init::PinInit::__pinned_init
 
 debugfs::callback_adapters::materialize_zst
 └── core::ptr::NonNull::<T>::as_ref
@@ -1150,6 +1527,9 @@ debugfs::entry::Entry::<'static>::dynamic_file
 debugfs::file_ops::FileOps::<T>::adapt
 └── core::intrinsics::transmute
 
+debugfs::file_ops::writer_act
+└── seq_file::SeqFile::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
+
 debugfs::file_ops::writer_open
 ├── bindings::single_open
 └── debugfs::file_ops::writer_act
@@ -1158,6 +1538,9 @@ device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr
 
 device::Device::<Ctx>::fwnode
 └── bindings::__dev_fwnode
+
+device::Device::<Ctx>::parent
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 device::Device::<Ctx>::pr_alert
 └── device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
@@ -1188,21 +1571,30 @@ device::Device::<Ctx>::printk [38;5;246m{[0m [1m[38;2;255;165;000mValidCStr
 └── bindings::_dev_printk
 
 device::Device::<device::CoreInternal>::drvdata_borrow
-└── bindings::dev_get_drvdata
+├── bindings::dev_get_drvdata
+└── types::ForeignOwnable::borrow
 
 device::Device::<device::CoreInternal>::drvdata_obtain
-└── bindings::dev_get_drvdata
+├── bindings::dev_get_drvdata
+└── types::ForeignOwnable::from_foreign
 
 device::Device::<device::CoreInternal>::set_drvdata
 └── bindings::dev_set_drvdata
 
 device::Device::get_device [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mAnyThread[39m[0m [38;5;246m}[0m
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 device::property::FwNode::children
-└── bindings::fwnode_get_next_child_node
+├── bindings::fwnode_get_next_child_node
+└── device::property::FwNode::from_raw
+
+device::property::FwNode::from_raw
+├── sync::aref::ARef::<T>::from_raw
+└── core::ptr::NonNull::<T>::new_unchecked
 
 device::property::FwNode::get_child_by_name
-└── bindings::fwnode_get_named_child_node
+├── bindings::fwnode_get_named_child_node
+└── device::property::FwNode::from_raw
 
 device::property::FwNode::is_of_node
 └── bindings::is_of_node
@@ -1233,37 +1625,113 @@ device_id::IdArray::<T, U, N>::build
 ├── core::mem::transmute_copy
 └── core::mem::transmute_copy
 
+device_id::IdArray::<T, U, N>::new
+└── device_id::IdArray::<T, U, N>::build
+
+device_id::IdArray::<T, U, N>::new_without_index
+└── device_id::IdArray::<T, U, N>::build
+
 devres::Devres::<T>::access
 └── revocable::Revocable::<T>::access
 
 devres::Devres::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
+├── core::ptr::NonNull::<T>::new_unchecked
 ├── core::ptr::write
 ├── devres::_::__ThePinData::<T>::__project_dev
+├── pin_init::__internal::DropGuard::<T>::new
+├── devres::Devres::<T>::devres_callback
 ├── core::ptr::write
 ├── devres::_::__ThePinData::<T>::__project_callback
+├── pin_init::__internal::DropGuard::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── devres::_::__ThePinData::<T>::devm
+│   └── pin_init::PinInit::__pinned_init
 ├── devres::_::__ThePinData::<T>::__project_devm
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── devres::_::__ThePinData::<T>::revoke
+│   └── pin_init::PinInit::__pinned_init
 ├── devres::_::__ThePinData::<T>::__project_revoke
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── devres::_::__ThePinData::<T>::data
+│   └── pin_init::PinInit::__pinned_init
 ├── devres::_::__ThePinData::<T>::__project_data
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── pin_init::pin_init_from_closure
 ├── devres::_::__ThePinData::<T>::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── devres::_::__ThePinData::<T>::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── bindings::devm_add_action
 ├── core::ptr::drop_in_place
 ├── core::ptr::write
 ├── devres::_::__ThePinData::<T>::__project__add_action
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+devres::Devres::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 devres::Devres::<T>::remove_action
 └── bindings::devm_remove_action_nowarn
 
+devres::Inner::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<Ptr>::new_unchecked
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+devres::_::<impl core::ops::Drop for devres::Devres<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+devres::_::__ThePinData::<T>::__project_data
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+devres::_::__ThePinData::<T>::__project_devm
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+devres::_::__ThePinData::<T>::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+devres::_::__ThePinData::<T>::__project_revoke
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+devres::_::__ThePinData::<T>::_add_action
+└── pin_init::Init::__init
+
+devres::_::__ThePinData::<T>::callback
+└── pin_init::Init::__init
+
+devres::_::__ThePinData::<T>::data
+└── pin_init::PinInit::__pinned_init
+
+devres::_::__ThePinData::<T>::dev
+└── pin_init::Init::__init
+
+devres::_::__ThePinData::<T>::devm
+└── pin_init::PinInit::__pinned_init
+
+devres::_::__ThePinData::<T>::inner
+└── pin_init::PinInit::__pinned_init
+
+devres::_::__ThePinData::<T>::revoke
+└── pin_init::PinInit::__pinned_init
+
 devres::register_foreign
 ├── bindings::devm_add_action_or_reset
 └── devres::register_foreign::callback
+    └── types::ForeignOwnable::from_foreign
+
+devres::register_foreign::callback
+└── types::ForeignOwnable::from_foreign
 
 dma::CoherentAllocation::<T>::alloc_attrs
 └── bindings::dma_alloc_attrs
@@ -1290,29 +1758,64 @@ dma::CoherentAllocation::<T>::write
 └── core::ptr::mut_ptr::<impl *mut T>::add
 
 driver::Registration::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::mut_ptr::<impl *mut T>::write
+├── driver::RegistrationOps::register
 ├── driver::_::__ThePinData::<T>::reg
+│   └── pin_init::PinInit::__pinned_init
 ├── driver::_::__ThePinData::<T>::__project_reg
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+driver::Registration::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+driver::_::<impl core::ops::Drop for driver::Registration<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+driver::_::__ThePinData::<T>::__project_reg
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+driver::_::__ThePinData::<T>::reg
+└── pin_init::PinInit::__pinned_init
 
 drm::device::Device::<T>::from_drm_device [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
 └── core::ptr::const_ptr::<impl *const T>::byte_sub
 
 drm::device::Device::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
+└── drm::device::Device::<T>::from_drm_device [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
 
 drm::device::Device::<T>::new
 ├── bindings::__drm_dev_alloc
 ├── pin_init::PinInit::__pinned_init
-└── bindings::drm_dev_put
+├── drm::device::Device::<T>::into_drm_device
+├── bindings::drm_dev_put
+└── sync::aref::ARef::<T>::from_raw
 
 drm::device::Device::<T>::release
+├── drm::device::Device::<T>::from_drm_device [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
 └── core::ptr::drop_in_place
 
 drm::driver::Registration::<T>::new
 └── bindings::drm_dev_register
 
 drm::file::File::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+
+drm::file::File::<T>::inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+drm::file::File::<T>::open_callback
+├── drm::device::Device::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mContainerOf[39m[0m [38;5;246m}[0m
+├── drm::file::File::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── core::pin::Pin::<Ptr>::into_inner_unchecked
+
+drm::file::File::<T>::postclose_callback
+├── drm::file::File::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 drm::gem::<impl sync::aref::AlwaysRefCounted for T>::dec_ref
 ├── core::ptr::NonNull::<T>::as_ref
@@ -1326,18 +1829,48 @@ drm::gem::Object::<T>::dev
 
 drm::gem::Object::<T>::free_callback
 ├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
-└── bindings::drm_gem_object_release
+├── bindings::drm_gem_object_release
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 drm::gem::Object::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::write
 ├── drm::gem::_::__ThePinData::<T>::__project_obj
+├── pin_init::__internal::DropGuard::<T>::new
 ├── drm::gem::_::__ThePinData::<T>::data
+│   └── pin_init::PinInit::__pinned_init
 ├── drm::gem::_::__ThePinData::<T>::__project_data
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── drm::gem::_::__ThePinData::<T>::__project_dev
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── pin_init::pin_init_from_closure
-└── bindings::drm_gem_object_init
+├── bindings::drm_gem_object_init
+├── core::pin::Pin::<Ptr>::into_inner_unchecked
+├── core::ptr::NonNull::<T>::new_unchecked
+└── sync::aref::ARef::<T>::from_raw
+
+drm::gem::Object::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+drm::gem::_::__ThePinData::<T>::__project_data
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+drm::gem::_::__ThePinData::<T>::data
+└── pin_init::PinInit::__pinned_init
+
+drm::gem::_::__ThePinData::<T>::dev
+└── pin_init::Init::__init
+
+drm::gem::_::__ThePinData::<T>::obj
+└── pin_init::Init::__init
+
+drm::gem::close_callback
+├── drm::file::File::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── drm::gem::IntoGEMObject::from_raw
 
 drm::gem::create_fops
 ├── core::mem::zeroed
@@ -1350,13 +1883,19 @@ drm::gem::create_fops
 ├── bindings::noop_llseek
 └── bindings::drm_gem_mmap
 
+drm::gem::open_callback
+├── drm::file::File::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mPostToFunc[39m[0m [38;5;246m}[0m
+└── drm::gem::IntoGEMObject::from_raw
+
 error::Error::from_errno
 └── print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
 
 error::Error::from_errno_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── core::num::NonZero::<T>::new_unchecked
 
 error::Error::name
-└── bindings::errname
+├── bindings::errname
+└── str::CStrExt::from_char_ptr
 
 error::Error::to_blk_status
 └── bindings::errno_to_blk_status
@@ -1364,9 +1903,13 @@ error::Error::to_blk_status
 error::Error::to_ptr
 └── bindings::ERR_PTR
 
+error::Error::try_from_errno
+└── error::Error::from_errno_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+
 error::from_err_ptr
 ├── bindings::IS_ERR
-└── bindings::PTR_ERR
+├── bindings::PTR_ERR
+└── error::Error::from_errno_unchecked [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 faux::Registration::new
 └── bindings::faux_device_create
@@ -1380,14 +1923,25 @@ fs::file::FileDescriptorReservation::get_unused_fd_flags
 └── bindings::get_unused_fd_flags
 
 fs::file::LocalFile::assume_no_fdget_pos [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── sync::aref::ARef::<T>::from_raw
+
+fs::file::LocalFile::cred
+└── cred::Credential::from_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 fs::file::LocalFile::fget
-└── bindings::fget
+├── bindings::fget
+└── sync::aref::ARef::<T>::from_raw
 
 fs::file::LocalFile::flags
 └── core::ptr::const_ptr::<impl *const T>::read_volatile
 
 fs::file::LocalFile::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
+
+fs::kiocb::Kiocb::<'a, T>::file
+└── types::ForeignOwnable::borrow
+
+fs::kiocb::Kiocb::<'a, T>::from_raw
+└── core::ptr::NonNull::<T>::new_unchecked
 
 io::Io::<SIZE>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
 
@@ -1491,6 +2045,9 @@ io::mem::IoMem::<SIZE>::ioremap
 ├── bindings::ioremap_np
 └── bindings::ioremap
 
+io::resource::Resource::name
+└── str::CStrExt::from_char_ptr
+
 io::resource::Resource::request_region
 └── bindings::__request_region
 
@@ -1526,32 +2083,59 @@ iov::IovIterSource::<'data>::revert
 └── bindings::iov_iter_revert
 
 irq::request::Registration::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
+├── core::ptr::NonNull::<T>::new_unchecked
 ├── irq::request::_::__ThePinData::<T>::handler
+│   └── pin_init::PinInit::__pinned_init
 ├── irq::request::_::__ThePinData::<T>::__project_handler
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::write
 ├── irq::request::_::__ThePinData::__project_cookie
+├── pin_init::__internal::DropGuard::<T>::new
 ├── bindings::request_irq
 ├── irq::request::handle_irq_callback
 │   └── device::Device::as_bound
 ├── core::ptr::write
 ├── irq::request::_::__ThePinData::__project_irq
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── pin_init::pin_init_from_closure
 ├── irq::request::_::__ThePinData::<T>::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── irq::request::_::__ThePinData::<T>::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── irq::request::_::__ThePinData::<T>::__project__pin
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+irq::request::Registration::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<Ptr>::new_unchecked
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::RegistrationInner::project
+└── core::pin::Pin::<&'a mut T>::get_unchecked_mut
 
 irq::request::RegistrationInner::synchronize
 └── bindings::synchronize_irq
 
 irq::request::ThreadedRegistration::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
+├── core::ptr::NonNull::<T>::new_unchecked
 ├── irq::request::_::__ThePinData::<T>::handler
 ├── irq::request::_::__ThePinData::<T>::__project_handler
+├── pin_init::__internal::DropGuard::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::write
 ├── irq::request::_::__ThePinData::__project_cookie
+├── pin_init::__internal::DropGuard::<T>::new
 ├── bindings::request_threaded_irq
 ├── irq::request::handle_threaded_irq_callback
 │   └── device::Device::as_bound
@@ -1559,14 +2143,69 @@ irq::request::ThreadedRegistration::<T>::new
 │   └── device::Device::as_bound
 ├── core::ptr::write
 ├── irq::request::_::__ThePinData::__project_irq
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── pin_init::pin_init_from_closure
 ├── irq::request::_::__ThePinData::<T>::inner
 ├── irq::request::_::__ThePinData::<T>::__project_inner
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── irq::request::_::__ThePinData::<T>::__project__pin
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+irq::request::ThreadedRegistration::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<Ptr>::new_unchecked
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::<impl core::ops::Drop for irq::request::RegistrationInner>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+irq::request::_::__ThePinData::<T>::__project__pin
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::__ThePinData::<T>::__project__pin
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::__ThePinData::<T>::__project_handler
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::__ThePinData::<T>::__project_handler
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::__ThePinData::<T>::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::__ThePinData::<T>::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+irq::request::_::__ThePinData::<T>::_pin
+└── pin_init::PinInit::__pinned_init
+
+irq::request::_::__ThePinData::<T>::_pin
+└── pin_init::PinInit::__pinned_init
+
+irq::request::_::__ThePinData::<T>::handler
+└── pin_init::PinInit::__pinned_init
+
+irq::request::_::__ThePinData::<T>::handler
+└── pin_init::PinInit::__pinned_init
+
+irq::request::_::__ThePinData::<T>::inner
+└── pin_init::PinInit::__pinned_init
+
+irq::request::_::__ThePinData::<T>::inner
+└── pin_init::PinInit::__pinned_init
+
+irq::request::_::__ThePinData::cookie
+└── pin_init::Init::__init
+
+irq::request::_::__ThePinData::irq
+└── pin_init::Init::__init
 
 irq::request::handle_irq_callback
 └── device::Device::as_bound
@@ -1612,12 +2251,26 @@ kunit::tests::rust_test_kunit_in_kunit_test
 
 list::Cursor::<'a, T, ID>::insert_inner
 └── list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
+    ├── list::ListItem::prepare_to_insert
+    └── list::ListLinks::<ID>::fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+list::CursorPeek::<'a, 'b, T, ISNEXT, ID>::arc
+├── list::ListItem::view_value
+├── list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+└── sync::arc::ArcBorrow::<'_, T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mNonInstance[39m[0m [38;5;246m}[0m
 
 list::CursorPeek::<'a, 'b, T, ISNEXT, ID>::remove
 └── list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
     └── list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
+        ├── list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+        ├── list::ListItem::post_remove
+        └── list::arc::ListArc::<T, ID>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+            ├── sync::arc::Arc::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+            └── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
 
 list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
+├── list::ListItem::prepare_to_insert
+└── list::ListLinks::<ID>::fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
 
 list::List::<T, ID>::pop_back
 └── list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
@@ -1632,103 +2285,228 @@ list::List::<T, ID>::push_front
 └── list::List::<T, ID>::insert_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEmpty[39m[0m, [1m[38;2;255;165;000mNull[39m[0m [38;5;246m}[0m
 
 list::List::<T, ID>::remove [38;5;246m{[0m [1m[38;2;255;165;000mNonInList[39m[0m [38;5;246m}[0m
+├── list::ListLinks::<ID>::fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+├── list::ListItem::view_links
 └── list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
 
 list::List::<T, ID>::remove_internal [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m [38;5;246m}[0m
 └── list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
 
 list::List::<T, ID>::remove_internal_inner [38;5;246m{[0m [1m[38;2;255;165;000mInList[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m, [1m[38;2;255;165;000mEqual[39m[0m [38;5;246m}[0m
+├── list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+├── list::ListItem::post_remove
+└── list::arc::ListArc::<T, ID>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
 
 list::ListLinks::<ID>::fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
 
 list::ListLinks::<ID>::from_fields [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
 
+list::arc::AtomicTracker::<ID>::project_inner
+└── core::pin::Pin::<Ptr>::into_inner_unchecked
+
 list::arc::ListArc::<T, ID>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m, [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+├── sync::arc::Arc::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+
+list::arc::ListArc::<T, ID>::into_arc
+└── list::arc::ListArcSafe::on_drop_list_arc
+
+list::arc::ListArc::<T, ID>::pair_from_pin_unique
+├── list::arc::ListArcSafe::on_create_list_arc_from_unique
+├── list::arc::ListArcSafe::on_create_list_arc_from_unique
+├── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+└── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
 
 list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
 
 list::arc::ListArc::<T, ID>::transmute_to_arc
 └── core::intrinsics::transmute
 
+list::arc::ListArc::<T, ID>::try_from_arc
+└── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+
+list::arc::ListArc::<T, ID>::try_from_arc_borrow
+└── list::arc::ListArc::<T, ID>::transmute_from_arc [38;5;246m{[0m [1m[38;2;255;165;000mNonExist[39m[0m, [1m[38;2;255;165;000mThink_Exist[39m[0m [38;5;246m}[0m
+
 list::arc_field::ListArcField::<T, ID>::assert_mut [38;5;246m{[0m [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
 
 list::arc_field::ListArcField::<T, ID>::assert_ref [38;5;246m{[0m [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
+maple_tree::MaState::<'tree, T>::find
+└── types::ForeignOwnable::borrow_mut
 
 maple_tree::MaState::<'tree, T>::mas_find_raw
 └── bindings::mas_find
 
 maple_tree::MapleGuard::<'tree, T>::load
-└── bindings::mtree_load
+├── bindings::mtree_load
+└── types::ForeignOwnable::borrow_mut
+
+maple_tree::MapleGuard::<'tree, T>::ma_state
+└── maple_tree::MaState::<'tree, T>::new_raw
 
 maple_tree::MapleTree::<T>::erase
-└── bindings::mtree_erase
+├── bindings::mtree_erase
+└── types::ForeignOwnable::try_from_foreign
+
+maple_tree::MapleTree::<T>::free_all_entries
+├── maple_tree::MaState::<'tree, T>::new_raw
+└── types::ForeignOwnable::from_foreign
 
 maple_tree::MapleTree::<T>::insert_range
-└── bindings::mtree_insert_range
+├── bindings::mtree_insert_range
+└── types::ForeignOwnable::from_foreign
 
 maple_tree::MapleTree::<T>::lock
 └── bindings::spin_lock
 
 maple_tree::MapleTree::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::mt_init_flags
 ├── maple_tree::_::__ThePinData::<T>::tree
+│   └── pin_init::PinInit::__pinned_init
 ├── maple_tree::_::__ThePinData::<T>::__project_tree
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── maple_tree::_::__ThePinData::<T>::__project__p
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+maple_tree::MapleTree::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 maple_tree::MapleTreeAlloc::<T>::alloc_range
-└── bindings::mtree_alloc_range
+├── bindings::mtree_alloc_range
+└── types::ForeignOwnable::from_foreign
 
 maple_tree::MapleTreeAlloc::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::mt_init_flags
 ├── maple_tree::_::__ThePinData::<T>::tree
 ├── maple_tree::_::__ThePinData::<T>::__project_tree
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── maple_tree::_::__ThePinData::<T>::__project__p
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── pin_init::pin_init_from_closure
+├── pin_init::__internal::HasPinData::__pin_data
 ├── maple_tree::_::__ThePinData::<T>::tree
 ├── maple_tree::_::__ThePinData::<T>::__project_tree
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+maple_tree::MapleTreeAlloc::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+maple_tree::_::<impl core::ops::Drop for maple_tree::MapleTree<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+maple_tree::_::__ThePinData::<T>::__project_tree
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+maple_tree::_::__ThePinData::<T>::__project_tree
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+maple_tree::_::__ThePinData::<T>::_p
+└── pin_init::Init::__init
+
+maple_tree::_::__ThePinData::<T>::tree
+└── pin_init::PinInit::__pinned_init
+
+maple_tree::_::__ThePinData::<T>::tree
+└── pin_init::PinInit::__pinned_init
 
 miscdevice::MiscDeviceOptions::into_raw
 └── core::mem::MaybeUninit::<T>::assume_init
 
+miscdevice::MiscDeviceRegistration::<T>::device
+└── device::Device::<Ctx>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mNonNull[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscDeviceRegistration::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 miscdevice::MiscDeviceRegistration::<T>::register
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::mut_ptr::<impl *mut T>::write
 ├── bindings::misc_register
 ├── miscdevice::_::__ThePinData::<T>::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── miscdevice::_::__ThePinData::<T>::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── miscdevice::_::__ThePinData::<T>::__project__t
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
 miscdevice::MiscdeviceVTable::<T>::compat_ioctl [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+├── types::ForeignOwnable::borrow
+└── fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
 
 miscdevice::MiscdeviceVTable::<T>::ioctl [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+├── types::ForeignOwnable::borrow
+└── fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
 
 miscdevice::MiscdeviceVTable::<T>::mmap [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m, [1m[38;2;255;165;000mValidVma[39m[0m [38;5;246m}[0m
+├── types::ForeignOwnable::borrow
+├── mm::virt::VmaNew::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+└── fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
 
 miscdevice::MiscdeviceVTable::<T>::open [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
-└── bindings::generic_file_open
+├── bindings::generic_file_open
+└── fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscdeviceVTable::<T>::read_iter
+├── fs::kiocb::Kiocb::<'a, T>::from_raw
+└── iov::IovIterDest::<'data>::from_raw
 
 miscdevice::MiscdeviceVTable::<T>::release [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mAssociated[39m[0m [38;5;246m}[0m
+├── types::ForeignOwnable::from_foreign
+└── fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
 
 miscdevice::MiscdeviceVTable::<T>::show_fdinfo [38;5;246m{[0m [1m[38;2;255;165;000mAssociated[39m[0m, [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+├── types::ForeignOwnable::borrow
+├── fs::file::File::from_raw_file [38;5;246m{[0m [1m[38;2;255;165;000mValidFile[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+└── seq_file::SeqFile::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
+
+miscdevice::MiscdeviceVTable::<T>::write_iter
+├── fs::kiocb::Kiocb::<'a, T>::from_raw
+└── iov::IovIterSource::<'data>::from_raw
+
+miscdevice::_::<impl core::ops::Drop for miscdevice::MiscDeviceRegistration<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+miscdevice::_::__ThePinData::<T>::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+miscdevice::_::__ThePinData::<T>::_t
+└── pin_init::Init::__init
+
+miscdevice::_::__ThePinData::<T>::inner
+└── pin_init::PinInit::__pinned_init
 
 mm::Mm::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mAlive[39m[0m [38;5;246m}[0m
 
 mm::Mm::mmget_not_zero
-└── bindings::mmget_not_zero
+├── bindings::mmget_not_zero
+├── sync::aref::ARef::<T>::from_raw
+└── core::ptr::NonNull::<T>::new_unchecked
 
 mm::MmWithUser::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 mm::MmWithUser::lock_vma_under_rcu
-└── bindings::lock_vma_under_rcu
+├── bindings::lock_vma_under_rcu
+└── mm::virt::VmaRef::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
 
 mm::MmWithUser::mmap_read_lock
 └── bindings::mmap_read_lock
@@ -1737,7 +2515,11 @@ mm::MmWithUser::mmap_read_trylock
 └── bindings::mmap_read_trylock
 
 mm::MmapReadGuard::<'a>::vma_lookup
-└── bindings::vma_lookup
+├── bindings::vma_lookup
+└── mm::virt::VmaRef::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+mm::mmput_async::<impl mm::MmWithUser>::into_mmput_async
+└── sync::aref::ARef::<T>::from_raw
 
 mm::virt::VmaMixedMap::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m, [1m[38;2;255;165;000mFlagSet[39m[0m [38;5;246m}[0m
 
@@ -1759,7 +2541,8 @@ mm::virt::VmaNew::set_io
 └── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
 mm::virt::VmaNew::set_mixedmap
-└── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+├── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
+└── mm::virt::VmaMixedMap::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m, [1m[38;2;255;165;000mFlagSet[39m[0m [38;5;246m}[0m
 
 mm::virt::VmaNew::try_clear_mayexec
 └── mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
@@ -1772,32 +2555,49 @@ mm::virt::VmaNew::try_clear_maywrite
 
 mm::virt::VmaNew::update_flags [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 
+mm::virt::VmaRef::as_mixedmap_vma
+└── mm::virt::VmaMixedMap::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m, [1m[38;2;255;165;000mFlagSet[39m[0m [38;5;246m}[0m
+
 mm::virt::VmaRef::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidVma[39m[0m, [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+mm::virt::VmaRef::mm
+└── mm::MmWithUser::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 mm::virt::VmaRef::zap_page_range_single
 └── bindings::zap_page_range_single
 
 net::phy::Adapter::<T>::config_aneg_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::get_features_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::link_change_notify_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::match_phy_device_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::probe_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::read_mmd_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::read_status_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::resume_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::soft_reset_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::suspend_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Adapter::<T>::write_mmd_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+└── net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
 net::phy::Device::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 
@@ -1835,6 +2635,17 @@ net::phy::Registration::register
 └── bindings::phy_drivers_register
 
 net::phy::create_phy_driver
+├── net::phy::Adapter::<T>::soft_reset_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::probe_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::get_features_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::match_phy_device_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::suspend_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::resume_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::config_aneg_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::read_status_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::read_mmd_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::write_mmd_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
+├── net::phy::Adapter::<T>::link_change_notify_callback [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m [38;5;246m}[0m
 └── core::mem::MaybeUninit::<T>::assume_init
 
 num::bounded::<impl core::convert::From<num::bounded::Bounded<T, N>> for i16>::from
@@ -1912,10 +2723,15 @@ pci::Bar::<SIZE>::do_release [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[3
 pci::Bar::<SIZE>::new
 ├── bindings::pci_request_region
 ├── bindings::pci_iomap
-└── bindings::pci_release_region
+├── bindings::pci_release_region
+└── pci::Bar::<SIZE>::do_release [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+pci::Bar::<SIZE>::release
+└── pci::Bar::<SIZE>::do_release [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
 
 pci::Device::<device::Bound>::irq_vector
-└── bindings::pci_irq_vector
+├── bindings::pci_irq_vector
+└── irq::request::IrqRequest::<'a>::new
 
 pci::Device::<device::Core>::enable_device_mem
 └── bindings::pci_enable_device_mem
@@ -1938,22 +2754,34 @@ platform::Adapter::<T>::remove_callback
 └── device::Device::<device::CoreInternal>::drvdata_obtain
 
 platform::Device::<Ctx>::resource_by_index
-└── bindings::platform_get_resource
+├── bindings::platform_get_resource
+└── io::resource::Resource::from_raw
 
 platform::Device::<Ctx>::resource_by_name
-└── bindings::platform_get_resource_byname
+├── bindings::platform_get_resource_byname
+└── io::resource::Resource::from_raw
+
+platform::Device::<device::Bound>::io_request_by_index
+└── io::mem::IoRequest::<'a>::new
+
+platform::Device::<device::Bound>::io_request_by_name
+└── io::mem::IoRequest::<'a>::new
 
 platform::Device::<device::Bound>::irq_by_index
-└── bindings::platform_get_irq
+├── bindings::platform_get_irq
+└── irq::request::IrqRequest::<'a>::new
 
 platform::Device::<device::Bound>::irq_by_name
-└── bindings::platform_get_irq_byname
+├── bindings::platform_get_irq_byname
+└── irq::request::IrqRequest::<'a>::new
 
 platform::Device::<device::Bound>::optional_irq_by_index
-└── bindings::platform_get_irq_optional
+├── bindings::platform_get_irq_optional
+└── irq::request::IrqRequest::<'a>::new
 
 platform::Device::<device::Bound>::optional_irq_by_name
-└── bindings::platform_get_irq_byname_optional
+├── bindings::platform_get_irq_byname_optional
+└── irq::request::IrqRequest::<'a>::new
 
 print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mValidCStr[39m[0m [38;5;246m}[0m
 └── bindings::_printk
@@ -1961,34 +2789,69 @@ print::call_printk [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0
 print::call_printk_cont
 └── bindings::_printk
 
+print::rust_fmt_argument
+└── str::RawFormatter::from_ptrs [38;5;246m{[0m [1m[38;2;255;165;000mValidNum[39m[0m, [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
 processor::cpu_relax
 └── bindings::cpu_relax
 
 ptr::Alignment::as_nonzero
 └── core::hint::unreachable_unchecked
 
+ptr::Alignment::new
+└── core::num::NonZero::<T>::new_unchecked
+
+ptr::Alignment::new_checked
+└── core::num::NonZero::<T>::new_unchecked
+
+rbtree::Cursor::<'a, K, V>::current
+└── rbtree::Cursor::<'a, K, V>::to_key_value
+    └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
 rbtree::Cursor::<'a, K, V>::get_neighbor_raw
 ├── bindings::rb_prev
 └── bindings::rb_next
 
+rbtree::Cursor::<'a, K, V>::peek
+└── rbtree::Cursor::<'a, K, V>::to_key_value
+
 rbtree::Cursor::<'a, K, V>::to_key_value
 └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::CursorMut::<'a, K, V>::current
+└── rbtree::CursorMut::<'a, K, V>::to_key_value [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+    └── rbtree::CursorMut::<'a, K, V>::to_key_value_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+        └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+
+rbtree::CursorMut::<'a, K, V>::current_mut
+└── rbtree::CursorMut::<'a, K, V>::to_key_value_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+    └── rbtree::CursorMut::<'a, K, V>::to_key_value_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
 
 rbtree::CursorMut::<'a, K, V>::get_neighbor_raw
 ├── bindings::rb_prev
 └── bindings::rb_next
 
+rbtree::CursorMut::<'a, K, V>::peek
+└── rbtree::CursorMut::<'a, K, V>::to_key_value [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
+rbtree::CursorMut::<'a, K, V>::peek_mut
+└── rbtree::CursorMut::<'a, K, V>::to_key_value_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+
 rbtree::CursorMut::<'a, K, V>::remove_current
 ├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+├── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 └── bindings::rb_erase
 
 rbtree::CursorMut::<'a, K, V>::remove_neighbor
 ├── bindings::rb_erase
-└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+└── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 
 rbtree::CursorMut::<'a, K, V>::to_key_value [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+└── rbtree::CursorMut::<'a, K, V>::to_key_value_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
 
 rbtree::CursorMut::<'a, K, V>::to_key_value_mut [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
+└── rbtree::CursorMut::<'a, K, V>::to_key_value_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
 
 rbtree::CursorMut::<'a, K, V>::to_key_value_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAccess[39m[0m [38;5;246m}[0m
 └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
@@ -2004,10 +2867,12 @@ rbtree::OccupiedEntry::<'a, K, V>::into_mut
 
 rbtree::OccupiedEntry::<'a, K, V>::remove_node
 ├── bindings::rb_erase
+├── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
 
 rbtree::OccupiedEntry::<'a, K, V>::replace
 ├── bindings::rb_replace_node
+├── alloc::kbox::Box::<T, A>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAllocated[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
 └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
 
 rbtree::RBTree::<K, V>::cursor_back
@@ -2023,7 +2888,9 @@ rbtree::RBTree::<K, V>::cursor_front_mut
 └── bindings::rb_first
 
 rbtree::RBTree::<K, V>::find_best_match
-└── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+├── core::ptr::mut_ptr::<impl *mut T>::byte_sub
+├── core::ptr::NonNull::<T>::new_unchecked
+└── core::ptr::NonNull::<T>::new_unchecked
 
 rbtree::RBTree::<K, V>::get
 └── core::ptr::mut_ptr::<impl *mut T>::byte_sub
@@ -2048,7 +2915,8 @@ regulator::Regulator::<T>::enable_internal
 └── bindings::regulator_enable
 
 regulator::Regulator::<T>::get_internal
-└── bindings::regulator_get
+├── bindings::regulator_get
+└── core::ptr::NonNull::<T>::new_unchecked
 
 regulator::Regulator::<T>::get_voltage
 └── bindings::regulator_get_voltage
@@ -2066,12 +2934,21 @@ regulator::devm_enable_optional
 └── bindings::devm_regulator_get_enable_optional
 
 revocable::Revocable::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::write
 ├── revocable::_::__ThePinData::<T>::__project_is_available
+├── pin_init::__internal::DropGuard::<T>::new
 ├── revocable::_::__ThePinData::<T>::data
+│   └── pin_init::PinInit::__pinned_init
 ├── revocable::_::__ThePinData::<T>::__project_data
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+revocable::Revocable::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 revocable::Revocable::<T>::revoke
 └── revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
@@ -2083,19 +2960,47 @@ revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;0
 revocable::Revocable::<T>::revoke_nosync [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
 └── revocable::Revocable::<T>::revoke_internal [38;5;246m{[0m [1m[38;2;255;165;000mNonConcurrent[39m[0m [38;5;246m}[0m
 
+revocable::_::<impl core::ops::Drop for revocable::Revocable<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+revocable::_::__ThePinData::<T>::__project_data
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+revocable::_::__ThePinData::<T>::data
+└── pin_init::PinInit::__pinned_init
+
+revocable::_::__ThePinData::<T>::is_available
+└── pin_init::Init::__init
+
 scatterlist::DmaMappedSgt::new
 └── bindings::dma_map_sgtable
 
 scatterlist::Owned::<P>::new
 ├── bindings::dma_max_mapping_size
+├── pin_init::__internal::HasPinData::__pin_data
+├── core::ptr::NonNull::<T>::new_unchecked
+├── scatterlist::RawSGTable::new
+│   └── bindings::sg_alloc_table_from_pages_segment
 ├── core::ptr::write
 ├── scatterlist::_::__ThePinData::<P>::__project_sgt
+├── pin_init::__internal::DropGuard::<T>::new
+├── core::ptr::NonNull::<T>::new_unchecked
+├── scatterlist::DmaMappedSgt::new
 ├── scatterlist::_::__ThePinData::<P>::dma
+│   └── pin_init::PinInit::__pinned_init
 ├── scatterlist::_::__ThePinData::<P>::__project_dma
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── scatterlist::_::__ThePinData::<P>::__project__pages
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+scatterlist::Owned::<P>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 scatterlist::RawSGTable::new
 └── bindings::sg_alloc_table_from_pages_segment
@@ -2106,11 +3011,40 @@ scatterlist::SGEntry::dma_address
 scatterlist::SGEntry::dma_len
 └── bindings::sg_dma_len
 
+scatterlist::SGTable::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 scatterlist::SGTable::<scatterlist::Owned<P>>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── scatterlist::_::__ThePinData::<T>::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── scatterlist::_::__ThePinData::<T>::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+scatterlist::SGTable::iter
+└── scatterlist::SGEntry::from_raw
+
+scatterlist::_::__ThePinData::<P>::__project_dma
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+scatterlist::_::__ThePinData::<P>::_pages
+└── pin_init::Init::__init
+
+scatterlist::_::__ThePinData::<P>::dma
+└── pin_init::PinInit::__pinned_init
+
+scatterlist::_::__ThePinData::<P>::sgt
+└── pin_init::Init::__init
+
+scatterlist::_::__ThePinData::<T>::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+scatterlist::_::__ThePinData::<T>::inner
+└── pin_init::PinInit::__pinned_init
 
 security::SecurityCtx::as_bytes
 └── core::slice::from_raw_parts
@@ -2136,11 +3070,20 @@ seq_file::SeqFile::call_printf
 
 seq_file::SeqFile::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mCurThread[39m[0m [38;5;246m}[0m
 
+str::<impl fmt::Display for ffi::CStr>::fmt
+└── core::fmt::rt::<impl core::fmt::Arguments<'a>>::new_v1_formatted
+
 str::CString::try_from_fmt
+├── str::Formatter::<'_>::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+│   └── str::RawFormatter::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
 ├── alloc::kvec::Vec::<T, A>::inc_len [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m, [1m[38;2;255;165;000mValidNum[39m[0m [38;5;246m}[0m
 └── bindings::memchr
 
 str::Formatter::<'_>::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+└── str::RawFormatter::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
+
+str::Formatter::<'_>::new
+└── str::Formatter::<'_>::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
 
 str::RawFormatter::from_buffer [38;5;246m{[0m [1m[38;2;255;165;000mValidWrite[39m[0m [38;5;246m}[0m
 
@@ -2293,33 +3236,74 @@ str::tests::test_cstr_to_str_invalid_utf8
 └── bindings::__kunit_abort
 
 sync::LockClassKey::new_dynamic
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::lockdep_register_key
 ├── sync::_::__ThePinData::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── sync::_::__ThePinData::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+sync::LockClassKey::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::_::<impl core::ops::Drop for sync::LockClassKey>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+sync::_::__ThePinData::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::_::__ThePinData::inner
+└── pin_init::PinInit::__pinned_init
+
+sync::arc::<impl core::convert::From<sync::arc::UniqueArc<T>> for core::pin::Pin<sync::arc::UniqueArc<T>>>::from
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::arc::Arc::<T>::as_arc_borrow
+└── sync::arc::ArcBorrow::<'_, T>::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonMutRef[39m[0m [38;5;246m}[0m
 
 sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 sync::arc::Arc::<T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+├── sync::arc::ArcInner::<T>::container_of [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 sync::arc::Arc::<T>::into_unique_or_drop
 └── core::ptr::NonNull::<T>::as_ref
 
+sync::arc::Arc::<T>::new
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
+
 sync::arc::ArcBorrow::<'_, T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mNonInstance[39m[0m [38;5;246m}[0m
+├── sync::arc::ArcInner::<T>::container_of [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
+└── sync::arc::ArcBorrow::<'_, T>::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonMutRef[39m[0m [38;5;246m}[0m
 
 sync::arc::ArcBorrow::<'_, T>::new [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonMutRef[39m[0m [38;5;246m}[0m
 
 sync::arc::ArcInner::<T>::container_of [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mValidInstance[39m[0m [38;5;246m}[0m
 ├── core::result::Result::<T, E>::unwrap_unchecked
-└── core::ptr::const_ptr::<impl *const T>::byte_sub
+├── core::ptr::const_ptr::<impl *const T>::byte_sub
+└── core::ptr::NonNull::<T>::new_unchecked
+
+sync::arc::ArcInner::<T>::project
+└── core::pin::Pin::<&'a mut T>::get_unchecked_mut
 
 sync::arc::UniqueArc::<T>::new_uninit
+├── pin_init::__internal::HasInitData::__init_data
 ├── core::ptr::write
+├── pin_init::__internal::DropGuard::<T>::new
+├── pin_init::Init::__init
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
-└── pin_init::init_from_closure
+├── pin_init::init_from_closure
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::init_with
 ├── pin_init::Init::__init
@@ -2331,6 +3315,15 @@ sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::pin_init_with
 
 sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::write
 └── sync::arc::UniqueArc::<core::mem::MaybeUninit<T>>::assume_init [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
+
+sync::arc::_::__ThePinData::<T>::data
+└── pin_init::Init::__init
+
+sync::arc::_::__ThePinData::<T>::refcount
+└── pin_init::Init::__init
+
+sync::arc::std_vendor::<impl sync::arc::Arc<(dyn core::any::Any + core::marker::Send + core::marker::Sync + 'static)>>::downcast
+└── sync::arc::Arc::<T>::from_inner [38;5;246m{[0m [1m[38;2;255;165;000mValidInstance[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 sync::atomic::Atomic::<T>::fetch_add
 └── sync::atomic::from_repr
@@ -2636,21 +3629,41 @@ sync::completion::Completion::complete_all
 └── bindings::complete_all
 
 sync::completion::Completion::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::init_completion
 ├── sync::completion::_::__ThePinData::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── sync::completion::_::__ThePinData::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+sync::completion::Completion::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 sync::completion::Completion::wait_for_completion
 └── bindings::wait_for_completion
 
+sync::completion::_::__ThePinData::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::completion::_::__ThePinData::inner
+└── pin_init::PinInit::__pinned_init
+
 sync::condvar::CondVar::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── core::ptr::write
 ├── sync::condvar::_::__ThePinData::__project__pin
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── bindings::__init_waitqueue_head
 ├── sync::condvar::_::__ThePinData::wait_queue_head
+│   └── pin_init::PinInit::__pinned_init
 ├── sync::condvar::_::__ThePinData::__project_wait_queue_head
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
@@ -2660,40 +3673,135 @@ sync::condvar::CondVar::notify
 sync::condvar::CondVar::notify_sync
 └── bindings::__wake_up_sync
 
+sync::condvar::CondVar::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 sync::condvar::CondVar::wait_internal
 ├── bindings::init_wait
 ├── bindings::prepare_to_wait_exclusive
 ├── bindings::schedule_timeout
 └── bindings::finish_wait
 
+sync::condvar::CondVar::wait_interruptible
+└── task::Task::current [38;5;246m{[0m [1m[38;2;255;165;000mActiveContext[39m[0m [38;5;246m}[0m
+
+sync::condvar::CondVar::wait_interruptible_freezable
+└── task::Task::current [38;5;246m{[0m [1m[38;2;255;165;000mActiveContext[39m[0m [38;5;246m}[0m
+
+sync::condvar::CondVar::wait_interruptible_timeout
+└── task::Task::current [38;5;246m{[0m [1m[38;2;255;165;000mActiveContext[39m[0m [38;5;246m}[0m
+
+sync::condvar::_::__ThePinData::__project__pin
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::condvar::_::__ThePinData::__project_wait_queue_head
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::condvar::_::__ThePinData::_pin
+└── pin_init::PinInit::__pinned_init
+
+sync::condvar::_::__ThePinData::wait_queue_head
+└── pin_init::PinInit::__pinned_init
+
+sync::lock::Guard::<'a, T, B>::as_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::lock::Guard::<'a, T, B>::do_unlocked
+├── sync::lock::Backend::unlock
+└── sync::lock::Backend::relock
+
 sync::lock::Guard::<'a, T, B>::new [38;5;246m{[0m [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+└── sync::lock::Backend::assert_is_held
 
 sync::lock::Lock::<(), B>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mInit[39m[0m [38;5;246m}[0m
 
+sync::lock::Lock::<T, B>::lock
+├── sync::lock::Backend::lock
+└── sync::lock::Guard::<'a, T, B>::new [38;5;246m{[0m [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
 sync::lock::Lock::<T, B>::new
-├── core::ptr::write
+├── pin_init::__internal::HasPinData::__pin_data
+├── sync::lock::_::__ThePinData::<T, B>::data
+│   └── pin_init::PinInit::__pinned_init
 ├── sync::lock::_::__ThePinData::<T, B>::__project_data
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── sync::lock::_::__ThePinData::<T, B>::__project__pin
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
+├── sync::lock::Backend::init
 ├── sync::lock::_::__ThePinData::<T, B>::state
+│   └── pin_init::PinInit::__pinned_init
 ├── sync::lock::_::__ThePinData::<T, B>::__project_state
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
+sync::lock::Lock::<T, B>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<Ptr>::new_unchecked
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::lock::Lock::<T, B>::try_lock
+├── sync::lock::Backend::try_lock
+└── sync::lock::Guard::<'a, T, B>::new [38;5;246m{[0m [1m[38;2;255;165;000mLockHold[39m[0m [38;5;246m}[0m
+
+sync::lock::_::__ThePinData::<T, B>::__project__pin
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::lock::_::__ThePinData::<T, B>::__project_data
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::lock::_::__ThePinData::<T, B>::__project_state
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::lock::_::__ThePinData::<T, B>::_pin
+└── pin_init::PinInit::__pinned_init
+
+sync::lock::_::__ThePinData::<T, B>::data
+└── pin_init::PinInit::__pinned_init
+
+sync::lock::_::__ThePinData::<T, B>::state
+└── pin_init::PinInit::__pinned_init
+
 sync::lock::global::GlobalLock::<B>::init [38;5;246m{[0m [1m[38;2;255;165;000mCallOnce[39m[0m [38;5;246m}[0m
+└── sync::lock::Backend::init
 
 sync::lock::global::GlobalLock::<B>::new [38;5;246m{[0m [1m[38;2;255;165;000mNonUsed[39m[0m [38;5;246m}[0m
 
 sync::poll::PollCondVar::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── sync::poll::_::__ThePinData::inner
+│   └── pin_init::PinInit::__pinned_init
 ├── sync::poll::_::__ThePinData::__project_inner
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+sync::poll::PollCondVar::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 sync::poll::PollTable::<'a>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mOwning[39m[0m [38;5;246m}[0m
 
 sync::poll::PollTable::<'a>::register_wait
 └── bindings::poll_wait
+
+sync::poll::_::<impl core::ops::Drop for sync::poll::PollCondVar>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+sync::poll::_::__ThePinData::__project_inner
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+sync::poll::_::__ThePinData::inner
+└── pin_init::PinInit::__pinned_init
 
 sync::rcu::Guard::new
 └── bindings::rcu_read_lock
@@ -2714,7 +3822,11 @@ sync::refcount::Refcount::set
 └── bindings::refcount_set
 
 task::CurrentTask::active_pid_ns
-└── bindings::task_active_pid_ns
+├── bindings::task_active_pid_ns
+└── pid_namespace::PidNamespace::from_ptr [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m [38;5;246m}[0m
+
+task::CurrentTask::mm
+└── mm::MmWithUser::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m [38;5;246m}[0m
 
 task::Kuid::current_euid
 └── bindings::current_euid
@@ -2732,7 +3844,9 @@ task::Task::euid
 └── bindings::task_euid
 
 task::Task::get_pid_ns
-└── bindings::task_get_pid_ns
+├── bindings::task_get_pid_ns
+├── sync::aref::ARef::<T>::from_raw
+└── core::ptr::NonNull::<T>::new_unchecked
 
 task::Task::signal_pending
 └── bindings::signal_pending
@@ -2753,30 +3867,95 @@ time::delay::fsleep
 └── bindings::fsleep
 
 time::hrtimer::HrTimer::<T>::expires
+├── time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
+├── time::Instant::<C>::from_ktime
 └── core::ptr::read_volatile
 
 time::hrtimer::HrTimer::<T>::forward
-└── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── time::hrtimer::HrTimer::<T>::raw_forward
+    ├── bindings::hrtimer_forward
+    └── time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
 
 time::hrtimer::HrTimer::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::hrtimer_setup
+├── time::hrtimer::RawHrTimerCallback::run
 ├── time::hrtimer::_::__ThePinData::<T>::timer
+│   └── pin_init::PinInit::__pinned_init
 ├── time::hrtimer::_::__ThePinData::<T>::__project_timer
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── time::hrtimer::_::__ThePinData::<T>::__project__t
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
+time::hrtimer::HrTimer::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 time::hrtimer::HrTimer::<T>::raw_cancel [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+├── time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
 └── bindings::hrtimer_cancel
 
 time::hrtimer::HrTimer::<T>::raw_forward
-└── bindings::hrtimer_forward
+├── bindings::hrtimer_forward
+└── time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
 
 time::hrtimer::HrTimer::<T>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidMemory[39m[0m [38;5;246m}[0m
 
+time::hrtimer::HrTimerCallbackContext::<'a, T>::forward
+└── time::hrtimer::HrTimer::<T>::raw_forward
+
+time::hrtimer::HrTimerCallbackContext::<'a, T>::from_raw
+└── core::ptr::NonNull::<T>::new_unchecked
+
+time::hrtimer::_::__ThePinData::<T>::__project_timer
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+time::hrtimer::_::__ThePinData::<T>::_t
+└── pin_init::Init::__init
+
+time::hrtimer::_::__ThePinData::<T>::timer
+└── pin_init::PinInit::__pinned_init
+
+time::hrtimer::arc::<impl time::hrtimer::HrTimerPointer for sync::arc::Arc<T>>::start
+└── time::hrtimer::HasHrTimer::start
+
+time::hrtimer::arc::<impl time::hrtimer::RawHrTimerCallback for sync::arc::Arc<T>>::run
+├── time::hrtimer::HasHrTimer::timer_container_of
+├── sync::arc::ArcBorrow::<'_, T>::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mOriginateFrom[39m[0m, [1m[38;2;255;165;000mNonZero[39m[0m, [1m[38;2;255;165;000mNonInstance[39m[0m [38;5;246m}[0m
+└── time::hrtimer::HrTimerCallbackContext::<'a, T>::from_raw
+
+time::hrtimer::pin::<impl time::hrtimer::RawHrTimerCallback for core::pin::Pin<&'a T>>::run
+├── time::hrtimer::HasHrTimer::timer_container_of
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── time::hrtimer::HrTimerCallbackContext::<'a, T>::from_raw
+
+time::hrtimer::pin::<impl time::hrtimer::UnsafeHrTimerPointer for core::pin::Pin<&'a T>>::start
+└── time::hrtimer::HasHrTimer::start
+
+time::hrtimer::pin_mut::<impl time::hrtimer::RawHrTimerCallback for core::pin::Pin<&'a mut T>>::run
+├── time::hrtimer::HasHrTimer::timer_container_of
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── time::hrtimer::HrTimerCallbackContext::<'a, T>::from_raw
+
 time::hrtimer::pin_mut::<impl time::hrtimer::UnsafeHrTimerPointer for core::pin::Pin<&'a mut T>>::start
-└── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+├── core::ptr::NonNull::<T>::new_unchecked
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── time::hrtimer::HasHrTimer::start
+
+time::hrtimer::tbox::<impl time::hrtimer::HrTimerPointer for core::pin::Pin<alloc::kbox::Box<T, A>>>::start
+├── core::ptr::NonNull::<T>::new_unchecked
+├── core::pin::Pin::<Ptr>::into_inner_unchecked
+└── time::hrtimer::HasHrTimer::start
+
+time::hrtimer::tbox::<impl time::hrtimer::RawHrTimerCallback for core::pin::Pin<alloc::kbox::Box<T, A>>>::run
+├── time::hrtimer::HasHrTimer::timer_container_of
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── time::hrtimer::HrTimerCallbackContext::<'a, T>::from_raw
 
 time::msecs_to_jiffies
 └── bindings::__msecs_to_jiffies
@@ -2798,7 +3977,8 @@ uaccess::UserSliceReader::read_raw
 └── bindings::copy_from_user
 
 uaccess::UserSliceReader::strcpy_into_buf
-└── core::option::Option::<T>::unwrap_unchecked
+├── core::option::Option::<T>::unwrap_unchecked
+└── ffi::CStr::from_bytes_with_nul_unchecked
 
 uaccess::UserSliceWriter::write
 └── bindings::_copy_to_user
@@ -2809,16 +3989,30 @@ uaccess::UserSliceWriter::write_slice
 uaccess::raw_strncpy_from_user
 └── bindings::strncpy_from_user
 
+workqueue::ClosureWork::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 workqueue::DelayedWork::<T, ID>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::init_work_with_key
+├── workqueue::WorkItemPointer::run
 ├── bindings::timer_init_key
 ├── bindings::delayed_work_timer_fn
 ├── workqueue::_::__ThePinData::<T, ID>::dwork
+│   └── pin_init::PinInit::__pinned_init
 ├── workqueue::_::__ThePinData::<T, ID>::__project_dwork
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── workqueue::_::__ThePinData::<T, ID>::__project__inner
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
+
+workqueue::DelayedWork::<T, ID>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
 
 workqueue::Queue::enqueue
 ├── workqueue::RawWorkItem::__enqueue
@@ -2832,33 +4026,111 @@ workqueue::Queue::enqueue_delayed
 workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
 
 workqueue::Queue::try_spawn
+├── pin_init::__internal::HasPinData::__pin_data
 ├── workqueue::_::__ThePinData::<T>::work
+│   └── pin_init::PinInit::__pinned_init
 ├── workqueue::_::__ThePinData::<T>::__project_work
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── workqueue::_::__ThePinData::<T>::__project_func
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
 workqueue::Work::<T, ID>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::init_work_with_key
+├── workqueue::WorkItemPointer::run
 ├── workqueue::_::__ThePinData::<T, ID>::work
+│   └── pin_init::PinInit::__pinned_init
 ├── workqueue::_::__ThePinData::<T, ID>::__project_work
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── workqueue::_::__ThePinData::<T, ID>::__project__inner
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
+workqueue::Work::<T, ID>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 workqueue::Work::<T, ID>::raw_get [38;5;246m{[0m [1m[38;2;255;165;000mValidPtr[39m[0m, [1m[38;2;255;165;000mAlign[39m[0m [38;5;246m}[0m
+
+workqueue::_::__ThePinData::<T, ID>::__project_dwork
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+workqueue::_::__ThePinData::<T, ID>::__project_work
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+workqueue::_::__ThePinData::<T, ID>::_inner
+└── pin_init::Init::__init
+
+workqueue::_::__ThePinData::<T, ID>::_inner
+└── pin_init::Init::__init
+
+workqueue::_::__ThePinData::<T, ID>::dwork
+└── pin_init::PinInit::__pinned_init
+
+workqueue::_::__ThePinData::<T, ID>::work
+└── pin_init::PinInit::__pinned_init
+
+workqueue::_::__ThePinData::<T>::__project_work
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+workqueue::_::__ThePinData::<T>::func
+└── pin_init::Init::__init
+
+workqueue::_::__ThePinData::<T>::work
+└── pin_init::PinInit::__pinned_init
+
+workqueue::system
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_bh
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_bh_highpri
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_freezable
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_freezable_power_efficient
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_highpri
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_long
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_power_efficient
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+workqueue::system_unbound
+└── workqueue::Queue::from_raw [38;5;246m{[0m [1m[38;2;255;165;000mTyped[39m[0m [38;5;246m}[0m
+
+xarray::Guard::<'a, T>::get
+└── types::ForeignOwnable::borrow
+
+xarray::Guard::<'a, T>::get_mut
+└── types::ForeignOwnable::borrow_mut
 
 xarray::Guard::<'a, T>::load
 └── bindings::xa_load
 
 xarray::Guard::<'a, T>::remove
-└── bindings::__xa_erase
+├── bindings::__xa_erase
+└── types::ForeignOwnable::try_from_foreign
 
 xarray::Guard::<'a, T>::store
 ├── bindings::__xa_store
-└── bindings::xa_err
+├── bindings::xa_err
+├── types::ForeignOwnable::from_foreign
+└── types::ForeignOwnable::try_from_foreign
 
 xarray::XArray::<T>::iter
 ├── bindings::xa_find
@@ -2868,14 +4140,36 @@ xarray::XArray::<T>::lock
 └── bindings::xa_lock
 
 xarray::XArray::<T>::new
+├── pin_init::__internal::HasPinData::__pin_data
 ├── bindings::xa_init_flags
 ├── xarray::_::__ThePinData::<T>::xa
+│   └── pin_init::PinInit::__pinned_init
 ├── xarray::_::__ThePinData::<T>::__project_xa
+│   └── core::pin::Pin::<Ptr>::new_unchecked
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 ├── xarray::_::__ThePinData::<T>::__project__p
+├── pin_init::__internal::DropGuard::<T>::new
 ├── core::ptr::write
 └── pin_init::pin_init_from_closure
 
+xarray::XArray::<T>::project
+├── core::pin::Pin::<&'a mut T>::get_unchecked_mut
+└── core::pin::Pin::<Ptr>::new_unchecked
+
 xarray::XArray::<T>::try_lock
 └── bindings::xa_trylock
+
+xarray::_::<impl core::ops::Drop for xarray::XArray<T>>::drop
+├── core::pin::Pin::<Ptr>::new_unchecked
+└── pin_init::__internal::OnlyCallFromDrop::new
+
+xarray::_::__ThePinData::<T>::__project_xa
+└── core::pin::Pin::<Ptr>::new_unchecked
+
+xarray::_::__ThePinData::<T>::_p
+└── pin_init::Init::__init
+
+xarray::_::__ThePinData::<T>::xa
+└── pin_init::PinInit::__pinned_init
 
