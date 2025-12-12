@@ -79,6 +79,9 @@ jobs:
       - name: Install dependencies
         run: nci
 
+      - name: Install dependencies in safety-tags
+        run: cd slides/safety-tags && nci
+
       - name: Prepare deploy folder
         run: rm -rf dist && mkdir dist
 
