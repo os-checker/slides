@@ -191,7 +191,7 @@ unsafe fn new(base_register_vaddr: NonNull<u8>) -> Self {
 
 ---
 
-## Linter: Identifying and Reporting Missing Tags
+## Linter: Identify and Report Missing Tags
 
 <div class="h-2"></div>
 
@@ -227,11 +227,23 @@ unsafe fn init(base_register_vaddr: NonNull<u8>) {
 
 ## Spec: What Does the Word "Valid" Mean?
 
+<TwoColumns class="pt-4 pb-1 flex items-center justify-center">
+
+<template #left>
+<div class="text-xl text-red-500 font-bold">
 This single tag means a lot!
+</div>
+</template>
+
+<template #right>
 
 ```rust
-#[safety::requires(ValidBaseAddr(base_register_vaddr, hardware = "IOMMU")]
+#[safety::requires(ValidBaseAddr(base_register_vaddr, hardware = "IOMMU"))]
 ```
+
+</template>
+
+</TwoColumns>
 
 <div class="text-xs iommu">
 

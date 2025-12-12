@@ -33,7 +33,7 @@ hideInToc: true
 # Self-Intro
 
 * [os-checker](https://github.com/os-checker/os-checker) 作者
-  * 来自唐图 ([rCoreOS](https://github.com/rcore-os/)) 开源社区；检查 ArceOS、Starry、axVisor 代码库
+  * 来自唐图 ([rCoreOS](https://github.com/rcore-os/)) 开源社区；检查 ArceOS、Starry、axVisor 组件化操作系统
   * 泉城实验室资助；收录于旋武开源社区项目 [#26](https://xuanwu.openatom.cn/articles/project/26-os-checker/)
 * [safety-tool](https://github.com/Artisan-Lab/tag-std) 作者
   * 安全属性标注；[RFC#3842](https://github.com/rust-lang/rfcs/pull/3842)

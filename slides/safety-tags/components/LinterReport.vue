@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-800 text-white py-2 px-4 text-xs">
+  <div class="bg-black text-white py-2 px-4 text-xs">
 <pre>
 <span class="bold"><span class="f1"><span class="bold">error</span></span></span>: <span class="bold">Tags are not discharged: `ValidBaseAddr`, `OwnedResource`</span>
  <span class="bold"><span class="f4"><span class="bold">--&gt;</span></span></span> ./tests/snippets/fault_event_err.rs:8:14

@@ -144,6 +144,8 @@ src: [lore.kernel.org/rust-for-linux: RFC PATCH 4/5 safety standard: add safety 
 
 ## In Safety Tag Syntax
 
+<div class="h-10"></div>
+
 ```toml
 # For "ptr is valid for reads and writes", we can
 # * define [tag.ValidPtr] or [tag.ValidReadWrite]

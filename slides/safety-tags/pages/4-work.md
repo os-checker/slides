@@ -7,10 +7,16 @@
 
 ## Draft Annotations in Asterinas
 
-* Annotated [ostd](https://github.com/Artisan-Lab/tag-asterinas/tree/2025-11/ostd) 
-* Tag definitions in a [TOML file](https://github.com/Artisan-Lab/tag-asterinas/blob/2025-11/ostd/safety-tags.toml)
-* Tag summary in [Asterinas-safety-properties.md](https://github.com/Artisan-Lab/tag-std/blob/main/Asterinas-safety-properties.md)
-* Asterinas RFC (under inital delibration)
+<div class="h-4"></div>
+
+<div class="text-xl">
+
+* Annotated [ostd](https://github.com/Artisan-Lab/tag-asterinas/tree/2026-11/ostd) fork
+* Tags are defined in a [TOML file](https://github.com/Artisan-Lab/tag-asterinas/blob/2025-11/ostd/safety-tags.toml)
+* Safety properties are summarized in [Asterinas-safety-properties.md](https://github.com/Artisan-Lab/tag-std/blob/main/Asterinas-safety-properties.md)
+* Asterinas RFC is under inital delibration
+
+</div>
 
 ---
 
@@ -56,11 +62,17 @@ pie showData
 
 ## Draft Annotations in Rust for Linux
 
-* Annotated [rust/kernel](https://github.com/Artisan-Lab/tag-rust-for-linux/tree/rust-next/rust/kernel) crate
-* Tag definitions in [sp-rust-for-linux.toml](https://github.com/Artisan-Lab/tag-std/blob/main/safety-tool/assets/sp-rust-for-linux.toml)
+<div class="h-4"></div>
+
+<div class="text-xl">
+
+* Annotated [rust/kernel](https://github.com/Artisan-Lab/tag-rust-for-linux/tree/rust-next/rust/kernel) fork
+* Tags are defined in [sp-rust-for-linux.toml](https://github.com/Artisan-Lab/tag-std/blob/main/safety-tool/assets/sp-rust-for-linux.toml)
   * [sp-core.toml](https://github.com/Artisan-Lab/tag-std/blob/main/safety-tool/assets/sp-core.toml) is also utilized, so basic tags 
     are out of the box (like ValidPtr, Eq, InBound, ...)
-* Tag summary in [R4L-safety-properties.md](https://github.com/Artisan-Lab/tag-std/blob/main/R4L-safety-properties.md)
+* Safety properties are summarized in [R4L-safety-properties.md](https://github.com/Artisan-Lab/tag-std/blob/main/R4L-safety-properties.md)
+
+</div>
 
 ---
 
@@ -121,7 +133,7 @@ url = "https://doc.rust-lang.org/nightly/std/ptr/index.html#allocation"
 unsafe fn foo<T>(slot: *mut T) { ... }
 ```
 
-`#[safety::requires]` will be expanded to `#[doc]` attribute:
+The `#[safety::requires]` proc-macro will be expanded to `#[doc]` attribute:
 
 ```rust
 #[doc = "the memory range `[slot, slot + sizeof(T)*1)` must be allocated by allocator `_`"]
@@ -137,7 +149,7 @@ unsafe fn foo<T>(slot: *mut T) { ... }
 
 ![](https://github.com/user-attachments/assets/5c530183-ee86-4c48-aba9-b725c1c257b5)
 
-<div class="text-lg text-red-500 text-center font-bold"> Tag Auto-completion </div>
+<div class="text-lg text-red-500 text-center font-bold"> Tag Auto-Completion </div>
 
 ---
 hideInToc: true

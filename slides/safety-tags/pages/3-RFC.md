@@ -7,7 +7,7 @@
 <TwoColumns left="85%" right="15%" gap="1rem">
 
 <template #left>
-<img src="./rfc-safety-tags.png" class="h-full" />
+<img src="./rfc-safety-tags.png" class="h-full object-fit-contain" />
 </template>
 
 <template #right>
@@ -111,10 +111,12 @@ And fixes for more missing safety properties:
 
 ## Granular Unsafe: How Small Is Too Small?
 
+<div class="pt-8">
+
 Rust languange and compiler focus on **making unsafety source and usage explicit and visually granular**.
 
-
-<div class="text-xs pt-20" v-click=1>
+</div>
+<div class="text-xs pt-15" v-click=1>
 
 There are also some exotic visual unsafety proposals from IRLO:
 * 2023-10: [Ability to call unsafe functions without curly brackets](https://internals.rust-lang.org/t/ability-to-call-unsafe-functions-without-curly-brackets/19635/22)
