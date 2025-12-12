@@ -5,6 +5,31 @@
 
 ---
 
+## Terminology
+
+<style>
+strong { @apply text-orange-500; @apply font-bold; }
+</style>
+
+<div class="h-4"></div>
+
+<div class="text-xl">
+
+**Safety requirements are texts** written on unsafe code to demostrate what responsibilities
+of the caller are in using the unsafe function correctly and how the callee fulfills these
+safety responsibilities.
+
+A **safety tag** is a safety requirement that is **structural and machine-readable**, in the
+Rust's attribute syntax `#[safety::<predicate>(TagName(arguments))]`. We'll delve into the
+mechanism in the slides.
+
+A **safety property** (SP) refers to the **meaning of a safety requirement**, by virtue of a tag
+name with optional arguments.
+
+</div>
+
+---
+
 ## Attribute Syntax
 
 ```
@@ -241,13 +266,11 @@ Key Steps for IOMMU Base Address Initialization:
 
 The value of IOMMU base address is specified by hardware manuals:
 
-* UEFI ACPI (Advanced Configuration and Power Interface) [Specification](https://uefi.org/specifications):
-
 <img src="https://github.com/user-attachments/assets/ef19c115-94b9-4bd9-a3c8-739c61261a5a" class="h-[50%] block mx-auto">
 
 <div class="text-center">
 
-[v6.6](https://uefi.org/sites/default/files/resources/ACPI_Spec_6.6.pdf) 5.2.33.4 Single MMIO Endpoint Node Structure
+UEFI ACPI (Advanced Configuration and Power Interface) Specification [v6.6](https://uefi.org/sites/default/files/resources/ACPI_Spec_6.6.pdf)
 
 </div>
 
@@ -267,6 +290,7 @@ Also see
 
 ## Spec: "Valid" Also Means a Lot in Rust!
 
+<CodeblockSmallSized>
 
 ```toml
 # sp-core.toml
@@ -294,3 +318,5 @@ desc = "the pointer `{p}` and its offset up to `sizeof({T})*{len}` must point to
 expr = "mem(p, p+ sizeof(T) * len) ∈ single allocated object"
 url = "https://github.com/Artisan-Lab/tag-std/blob/main/primitive-sp.md#321-allocation"
 ```
+
+</CodeblockSmallSized>
