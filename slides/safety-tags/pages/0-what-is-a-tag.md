@@ -51,11 +51,10 @@ TagArguments -> `(` RustExpression (, RustExpression)* `)`
 e.g.
 
 ```rust
-#[safety::requires( Tag )]
-#[safety::requires( Tag1, Tag2 )]
+#[safety::requires( DefinePropertyInPascalCase )]
 
-#[safety::requires( Tag3: "declare a safety requirement" )]
-#[safety::checked ( Tag3: "how the requirement is met" )]
+#[safety::requires( Tag1: "declare a safety requirement" )]
+#[safety::checked ( Tag1: "how the requirement is met" )]
 #[safety::checked ( Tag1, Tag2: "shared reasons for both requirements to be met" )]
 ```
 
@@ -105,7 +104,7 @@ unsafe fn f3() {
   #[safety::checked(Tag1: "justify why this reqirement is met")]
   unsafe { f1() }
 
-  #[safety::delegated(Tag2: "safety is ensured by the caller of f3")]
+  #[safety::delegated]
   unsafe { f2() }
 }
 ```

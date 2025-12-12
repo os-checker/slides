@@ -16,6 +16,8 @@
 <a class="text-orange-500 font-bold text-xl" href="https://github.com/rust-lang/rfcs/pull/3842" target="_blank">RFC#3842:<br> Safety Tags</a>
 <br> 172 conversations <br> 12 reviewers
 
+(Bevy the Rust Game Engine is interested!)
+
 Rust [zulipchat thread](https://rust-lang.zulipchat.com/#narrow/channel/136281-t-opsem/topic/Safety.20Property.20System/)
 <br> 60 conversations
 
@@ -50,7 +52,7 @@ Pre-RFC:<br>
 ## Safety Requirements Can Be Incomplete in the Standard Library
 
 ```rust
-// Bad: Ptr is possibly from another allocation.
+// Bad: ptr is possibly from another allocation.
 pub unsafe fn from_raw(ptr: *const T) -> Self {
     // SmartPoiner can be Box, Arc, Rc, and Weak.
     unsafe { SmartPoiner::from_raw_in(ptr, Global) }
@@ -162,10 +164,8 @@ Safety tags define the unsafety <span class="text-red-500">at coarse semantic gr
 
 <div class="h-5"></div>
 
-4. Suit for <span class="text-red-500 font-bold">daily</span> projects:
+4. Suitable for <span class="text-red-500 font-bold">daily</span> projects:
   * Establish shared vocabulary and **forge consensus in everyday review**.
   * By contrast, formal contracts excel verifying code at extremely fine semantic granularity,
     but they are much harder to maintain.
-
-
 

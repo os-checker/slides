@@ -14,7 +14,7 @@
 * Annotated [ostd](https://github.com/Artisan-Lab/tag-asterinas/tree/2026-11/ostd) fork
 * Tags are defined in a [TOML file](https://github.com/Artisan-Lab/tag-asterinas/blob/2025-11/ostd/safety-tags.toml)
 * Safety properties are summarized in [Asterinas-safety-properties.md](https://github.com/Artisan-Lab/tag-std/blob/main/Asterinas-safety-properties.md)
-* Asterinas RFC is under inital delibration
+* Asterinas RFC is under inital deliberation
 
 </div>
 
@@ -101,8 +101,8 @@ pie showData
 pie showData
     title Safety Tag Categories in Rust for Linux
     "Memory Access & Validity" : 118
-    "Context & Flow" : 45
-    "Type & Structure" : 40
+    "Execution Flow" : 45
+    "Type Invariant" : 40
     "Resource & Ownership" : 20
     "Concurrency" : 13
 ```
