@@ -131,9 +131,12 @@ There are also some exotic visual unsafety proposals from IRLO:
 
 ---
 
-Clippy lints step a bit further towards the <span class="text-orange-500 font-bold">semantic unsafety</span>:
-* `missing_safety_doc` checks the existence of `# Safety` section in doc comments.
-* `multiple_unsafe_ops_per_block` checks the occurence of unsafe operations in `unsafe { }`.
+Clippy steps a bit further towards the <span class="text-orange-500 font-bold">semantic unsafety</span>:
+* [`missing_safety_doc`] checks the existence of `# Safety` section in doc comments.
+* [`multiple_unsafe_ops_per_block`] checks the occurence limit of unsafe operations in `unsafe { }`.
+
+[`missing_safety_doc`]: https://rust-lang.github.io/rust-clippy/master/index.html?search=missing_safety_doc#missing_safety_doc
+[`multiple_unsafe_ops_per_block`]: https://rust-lang.github.io/rust-clippy/master/index.html?search=multiple_unsafe_ops_per_block#multiple_unsafe_ops_per_block
 
 <Info>
 <div class="font-bold text-lg">
