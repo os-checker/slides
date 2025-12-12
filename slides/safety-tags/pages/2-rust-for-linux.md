@@ -1,7 +1,14 @@
 
-## Rust for Linux: Safety Standard Proposal (2024.09)
 
-* Kangrejos Conference [Slides](https://kangrejos.com/2024/Rust%20Safety%20Standard.pdf):
+# Rust for Linux: Safety Standard Proposal
+
+<SubTOC />
+
+---
+
+## Background
+
+* Kangrejos 2024 Conference [Slides](https://kangrejos.com/2024/Rust%20Safety%20Standard.pdf):
   Rust Safety Standard - Increasing the Correctness of unsafe Code
 * LWN [article](https://lwn.net/Articles/990273/):
   A discussion of Rust safety documentation
@@ -26,7 +33,7 @@
 hideInToc: true
 ---
 
-## Rust for Linux: Safety Standard vs Using Tags
+## Safety Standard vs Safety Tags
 
 Provide a correct justification for _every_ safety requirements of _every_ operation:
 
@@ -105,7 +112,7 @@ let arc = unsafe { Arc::from_raw(ptr) };
 
 ---
 
-## Rust for Linux: Common Safety Requirements
+## Common Safety Requirements
 
 ```text
 +------------------------+---------------------+---------------------------------------------------+
@@ -135,7 +142,7 @@ src: [lore.kernel.org/rust-for-linux: RFC PATCH 4/5 safety standard: add safety 
 
 ---
 
-## In safety-tool's tag spec syntax
+## In Safety Tag Syntax
 
 ```toml
 # For "ptr is valid for reads and writes", we can
@@ -194,8 +201,7 @@ unsafe fn get_group_data<'a, Parent>(this: *mut bindings::config_group) -> &'a P
 
 <template #right>
 
-Rust for Linux:
-Real Code Example
+## Real Code Example
 
 src: [linux/rust/kernel/configfs.rs](https://github.com/Rust-for-Linux/linux/blob/559e608c46553c107dbba19dae0854af7b219400/rust/kernel/configfs.rs#L297-L322)
 

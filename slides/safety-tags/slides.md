@@ -60,18 +60,12 @@ routeAlias: team
 src: ./pages/0-what-is-a-tag.md
 ---
 
----
-src: ./pages/1-current-lints.md
----
+<!-- --- -->
+<!-- src: ./pages/1-current-lints.md -->
+<!-- --- -->
 
 ---
-
-# Community Approaches & Our Spin
-
-<SubTOC />
-
----
-src: ./pages/2.1-rust-for-linux.md
+src: ./pages/2-rust-for-linux.md
 ---
 
 ---
