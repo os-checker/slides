@@ -38,7 +38,7 @@ Pre-RFC:<br>
 <div class="h-4"></div>
 
 * `#![feature(safety_tags)]` and standard library adoption
-  * annotate safety tags for all public unsafe APIs in libcore/libstd, along with their call sites
+  * Annotate safety tags for all public unsafe APIs in libcore/libstd, along with their call sites
 * Clippy: implement safety tag checking
   * Analyzing HIR nodes can be sufficient
 * Rust-Analyzer: language service support on safety tags
