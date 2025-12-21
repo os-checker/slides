@@ -170,7 +170,7 @@ hideInToc: true
 
 <div class="text-xl">
 
-* Facilitate alignment between the design and devlopment team in Asterinas. 
+* Facilitate alignment on tag design with the devlopment team in Asterinas. 
 * Polish the tags in Rust for Linux. (It's not pure Rust code!)
 * Integrate with RAPx on [safety property verification](https://artisan-lab.github.io/RAPx-Book/6.4-unsafe.html).
 

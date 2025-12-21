@@ -17,7 +17,7 @@ hideInToc: true
 
 Github Repo: [Artisan-Lab/tag-std](https://github.com/Artisan-Lab/tag-std)
 
-Presenter: 周积萍
+Presenter: 周积萍 [@zjp-CN](https://github.com/zjp-CN)
 
 <style scoped>
 .slidev-layout.cover {
@@ -36,10 +36,14 @@ hideInToc: true
   * 来自唐图 ([rCoreOS](https://github.com/rcore-os/)) 开源社区；检查 ArceOS、Starry、axVisor 组件化操作系统
   * 泉城实验室资助；收录于旋武开源社区项目 [#26](https://xuanwu.openatom.cn/articles/project/26-os-checker/)
 * [safety-tool](https://github.com/Artisan-Lab/tag-std) 作者
-  * 安全属性标注；[RFC#3842](https://github.com/rust-lang/rfcs/pull/3842)
+  * 安全属性标注；[RFC#3842: Safety Tags](https://github.com/rust-lang/rfcs/pull/3842)
 * [distributed-verification](https://github.com/os-checker/distributed-verification) 作者
   * Kani 资源节约验证；verify-rust-std & Google 开源之夏
 * Rust 中文社区 ([rustcc](https://rustcc.cn/)) 新闻日报编辑：苦瓜小仔
+
+<div class="h-4"></div>
+
+(All Contents after this slide are English only.)
 
 ---
 hideInToc: true
